@@ -2,8 +2,8 @@
 @ inicio = 100
 @ fin = 30000
 @ incremento = 500
-set ejecutable = mejor_ordenacion
-set salida = tiempos_mejor_ordenacion.dat
+set ejecutable = ./bin/mejor_ordenacion
+set salida = ./dat/tiempos_mejor_ordenacion.dat
 
 @ i = $inicio
 echo > $salida

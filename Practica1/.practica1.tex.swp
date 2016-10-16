@@ -46,10 +46,12 @@
 	{\large \par}
 \end{titlepage}
 
+%Ejercicio 1
+
 	\textbf{\large Ejercicio 1.} El siguiente código realiza la ordenación mediante el algoritmo de la burbuja:\vspace {1em}
 	
 	\hspace*{1cm}1. void ordenar(int *v, int n) \{ \\
-	\hspace*{1cm}2.\hspace*{2em}	for (int i=0; i<n-1; i++)\\
+	\hspace*{1cm}2.\hspace*{2em}	for (int i=0; i$<$n-1; i++)\\
 	\hspace*{1cm}3.\hspace*{4em}		for (int j=0; j $<$ n-i-1; j++) \{ \\
 	\hspace*{1cm}4.\hspace*{6em}			if (v[j] $>$ v[j+1]) \{\\
 	\hspace*{1cm}5.\hspace*{8em}				int aux = v[j];\\
@@ -71,9 +73,9 @@ Los datos deben contener tiempos de ejecución para tamaños del vector 100, 600
 El archivo ordenación.cpp y ejecuciones\_ordenacion.csh se encuentran adjuntos en la práctica.\\
 
 \underline{Eficiencia teórica:} \\
-	Línea 2: 5OE (2 asignaciones, 3 operaciones aritmético-lógica).\\
-	Línea 3: 6OE (2 asignaciones, 4 operaciones aritmético-lógica).\\
-	Línea 4-7: 13OE (6 accesos a vector, 4 operaciones artimético-lógicas, 3 asignaciones).\\
+	Línea 2: 5 OE (2 asignaciones, 3 operaciones aritmético-lógica).\\
+	Línea 3: 6 OE (2 asignaciones, 4 operaciones aritmético-lógica).\\
+	Línea 4-7: 13 OE (6 accesos a vector, 4 operaciones artimético-lógicas, 3 asignaciones).\\
 
 Entonces:= 1 + $\sum_{i=0}^{n-2}(5+\sum_{j=0}^{n-i-2}(5+13))= 1 + \sum_{i=0}^{n-2}(5+((n-i-2)*18))= \\
 1 + \sum_{i=0}^{n-2}(5) + \sum_{i=0}^{n-2}(18n)+\sum_{i=0}^{n-2}(18n)+ \sum_{i=0}^{n-2}(18i) + \sum_{i=0}^{n-2}(18) = -4 + 4n + 9 n^2$.\\
@@ -81,7 +83,80 @@ Entonces:= 1 + $\sum_{i=0}^{n-2}(5+\sum_{j=0}^{n-i-2}(5+13))= 1 + \sum_{i=0}^{n-
 \small{\underline{Nota:} debemos considerar que para ordenar un vector debe tener al menos 2 elementos.}
 
 \newpage
+
+%Ejercicio 3
+\textbf{\large Ejercicio 3.} Junto con este guión se le ha suministrado un fichero ejercicio\_desc.cpp. En él se ha implementado un algoritmo. Se pide que:\\ 
+	\begin{itemize}  
+	\item  Explique qué hace este algoritmo.
+	\item  Calcule su eficiencia teórica. 
+	\item Calcule su eficiencia empírica.
+	\end{itemize}
+Si visualiza la eficiencia empírica debería notar algo anormal. Explíquelo y proponga una solución. Compruebe que su solución es correcta. Una vez resuelto el problema realice la regresión para ajustar la curva teórica a la empírica.
+\vspace {1em}	
+
+\underline{\emph{Solución:}}\\
+El algortimo \textit{operacion} busca en un vector la posición de un elemento concreto. Para ello, utiliza tres índices: inf, sup y med; además de un booleano que indica si se ha encontrado o no. Al principio, inf apunta al primer elemento del vector, sup al último y med al elemento central. Mientras inf sea menor que sup y no hayamos encontrado al elemento, entraremos en un bucle que asigna a med el elemento medio entre inf y sup y compara el elemento que se encuentra en dicha posición con el elemento buscado para, en caso de no encontrarlo, asignar a inf el elemento siguiente a med (si es menor que el elemento buscado) o a sup el anterior a med. Así, en las sucesivas iteraciones del bucle vamos comparando con el elemento que se encuentra en la mitad, en la mitad de la mitad, en la mitad de la mitad de la mitad,... Este es el algoritmo conocido como búsqueda binaria.\vspace{1em}
+
+	\hspace*{1cm}1. int operacion(int *v, int n, int x, int inf, int sup) \{ \\
+	\hspace*{1cm}2.\hspace*{2em}	int med;\\
+	\hspace*{1cm}3.\hspace*{2em}	bool enc=false; \{ \\
+	\hspace*{1cm}4.\hspace*{2em}	while ((inf$<$sup) \&\& (!enc)) \\
+	\hspace*{1cm}5.\hspace*{4em}		med = (inf+sup)/2; \\
+	\hspace*{1cm}6.\hspace*{4em}		if (v[med]==x) \\
+	\hspace*{1cm}7.\hspace*{6em}			enc = true;\\
+	\hspace*{1cm}8.\hspace*{4em}		else if (v[med] $<$ x) \\
+	\hspace*{1cm}9.\hspace*{6em}			inf = med+1;\\
+	\hspace*{1cm}10.\hspace*{4em}		else \\
+	\hspace*{1cm}11.\hspace*{6em}			sup = med-1; \\
+	\hspace*{1cm}12.\hspace*{2em}	\}\\
+  	\hspace*{1cm}13.\hspace*{2em}	if (enc) \\
+  	\hspace*{1cm}14.\hspace*{4em}		return med; \\
+	\hspace*{1cm}15.\hspace*{2em}	else \\
+	\hspace*{1cm}16.\hspace*{4em}		return -1; \\
+	\hspace*{1cm}17. \} \\
+	
+	\underline{Eficiencia teórica:} \\
+	Línea 2 y 3: 1 OE (declaración de variable).\\
+	Línea 4: 3 OE (3 operaciones aritmético-lógicas).\\
+	Línea 5: 3 OE (2 operaciones artimético-lógicas, 1 asignación).\\
+	Líneas 6-11: 4 OE (aplicando la regla del máximo: 1 acceso a vector, 2 operaciones aritmético-lógicas, 1 asignación\\
+	Líneas 13-17: 2 OE (1 operación aritmético-lógica, 1(return?))\\
+
+	Al ser los otros bloques O(1) es, por tanto, el bucle de la línea 4 el que determina la eficiencia del algoritmo. Como los índices involucrados en la condición del mismo varían dividiendose entre dos, vamos quedándonos cada vez con menos elementos, de forma que la eficiencia es O(log2n). Concluimos, aplicando la regla de la suma, que la eficiencia de este algoritmo es O(log2n).\\
+	
+	\underline{Eficiencia empírica} \\
+	Para calcular la eficiencia empírica creamos mediante /src/ejercicio\_desc.cpp el ejecutable /bin/ejercicio\_desc. El guión /csh/ejercicio\_desc.csh guarda en /dat/tiempos\_ejercicio\_desc.dat los tiempos de ejecución del programa con datos entre 100 y 1000000. Usando gnuplot, generamos la siguiente gráfica:
+	
+	\begin{figure}[!ht]
+  \caption{Tiempos operacion}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_3.png}
+\end{figure}
+	
+	Observamos que esta gráfica no es logarítmica, como habíamos predicho de forma teórica, sino que los valores se mantienen en tiempos relativamente constantes. Esto se debe a que la precisión con que medimos los tiempos no es suficiente. Para solucionarlo,...?
+	\newpage
   
+ %Ejercicio 4
+	\textbf{\large Ejercicio 4.} Retome el ejercicio de ordenación mediante el algoritmo de la burbuja. Debe modificar el código que genera los datos de entrada para situarnos en dos escenarios diferentes:
+	\begin{itemize}
+	\item	El mejor caso posible. Para este algoritmo, si la entrada es un vector que ya está ordenado el tiempo de cómputo es menor ya que no tiene que intercambiar ningún elemento.
+	\item	El peor caso posible. Si la entrada es un vector ordenado en orden inverso estaremos en la peor situación posible ya que en cada iteración del bucle interno hay que hacer un intercambio. 
+	\end{itemize}
+	Calcule la eficiencia empírica en ambos escenarios y compárela con el resultado del ejercicio 1.
+\vspace {1em}	
+
+\underline{\emph{Solución:}}\\
+Como solución a este ejercicio creamos dos nuevos archivos .cpp que recogen ambos casos. A continuación, ofrecemos la gráfica en que se comparan los tiempos de ejecución de los tres casos:
+
+\begin{figure}[!ht]
+  \caption{Comparación ordenación normal/mejor caso/peor caso}
+  \centering
+    %\includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_4.png}
+\end{figure}  
+
+Se aprecia un menor tiempo de ejecución cuando el vector ya está ordenado frente a cuando está ordenado de forma inversa o desordenado de forma aleatoria.
+\newpage
+
 %Ejercicio 5
 \ 
   \textbf{\large Ejercicio 5.} Dependencia de la implementación:\\ 
@@ -133,6 +208,7 @@ $$T(n)=1\ +\ 1\ +\sum \limits_{j=0}^{n-1} 4= 1+1+(\frac{4+4}{2})\cdot(n-1)= 4n-2
     \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_5.png}
 \end{figure}
 \newpage
+
 %Ejercicio 6
 
 \textbf{\large Ejercicio 6.} Influencia del proceso de compilación:\\

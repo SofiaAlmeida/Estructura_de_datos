@@ -1,9 +1,9 @@
 #!/bin/csh
 @ inicio = 100
 @ fin = 1000000
-@ incremento = 500
-set ejecutable = /bin/ejercicio_desc
-set salida = ./dat/tiempos_ejercicio_desc.dat
+@ incremento = 1000
+set ejecutable = /bin/ejercicio_desc_sol
+set salida = ./dat/tiempos_ejercicio_desc_sol.dat
 
 @ i = $inicio
 echo > $salida
