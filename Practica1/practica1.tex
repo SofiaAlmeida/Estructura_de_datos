@@ -80,7 +80,52 @@ Entonces:= 1 + $\sum_{i=0}^{n-2}(5+\sum_{j=0}^{n-i-2}(5+13))= 1 + \sum_{i=0}^{n-
 
 \small{\underline{Nota:} debemos considerar que para ordenar un vector debe tener al menos 2 elementos.}
 
-	
+\newpage
+  
+%Ejercicio 5
+\ 
+  \textbf{\large Ejercicio 5.} Dependencia de la implementación:\\ 
+  
+  \hspace*{1cm}1. void ordenar(int *v, int n) \{ \\
+  \hspace*{1cm}2.\hspace*{2em}  bool cambio=true;\\
+  \hspace*{1cm}3.\hspace*{2em} 	for (int i=0; i$<$n-1 \&\& cambio; i++) \{ \\
+  \hspace*{1cm}4.\hspace*{4em}      cambio=false; \{\\
+  \hspace*{1cm}5.\hspace*{4em}      for (int j=0; j$<$n-i-1; j++)\{ \\
+  \hspace*{1cm}6.\hspace*{6em}        if (v[j]$>$v[j+1]) \{\\
+  \hspace*{1cm}7.\hspace*{8em}        cambio=true;\\
+  \hspace*{1cm}8.\hspace*{8em}		  int aux = v[j]; \\
+  \hspace*{1cm}9.\hspace*{8em}		  v[j] = v[j+1]; \\
+  \hspace*{1cm}10.\hspace*{7em}		  $\ $v[j+1] = aux; \\
+  \hspace*{1cm}11.\hspace*{6em}\} \\
+  \hspace*{1cm}12.\hspace*{4em}\} \\
+  \hspace*{1cm}13.\hspace*{2em}\} \\
+  \hspace*{1cm}14. \}  \vspace {1em} \\
+
+En ella se ha introducido una variable que permite saber si, en una de las iteraciones del bucle externo no se ha modificado el vector. Si esto ocurre significa que ya está ordenado y no hay que continuar.\\\\
+Considere ahora la situación del mejor caso posible en la que el vector de entrada ya está ordenado. ¿Cuál sería la eficiencia teórica en ese mejor caso? Muestre la gráfica con la eficiencia empírica y compruebe si se ajusta a la previsión.
+\\
+
+\underline{Cálculo eficiencia teórica:}
+\\\\
+En cada línea de código se producen las siguientes operaciones elementales:
+
+Línea 2: 1 o.e. inicialización booleana\\
+Línea 3: 4 o.e. inicial. "$\ $i ", comparación "$<$", resta "n-1", incremento "$\ $i++"\\
+Línea 4: 1 o.e. asignación booleana\\
+Línea 5: 5 o.e. inicial. "j", comp. "$<$", doble resta "n-i-1", incremento "j++"\\\\
+Línea 6: 4 o.e. accesos a v[j] y v[j+1], suma "j+1", comp. "$>$"\\
+Línea 7: 1 o.e. asign. bool.\\
+Línea 8: 2 o.e. inicial. "$\ $aux", acceso a v[j]\\
+Línea 9: 4 o.e. acceso a v[j] y v[j+1], suma "j+1", asignación\\
+Línea 10: 3 o.e. acceso a v[j+1], suma "j+1", asignación\\
+
+*Las líneas 7-10 no sucederían en el mejor de los casos, cuando el vector está ordenado
+\ 
+\\\\ 
+Por tanto, en el mejor de los casos, donde el primer bucle sólo produce una iteración:\\ 
+$$T(n)=1\ +\ 1\ +\sum \limits_{j=0}^{n-1} 4= 1+1+(\frac{4+4}{2})\cdot(n-1)= 4n-2 $$
+ 
+\vspace {1em}  	
 
 
 \end{document}
