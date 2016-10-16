@@ -133,7 +133,14 @@ El algortimo \textit{operacion} busca en un vector la posición de un elemento c
     \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_3.png}
 \end{figure}
 	
-	Observamos que esta gráfica no es logarítmica, como habíamos predicho de forma teórica, sino que los valores se mantienen en tiempos relativamente constantes. Esto se debe a que la precisión con que medimos los tiempos no es suficiente. Para solucionarlo,...?
+	Observamos que esta gráfica no es logarítmica, como habíamos predicho de forma teórica, sino que los valores se mantienen en tiempos relativamente constantes. Esto se debe a que la precisión con que medimos los tiempos no es suficiente. Como solución se aporta el archivo /src/ejercicio\_desc\_sol.cpp. En él se realiza, para cada tamaño, 1000 veces \textit{operacion} y el tiempo tardado se divide entre 1000.
+	Una vez realizada la regresión, observamos en la siguiente gráfica cómo queda la eficiencia teórica frente a la empírica:
+	\begin{figure}[!ht]
+  \caption{Comparación eficiencia teórica(f(x)), eficiencia práctica}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_3_2.png}
+\end{figure}
+\newpage
 	\newpage
   
  %Ejercicio 4

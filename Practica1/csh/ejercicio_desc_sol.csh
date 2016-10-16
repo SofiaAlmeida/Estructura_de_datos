@@ -2,8 +2,8 @@
 @ inicio = 100
 @ fin = 1000000
 @ incremento = 1000
-set ejecutable = /bin/ejercicio_desc_sol
-set salida = ./dat/tiempos_ejercicio_desc_sol.dat
+set ejecutable = ejercicio_desc_sol
+set salida = tiempos_ejercicio_desc_sol.dat
 
 @ i = $inicio
 echo > $salida
