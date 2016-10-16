@@ -46,6 +46,28 @@
 	{\large \par}
 \end{titlepage}
 
+%Datos
+
+\textbf{\large Características}
+\ \\\\ 
+  El sistema operativo usado ha sido \textbf{Ubuntu 16.04}\\
+  Con una memoria
+  \textbf{1,8 GiB RAM}\\
+  Y con las especificaciones:
+  \textbf{Intel® Core™ i7-4700MQ CPU @ 2.40GHz}\\\\\\
+  \underline{Opciones de compilación:}
+
+\ \\ 	
+Salvo en los ejercicios expresamente indicados (ejercicio 6, que le pide una optimización expresa al compilador) todos los ejecutables han sido generados usando g++ generando directamente el ejecutable a partir del único archivo de código fuente con la opción -o
+\\
+$$g++\ \ -o\ ejecutable\ fuente.cpp $$
+
+\ \\\\
+\underline{Dibujo de gráficas:}
+\\\\
+Para esta representación se ha hecho uso exclusivamente de gnuplot, en concreto su orden plot, y se ha hecho una exportación directa a este documento
+\newpage
+
 %Ejercicio 1
 
 	\textbf{\large Ejercicio 1.} El siguiente código realiza la ordenación mediante el algoritmo de la burbuja:\vspace {1em}
@@ -82,8 +104,33 @@ Entonces:= 1 + $\sum\limits_{i=0}^{n-2}(5+\sum\limits_{j=0}^{n-i-2}(5+13))= 1 + 
 
 \small{\underline{Nota:} debemos considerar que para ordenar un vector debe tener al menos 2 elementos.}
 
-\newpage
+% Ejercicio 2
 
+\newpage
+\textbf{\large Ejercicio 2.} Replique el experimento de ajuste por regresión a los resultados obtenidos en el ejercicio
+1 que calculaba la eficiencia del algoritmo de ordenación de la burbuja. Para ello
+considere que f(x) es de la forma ax2+bx+c. \\
+
+
+\underline{\emph{Solución:}}\\
+Para la resolución de este ejercicio, utilizaremos la orden fit, con los datos previamente obtenidos, para hacer la regresión, en este caso cuadrática. \\
+
+ \underline{\emph{Datos obtenidos:}}\\
+ Teniendo la gráfica $f(x)=ax^2 + bx + c.$ la regresión se obtiene mediante los comandos:\\
+gnuplot$>$ f(x) = a*x*x + b*x + c \\
+ gnuplot$>$ fit f(x) "tiempos\_ordenacion.dat" via a, b, c\\
+ 
+ Queda como resultado: \\
+a    = 3.108e-09      +/- 1.64e-11     (0.5277\%)\\
+b    = -4.758e-06     +/- 5.035e-07    (10.58\%)\\
+c    = 0.0107285      +/- 0.003235     (30.15\%)\\
+
+\begin{figure}[!ht]
+  \caption{Comparación eficiencia teórica(f(x)), eficiencia práctica}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_2.png}
+\end{figure}
+\newpage
 %Ejercicio 3
 \textbf{\large Ejercicio 3.} Junto con este guión se le ha suministrado un fichero ejercicio\_desc.cpp. En él se ha implementado un algoritmo. Se pide que:\\ 
 	\begin{itemize}  
@@ -141,7 +188,6 @@ El algortimo \textit{operacion} busca en un vector la posición de un elemento c
     \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_3_2.png}
 \end{figure}
 \newpage
-	\newpage
   
  %Ejercicio 4
 	\textbf{\large Ejercicio 4.} Retome el ejercicio de ordenación mediante el algoritmo de la burbuja. Debe modificar el código que genera los datos de entrada para situarnos en dos escenarios diferentes:
@@ -205,8 +251,7 @@ Línea 10: 3 OE acceso a v[j+1], suma "j+1", asignación\\
 \ 
 \\\\ 
 Por tanto, en el mejor de los casos, donde el primer bucle sólo produce una iteración:\\ 
-$$T(n)=1\ +\ 1\ +\sum \limits_{j=0}^{n-1} 4= 1+1+(\frac{4+4}{2})\cdot(n-1)= 4n-2 $$
-\newpage
+$$T(n)=1\ +\ 1\ +\sum \limits_{j=0}^{n-1} 4= 1+1+(\frac{4+4}{2})\cdot(n-1)= 4n-2 $$\newpage
 \underline{Eficiencia práctica:}\\
 
 \begin{figure}[!ht]
@@ -214,8 +259,8 @@ $$T(n)=1\ +\ 1\ +\sum \limits_{j=0}^{n-1} 4= 1+1+(\frac{4+4}{2})\cdot(n-1)= 4n-2
   \centering
     \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_5.png}
 \end{figure}
-\newpage
 
+\newpage
 %Ejercicio 6
 
 \textbf{\large Ejercicio 6.} Influencia del proceso de compilación:\\
