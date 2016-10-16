@@ -1,0 +1,66 @@
+\documentclass[titlepage, 12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}						%acentos y mierda
+\usepackage[spanish, es-tabla]{babel}			%español
+\usepackage{caption}							%fotos cortandose
+\usepackage{listings}							%meter codigo 
+\usepackage{adjustbox}							%coin no se acordaba
+\usepackage{enumitem}							%listas mejoradas
+\usepackage{amssymb, amsmath, amsthm}			%Los de matemáticas
+\usepackage[margin=1in, top=0.7in]{geometry}	%Paquete de los margenes
+\usepackage{xcolor}								%para definir tus propios colores
+\usepackage{soul}								%coin no se acordaba
+
+% Meta
+
+\vspace{2cm}
+\author{Pedro Bonilla Nadal, Sofía Almeida Bruno, Jesús Sáchez de Lechina Tejada}
+\date{\small{}}
+
+% Custom  
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\setlength\parindent{0pt}
+\definecolor{Light}{gray}{.90}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\setlist[description]{leftmargin=1em, labelindent=0.5em}
+
+\begin{document}
+\begin{titlepage}
+	\vspace{1cm}
+	\centering
+	{\small II Doble Grado Ingieniería Infomática y Matemáticas  \par}
+	\vspace{3.5cm}
+	{\huge\bfseries  Estructura de Datos\par}
+	\vspace{2.5cm}
+	{\scshape\Large Práctica 1 - Eficiencia\par}
+	\vspace{2cm}
+	{\Large\itshape Pedro Bonilla Nadal, Sofía Almeida Bruno,  \par}
+	{\Large\itshape Jesús Sánchez de Lechina Tejada \par}
+	\vfill
+
+	\vfill
+
+% Bottom of the page
+	{\large \par}
+\end{titlepage}
+
+	\textbf{\large Ejercicio 1.} El siguiente código realiza la ordenación mediante el algoritmo de la burbuja:\vspace {1em}
+	
+	\hspace*{1cm}1. void ordenar(int *v, int n) \{ \\
+	\hspace*{1cm}2.\hspace*{2em}	for (int i=0; i<n-1; i++)\\
+	\hspace*{1cm}3.\hspace*{4em}		for (int j=0; j<n-i-1; j++)\\
+	\hspace*{1cm}4.\hspace*{6em}			if (v[j]>v[j+1]) {\\
+	\hspace*{1cm}5.\hspace*{8em}				int aux = v[j];\\
+	\hspace*{1cm}6.\hspace*{8em}				v[j] = v[j+1];\\
+	\hspace*{1cm}7.\hspace*{8em}				v[j+1] = aux;\\
+	\hspace*{1cm}8. \}  \vspace {1em} \\
+Calcule la eficiencia teórica de este algoritmo. A continuación replique el experimento que se ha hecho antes (búsqueda lineal) con este nuevo código. Debe:\\ 
+	\begin{itemize}  
+	\item Crear un fichero ordenacion.cpp con el programa completo para realizar una
+ejecución del algoritmo.
+	\item Crear un fichero ejecuciones\_ordenación.csh que permite ejecutar varias veces el programa anterior y generar un fichero con los datos obtenidos. 
+	\item Usar gnuplot para dibujar los datos obtenidos en el apartado previo.
+	\end{itemize}
+Los datos deben contener tiempos de ejecución para tamaños del vector 100, 600, 1100, \ldots,  30000. Pruebe a dibujar superpuestas la función con la eficiencia teórica y la empírica. ¿Qué sucede?
+\end{document}
