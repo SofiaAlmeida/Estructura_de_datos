@@ -1,15 +1,3 @@
-Ejercicio 5
-
-Características:
-  Ubuntu 16.04
-  1,8 GiB RAM
-  Intel® Core™ i7-4700MQ CPU @ 2.40GHz
-
-Compilación:
-  g++ -o ej_5 ej_5.cpp
-
-Código:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #include <iostream>
 #include <ctime>    // Recursos para medir tiempos
 #include <cstdlib>  // Para generación de números pseudoaleatorios
@@ -72,7 +60,7 @@ int main(int argc, char * argv[])
 	clock_t tini;    // Anotamos el tiempo de inicio
   tini=clock();
 
-	ordenar2(v,tam);
+	ordenar2(v,tam); // "Ordenamos el vector ya ordenado"
 
   clock_t tfin;    // Anotamos el tiempo de finalización
   tfin=clock();
@@ -82,21 +70,3 @@ int main(int argc, char * argv[])
 
   delete [] v;     // Liberamos memoria dinámica
 }
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Cálculo de la eficiencia teórica:
-
-En cada línea de código se producen las siguientes operaciones elementales:
-
-Línea 2: 1 o.e. inicialización booleana
-Línea 3: 4 o.e. inicial. "i", comparación "<", resta "n-1", incremento "i++"
-Línea 4: 1 o.e. asignación booleana
-Línea 5: 5 o.e. inicial. "j", comp. "<", doble resta "n-i-1", incremento "j++"
-Línea 6: 4 o.e. accesos a v[j] y v[j+1], suma "j+1", comp. ">"
-Línea 7: 1 o.e. asign. bool.
-Línea 8: 2 o.e. inicial. "aux", acceso a v[j]
-Línea 9: 4 o.e. acceso a v[j] y v[j+1], suma "j+1", asignación
-Línea 10: 3 o.e. acceso a v[j+1], suma "j+1", asignación
-
-*Las líneas 7-10 no sucederían en el mejor de los casos, cuando el vector está ordenado
