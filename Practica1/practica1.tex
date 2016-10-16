@@ -11,7 +11,8 @@
 \usepackage[margin=1in, top=0.7in]{geometry}	%Paquete de los margenes
 \usepackage{xcolor}								%para definir tus propios colores
 \usepackage{soul}								%coin no se acordaba
-
+\usepackage{graphicx}
+\graphicspath{ {/Estructura_de_datos/Images/} }
 % Meta
 
 \vspace{2cm}
@@ -49,12 +50,14 @@
 	
 	\hspace*{1cm}1. void ordenar(int *v, int n) \{ \\
 	\hspace*{1cm}2.\hspace*{2em}	for (int i=0; i<n-1; i++)\\
-	\hspace*{1cm}3.\hspace*{4em}		for (int j=0; j<n-i-1; j++)\\
-	\hspace*{1cm}4.\hspace*{6em}			if (v[j]>v[j+1]) {\\
+	\hspace*{1cm}3.\hspace*{4em}		for (int j=0; j $<$ n-i-1; j++) \{ \\
+	\hspace*{1cm}4.\hspace*{6em}			if (v[j] $>$ v[j+1]) \{\\
 	\hspace*{1cm}5.\hspace*{8em}				int aux = v[j];\\
 	\hspace*{1cm}6.\hspace*{8em}				v[j] = v[j+1];\\
 	\hspace*{1cm}7.\hspace*{8em}				v[j+1] = aux;\\
-	\hspace*{1cm}8. \}  \vspace {1em} \\
+	\hspace*{1cm}8.\hspace*{6em}\} \\
+	\hspace*{1cm}9.\hspace*{4em}\} \\
+	\hspace*{1cm}10. \}  \vspace {1em} \\
 Calcule la eficiencia teórica de este algoritmo. A continuación replique el experimento que se ha hecho antes (búsqueda lineal) con este nuevo código. Debe:\\ 
 	\begin{itemize}  
 	\item Crear un fichero ordenacion.cpp con el programa completo para realizar una
@@ -62,5 +65,22 @@ ejecución del algoritmo.
 	\item Crear un fichero ejecuciones\_ordenación.csh que permite ejecutar varias veces el programa anterior y generar un fichero con los datos obtenidos. 
 	\item Usar gnuplot para dibujar los datos obtenidos en el apartado previo.
 	\end{itemize}
-Los datos deben contener tiempos de ejecución para tamaños del vector 100, 600, 1100, \ldots,  30000. Pruebe a dibujar superpuestas la función con la eficiencia teórica y la empírica. ¿Qué sucede?
+Los datos deben contener tiempos de ejecución para tamaños del vector 100, 600, 1100, \ldots,  30000. Pruebe a dibujar superpuestas la función con la eficiencia teórica y la empírica. ¿Qué sucede?\\
+
+\underline{\emph{Solución.}}\\
+El archivo ordenación.cpp y ejecuciones\_ordenacion.csh se encuentran adjuntos en la práctica.\\
+
+\underline{Eficiencia teórica:} \\
+	Línea 2: 5OE (2 asignaciones, 3 operaciones aritmético-lógica).\\
+	Línea 3: 6OE (2 asignaciones, 4 operaciones aritmético-lógica).\\
+	Línea 4-7: 13OE (6 accesos a vector, 4 operaciones artimético-lógicas, 3 asignaciones).\\
+
+Entonces:= 1 + $\sum_{i=0}^{n-2}(5+\sum_{j=0}^{n-i-2}(5+13))= 1 + \sum_{i=0}^{n-2}(5+((n-i-2)*18))= \\
+1 + \sum_{i=0}^{n-2}(5) + \sum_{i=0}^{n-2}(18n)+\sum_{i=0}^{n-2}(18n)+ \sum_{i=0}^{n-2}(18i) + \sum_{i=0}^{n-2}(18) = -4 + 4n + 9 n^2$.\\
+
+\small{\underline{Nota:} debemos considerar que para ordenar un vector debe tener al menos 2 elementos.}
+
+	
+
+
 \end{document}
