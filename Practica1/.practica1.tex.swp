@@ -151,7 +151,7 @@ Como solución a este ejercicio creamos dos nuevos archivos .cpp que recogen amb
 \begin{figure}[!ht]
   \caption{Comparación ordenación normal/mejor caso/peor caso}
   \centering
-    %\includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_4.png}
+    \includegraphics[width=0.5\textwidth]{./img/ef_pract_ej_4.png}
 \end{figure}  
 
 Se aprecia un menor tiempo de ejecución cuando el vector ya está ordenado frente a cuando está ordenado de forma inversa o desordenado de forma aleatoria.
@@ -184,15 +184,15 @@ Considere ahora la situación del mejor caso posible en la que el vector de entr
 \\\\
 En cada línea de código se producen las siguientes operaciones elementales:
 
-Línea 2: 1 o.e. inicialización booleana\\
-Línea 3: 4 o.e. inicial. "$\ $i ", comparación "$<$", resta "n-1", incremento "$\ $i++"\\
-Línea 4: 1 o.e. asignación booleana\\
-Línea 5: 5 o.e. inicial. "j", comp. "$<$", doble resta "n-i-1", incremento "j++"\\\\
-Línea 6: 4 o.e. accesos a v[j] y v[j+1], suma "j+1", comp. "$>$"\\
-Línea 7: 1 o.e. asign. bool.\\
-Línea 8: 2 o.e. inicial. "$\ $aux", acceso a v[j]\\
-Línea 9: 4 o.e. acceso a v[j] y v[j+1], suma "j+1", asignación\\
-Línea 10: 3 o.e. acceso a v[j+1], suma "j+1", asignación\\
+Línea 2: 1 OE inicialización booleana\\
+Línea 3: 4 OE inicial. "$\ $i ", comparación "$<$", resta "n-1", incremento "$\ $i++"\\
+Línea 4: 1 OE asignación booleana\\
+Línea 5: 5 OE inicial. "j", comp. "$<$", doble resta "n-i-1", incremento "j++"\\\\
+Línea 6: 4 OE accesos a v[j] y v[j+1], suma "j+1", comp. "$>$"\\
+Línea 7: 1 OE asign. bool.\\
+Línea 8: 2 OE inicial. "$\ $aux", acceso a v[j]\\
+Línea 9: 4 OE acceso a v[j] y v[j+1], suma "j+1", asignación\\
+Línea 10: 3 OE acceso a v[j+1], suma "j+1", asignación\\
 
 *Las líneas 7-10 no sucederían en el mejor de los casos, cuando el vector está ordenado
 \ 
