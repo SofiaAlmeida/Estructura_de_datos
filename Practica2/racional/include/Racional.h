@@ -15,7 +15,7 @@ using namespace std;
   *  @brief T.D.A. Racional
   *
   * Una instancia @e c del tipo de datos abstracto @c Racional es un objeto
-  * del conjunto de los números racionales, compuestos por dos valores enteros
+  * del conjunto de los nï¿½meros racionales, compuestos por dos valores enteros
   * que representan, respectivamente, numerador y denominador. Lo representamos
   *
   * num/den
@@ -34,13 +34,13 @@ class Racional {
 /**
   * @page repConjunto Rep del TDA Racional
   *
-  * @section invConjunto Invariante de la representación
+  * @section invConjunto Invariante de la representaciï¿½n
   *
   * El invariante es \e rep.den!=0
   *
-  * @section faConjunto Función de abstracción
+  * @section faConjunto Funciï¿½n de abstracciï¿½n
   *
-  * Un objeto válido @e rep del TDA Racional representa al valor
+  * Un objeto vï¿½lido @e rep del TDA Racional representa al valor
   *
   * (rep.num,rep.den)
   *
@@ -63,7 +63,7 @@ class Racional {
   * @return Crea el numero racional n/d
   * @pre d debe ser distinto de cero
   */
-  Racional(int n, int d);  
+  Racional(int n, int d);
   // Racional(int n=0, int d=1): num(n),den(d) {}
 
 /**
@@ -71,12 +71,12 @@ class Racional {
   * @param c.num numerador del racional a construir
   * @param c.den denominador del racional a construir
   */
-  Racional (const Racional& c);  
+  Racional (const Racional& c);
 
 /**
   * @brief Numerador
   * @return Devuelve el numerador del racional
-  */ 
+  */
   int numerador ();
 
 /**
@@ -86,21 +86,21 @@ class Racional {
   int denominador();
 
 /**
-  * @brief Asignación de un racional
+  * @brief Asignaciï¿½n de un racional
   * @param n numerador del racional a asignar
   * @param d denominador del racional a asignar
-  * @return Asigna al objeto implícito el numero racional n/d
+  * @return Asigna al objeto implï¿½cito el numero racional n/d
   * @pre d debe ser distinto de cero
-  */   
+  */
   void asignar(int n, int d);
 
 /**
   * @brief Compara dos racionales
   * @param r racional a comparar
-  * @return Devuelve 0 si este objeto es igual a r, 
-  *                  <0 si este objeto es menor que r, 
-  *                  >0 si este objeto es mayor que r 
-  */   
+  * @return Devuelve 0 si este objeto es igual a r,
+  *                  <0 si este objeto es menor que r,
+  *                  >0 si este objeto es mayor que r
+  */
   bool comparar(Racional r);
 
 /**
@@ -116,15 +116,15 @@ class Racional {
 
 /**
   * @brief Sobrecarga del operador +=
-  * @param r racional a sumar con el objeto implícito
-  */ 
+  * @param r racional a sumar con el objeto implï¿½cito
+  */
   void operator+=(const Racional &r);
-  
+
 /**
   * @brief Sobrecarga del operador ==
-  * @param r racional a comparar con el objeto implícito
+  * @param r racional a comparar con el objeto implï¿½cito
   * @return Devuelve 0 si este objeto es igual a r
-  */  
+  */
   bool operator ==(const Racional &r);
 
 /**
@@ -140,7 +140,7 @@ class Racional {
   * @brief Entrada de un Racional desde istream
   * @param is stream de entrada
   * @param r Racional que recibe el valor
-  * @retval El Racional leído en r
+  * @retval El Racional leï¿½do en r
   * @pre La entrada tiene el formato (num/den) con \e num,\e den los valores
   *   del numerador y denominador
   */
@@ -151,10 +151,6 @@ class Racional {
   */
   Racional  simplifica();
 
-/**
-  * @brief suma dos racionales
-  * @param r racional a sumar con el objeto implícito
-*/
 
 /************* INCLUIR OTRAS FUNCIONES y OPERADORES *********/
 
@@ -164,9 +160,9 @@ class Racional {
    la funcion real que devuelva el valor real asociado al racional
    ej, 1/2 -> 0.5
 
-   Operador de resta, multiplicacion, division,etc.  
+   Operador de resta, multiplicacion, division,etc.
 */
- 
+
 };
 
 #endif
