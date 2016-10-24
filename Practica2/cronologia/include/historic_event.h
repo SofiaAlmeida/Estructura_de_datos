@@ -111,7 +111,7 @@ class HistoricEvent {
   * @param h HistoricEvent a comparar con el objeto implícito
   * @return Devuelve 0 si este objeto es igual a h
   */
-  bool opertator==(const HistoricEvent &h);
+  bool operator==(const HistoricEvent &h);
 
 /**
   * @brief Sobrecarga del operador >
@@ -134,6 +134,6 @@ class HistoricEvent {
   */
   HistoricEvent& operator=(const HistoricEvent &h);
 
-}
+};
 
 #endif
