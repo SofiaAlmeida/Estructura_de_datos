@@ -68,6 +68,15 @@ class HistoricEvent {
   */
   HistoricEvent(unsigned int d, string s);
 
+  /**
+    * @brief Constructor de la clase
+    * @param d fecha
+    * @param c vector de acontecimientos ocurrido en dicha fecha
+    * @return Crea el evento histórico con fecha d y acontecimientos v
+    */
+   HistoricEvent(unsigned int d, vector<string> v);
+
+
 /**
   * @brief Fecha
   * @return Devuelve la fecha
