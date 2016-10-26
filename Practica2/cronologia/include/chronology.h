@@ -43,6 +43,13 @@ class Chronology {
 
  public:
 
+   /** @brief Inserta un evento en su posición correspondiente
+     * @param s Nombre del evento
+     * @param date Fecha del evento
+     * @return void
+     */
+
+   void InsertBefall(int date, string s);
 };
 
 #endif

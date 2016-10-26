@@ -33,12 +33,33 @@ void HistoricEvent::search(string s){
   * @return Cronología con las propiedades de la anterior
   */
 
-Chronology(Chronology chrono);
+Chronology Chronology(Chronology chrono);
 
 
 // Para el src
 
-Chronology::Chronology(chrono){
+Chronology Chronology::Chronology(chrono){
+  befalls = chrono.get_befalls();
+}
 
-  
+// Insertar evento
+
+/** @brief Inserta un evento en su posición correspondiente
+  * @param s Nombre del evento
+  * @param date Fecha del evento
+  * @return void
+  */
+
+void InsertBefall(int date, string s);
+
+// Para el src
+void Chronology::InsertBefall(date, s){
+  bool insert = false;
+  for(int i=0; insert == false; i++){
+    if (befalls.at(i).get_date() > date){
+      HistoricEvent event(date, string);      // FIXME si la fecha ya existe se crearían 2 objetos con la misma fecha
+      befalls.insert(i,event);
+      insert = true;
+    }
+  }
 }
