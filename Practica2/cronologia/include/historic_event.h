@@ -91,33 +91,33 @@ class HistoricEvent {
 /**
   * @brief Asignar fecha
   * @param d fecha a asignar
-  * @return Asigna d como date al evento implícito
+  * @return void
   */
   void set_date(unsigned int d) {date = d;};
 /**
   * @brief Añadir acontecimiento
   * @param s acontecimiento
-  * @return s añadido al vector befalls
+  * @return s void
   */
   void add_befall(string s) {befalls.push_back(s);};
 
 /**
   * @brief Borrar acontecimientos
   * @param s acontecimiento a borrar
-  * @return eliminado s de befalls
+  * @return void
   */
   void rm_befalls(string s);
 
 
 /** @brief Muestra el nombre de un determinado evento de un año (indicando este último)
   * @param i Posición del string de "befalls" a mostrar
-  * @return Muestra por pantalla
+  * @return Void
   */
   void show(int i);
 
 /** @brief Busca una cadena dentro de un vector de eventos y muestra las encontradas
   * @param s String a buscar
-  * @return Sólo devuelve las coincidencias encontradas
+  * @return Void
   */
   void search(string s);  // NOTE No sé si debería ser un bool o devolver un string con el acontecimiento
                           // FIXME Ahora es void, y llama a show dentro de ella, en vez de devolver el string
