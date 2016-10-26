@@ -108,12 +108,19 @@ class HistoricEvent {
   */
   void rm_befalls(string s);
 
-/**
-  * @brief Buscar
-  * @param s acontecimiento que queremos buscar
-  * @return
+
+/** @brief Muestra el nombre de un determinado evento de un año (indicando este último)
+  * @param i Posición del string de "befalls" a mostrar
+  * @return Muestra por pantalla
   */
-  bool search(string s); // NOTE No sé si debería ser un bool o devolver un string con el acontecimiento
+  void show(int i);
+
+/** @brief Busca una cadena dentro de un vector de eventos y muestra las encontradas
+  * @param s String a buscar
+  * @return Sólo devuelve las coincidencias encontradas
+  */
+  void search(string s);  // NOTE No sé si debería ser un bool o devolver un string con el acontecimiento
+                          // FIXME Ahora es void, y llama a show dentro de ella, en vez de devolver el string
 
 /**
   * @brief Sobrecarga del operador ==

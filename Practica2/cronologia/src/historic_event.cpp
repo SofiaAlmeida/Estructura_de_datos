@@ -22,3 +22,21 @@ void HistoricEvent::rm_befalls(string s) {
 
 	befalls.erase(i);
 }
+
+/** @brief Muestra el nombre de un determinado evento de un año (indicando este último)
+  *
+  * @param i Posición del string de "befalls" a mostrar
+  *
+  */
+void HistoricEvent::show(i){
+  cout << "Year:" << date << befalls.at(i) << endl;
+}
+
+void HistoricEvent::search(s){
+	int found_pos;
+  for(int i = 0; befalls.size() < i; i++){
+    if (befalls.at(i).find(s) < befalls.at(i).size()) {
+      mostrar(befalls.at(i));
+    }
+  }
+}
