@@ -5,15 +5,15 @@
   *
   */
 
-#ifndef __CRONOLOGY
-#define __CRONOLOGY
+#ifndef __CHRONOLOGY
+#define __CHRONOLOGY
 
 #include "historic_event.h"
 
 /**
-  *  @brief T.D.A. Cronology
+  *  @brief T.D.A. Chronology
   *
-  * Una instancia @e h del tipo de datos abstracto @c Cronology se compone
+  * Una instancia @e h del tipo de datos abstracto @c Chronology se compone
   * de un conjunto de eventos históricos. Se representara un vector de eventos
   * históricos. Ver documentación de historic_event para más información.
   *
@@ -22,11 +22,11 @@
   * @include
   */
 
-class Cronology {
+class Chronology {
 
  private: // TODO
 /**
-  * @page repConjunto Rep del TDA Cronology
+  * @page repConjunto Rep del TDA Chronology
   *
   * @section invConjunto Invariante de la representación
   *
@@ -34,12 +34,12 @@ class Cronology {
   *
   * @section faConjunto Función de abstracción
   *
-  * Un objeto válido @e rep del TDA Cronology representa
+  * Un objeto válido @e rep del TDA Chronology representa
   *
   *
   *
 */
-	vector<Cronology> befalls; /**< vector con los eventos historicos */
+	vector<Chronology> befalls; /**< vector con los eventos historicos */
 
  public:
 

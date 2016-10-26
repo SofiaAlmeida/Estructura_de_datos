@@ -23,3 +23,22 @@ void HistoricEvent::search(string s){
     }
   }
 }
+
+#include "chronology.h"
+
+// Constructor copia
+
+/** @brief Crea una cronología a partir de otra
+  * @param chrono
+  * @return Cronología con las propiedades de la anterior
+  */
+
+Chronology(Chronology chrono);
+
+
+// Para el src
+
+Chronology::Chronology(chrono){
+
+  
+}
