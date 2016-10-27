@@ -27,12 +27,12 @@ void HistoricEvent::rm_befalls(string s) {
 }
 
 //Mostrar acontecimiento i-ésimo
-void HistoricEvent::show(i){
+void HistoricEvent::show(int i){
   cout << "Year:" << date << befalls.at(i) << endl;
 }
 
 //Buscar
-void HistoricEvent::search(s){
+void HistoricEvent::search(string s){
 	int found_pos;
   for(int i = 0; befalls.size() < i; i++){
     if (befalls.at(i).find(s) < befalls.at(i).size()) {

@@ -119,7 +119,7 @@ class HistoricEvent {
   * @return Void
   */
   void search(string s);  // NOTE No sé si debería ser un bool o devolver un string con el acontecimiento
-                          // FIXME Ahora es void, y llama a show dentro de ella, en vez de devolver el string
+                          // SOL. Ahora es void, y llama a show dentro de ella, en vez de devolver el string
 
 /**
   * @brief Sobrecarga del operador ==
