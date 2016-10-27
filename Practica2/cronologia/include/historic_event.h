@@ -76,7 +76,6 @@ class HistoricEvent {
     */
    HistoricEvent(unsigned int d, vector<string> v);
 
-
 /**
   * @brief Fecha
   * @return Devuelve la fecha
@@ -94,6 +93,7 @@ class HistoricEvent {
   * @return void
   */
   void set_date(unsigned int d) {date = d;};
+
 /**
   * @brief Añadir acontecimiento
   * @param s acontecimiento
@@ -107,7 +107,6 @@ class HistoricEvent {
   * @return void
   */
   void rm_befalls(string s);
-
 
 /** @brief Muestra el nombre de un determinado evento de un año (indicando este último)
   * @param i Posición del string de "befalls" a mostrar
@@ -132,24 +131,23 @@ class HistoricEvent {
 /**
   * @brief Sobrecarga del operador >
   * @param h HistoricEvent a comparar con el objeto implícito
-  * @return Devuelve 0 si es mayor que h
+  * @return Devuelve 1 si es mayor que h
   */
   bool operator>(const HistoricEvent &h);
 
 /**
   * @brief Sobrecarga del operador >
   * @param h HistoricEvent a comparar con el objeto implícito
-  * @return Devuelve 0 si es mayor que h
+  * @return Devuelve 1 si es menor que h
   */
   bool operator<(const HistoricEvent &h);
 
 /**
-  * @brief Sobrecarga del operador >
+  * @brief Sobrecarga del operador =
   * @param h elemento a asginar al objeto implícito
   * @return el objeto implícito adquiere los datos de h
   */
   HistoricEvent& operator=(const HistoricEvent &h);
-
 };
 
 #endif

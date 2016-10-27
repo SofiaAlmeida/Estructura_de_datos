@@ -1,5 +1,6 @@
 #include "chronology.h"
 
+//Inserta una acontecimiento
 void Chronology::InsertBefall(date, s){
   bool insert = false;
   for(int i=0; insert == false; i++){

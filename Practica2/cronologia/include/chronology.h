@@ -1,7 +1,7 @@
 // NOTE yo tampoco sé donde poner lo de autores si justo aquí o en la descripción de la clase
 /**
-  * @file historic_event.h
-  * @brief Fichero cabecera del TDA HistoricEvent
+  * @file chronology.h
+  * @brief Fichero cabecera del TDA Chronology
   *
   */
 
@@ -43,13 +43,12 @@ class Chronology {
 
  public:
 
-   /** @brief Inserta un evento en su posición correspondiente
-     * @param s Nombre del evento
-     * @param date Fecha del evento
-     * @return void
-     */
-
-   void InsertBefall(int date, string s);
+/** @brief Inserta un evento en su posición correspondiente
+  * @param date Fecha del evento
+  * @param s Nombre del evento
+  * @return void
+  */
+  void InsertBefall(int date, string s);
 };
 
 #endif
