@@ -39,7 +39,7 @@ class Chronology {
   *
   *
 */
-	vector<Chronology> event; /**< vector con los eventos historicos */
+	vector<HistoricEvent> event; /**< vector con los eventos historicos */
 
  public:
 /**
@@ -87,5 +87,12 @@ class Chronology {
   */
   void rm_event (int i);
 };
+
+/** @brief Suma la cronología y la que se llama con la que es pasada como argumento
+  * @param chrono Cronología a sumar
+  * @return Cronología suma de ambas
+  */
+
+Chronology sum_chrono(const Chronology &chron);
 
 #endif
