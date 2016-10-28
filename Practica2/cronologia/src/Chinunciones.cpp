@@ -50,16 +50,25 @@ Chronology Chronology::Chronology(chrono){
   * @return void
   */
 
-void InsertBefall(int date, string s);
+void InsertBefall(const int &date, const string &s);
 
 // Para el src
-void Chronology::InsertBefall(date, s){
+bool Chronology::InsertBefall(const int &date,const string &s){
   bool insert = false;
+  int var_date;
   for(int i=0; insert == false; i++){
-    if (befalls.at(i).get_date() > date){
-      HistoricEvent event(date, string);      // FIXME si la fecha ya existe se crearían 2 objetos con la misma fecha
-      befalls.insert(i,event);
+    var_date = event.at(i).get_date();
+    if (var_date > date){
+      HistoricEvent event(date,string);
+      event.insert(i,event);
       insert = true;
     }
+    else if (var_date == date){
+      if (event.at(i).compare(string s)!=0){
+      event.at(i).add_befall(s);
+      insert = true;
+      }
+    }
   }
+  return insert;
 }

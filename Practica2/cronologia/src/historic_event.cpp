@@ -35,7 +35,7 @@ void HistoricEvent::show(int i){
 bool HistoricEvent::search(string s){
   for(int i = 0; befalls.size() < i; ++i){
     if (befalls.at(i).find(s) < befalls.at(i).size()) {
-      mostrar(befalls.at(i));	//NOTE ¿show? pero está pasando un vector
+      show(befalls.at(i));	//NOTE ¿show? pero está pasando un vector
 		return true;	// REVIEW añado esto por aquí (a ver qué opinan)
     }
   }

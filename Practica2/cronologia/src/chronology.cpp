@@ -9,7 +9,7 @@
 //Eventos posteriores
 
 
-void Chronology::InsertBefall(int date,string s){
+bool Chronology::InsertBefall(int date,const string &s){
   bool insert = false;
   int var_date;
   for(int i=0; insert == false; i++){
@@ -20,10 +20,13 @@ void Chronology::InsertBefall(int date,string s){
       insert = true;
     }
     else if (var_date == date){
+      if (event.at(i).compare(string s)!=0){
       event.at(i).add_befall(s);
       insert = true;
+      }
     }
   }
+  return insert;
 }
 
 
