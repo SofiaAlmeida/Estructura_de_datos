@@ -69,8 +69,8 @@ bool HistoricEvent::operator<(const HistoricEvent &h) {
 HistoricEvent& HistoricEvent::operator+(const HistoricEvent &h) {
 	if(date == h.date) {
 		for(int i = 0; i < h.befalls.size(); ++i)
-			if(!this.search(h.befalls.at(i)))
-				this.add_befall(h.befalls.at(i));
+			if(!search(h.befalls.at(i)))
+				add_befall(h.befalls.at(i));
 	}
 	return *this;
 }

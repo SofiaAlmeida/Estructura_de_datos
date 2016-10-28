@@ -35,8 +35,8 @@ bool HistoricEvent::operator<(const HistoricEvent &h) {
         for(int i = 0; i < h.befalls.size(); ++i) {
            //Doy por hecho que el evento this está bien
            //simplemente añado los eventos de h que no estén
-           if(!this.search(h.befalls.at(i)))
-              this.add_befall(h.befalls.at(i));
+           if(!search(h.befalls.at(i)))
+              add_befall(h.befalls.at(i));
         }
      }
      return *this;
