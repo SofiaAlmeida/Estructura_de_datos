@@ -103,4 +103,30 @@ Chronology Chronology::sum_chrono(const Chronology &chron2){
   return result;
 }
 
+// Funición show_range
+
+/** @brief  Muestra todos los eventos situados entre dos fechas
+  * @param begin Extremo inferior de la búsqueda
+  * @param end Extremo superior de la búsqueda
+  * @return void
+  */
+
+void show_range(int inf, int sup);
+
+// src
+
+void Chronology::show_range(int inf, int sup){
+  if (inf > sup)
+    std::swap(inf,sup);
+  int size = this->event.size();
+  int befalls_size;
+
+  for(int i = 0; i < size; i++){                                                          // Comprueba si la fecha de cada HistoricEvent
+      if (this->event.at(i).get_date() >= inf && this->event.at(i).get_date() <= sup){    // es correcta y procede a mostrar su contenido
+        befalls_size = this->event.at(i).befalls_size();
+          for(int j = 0; j < befalls_size; i++){
+            show(event.at(i).show(i));
+          }
+      }
+  }
 }

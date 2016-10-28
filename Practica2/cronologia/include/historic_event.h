@@ -83,6 +83,12 @@ class HistoricEvent {
   vector<string> get_befalls() const {return befalls;};
 
 /**
+  * @brief Muestra el número de eventos
+  * @return Tamaño vector befalls
+  */
+  int befalls_size() const {return befalls.size();};
+
+/**
   * @brief Asignar fecha
   * @param d fecha a asignar
   * @return Void
