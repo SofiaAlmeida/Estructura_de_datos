@@ -79,6 +79,13 @@ class Chronology {
   * @return Vector con los eventos correspondientes
   */
   vector<HistoricEvent> post_events(unsigned int d);
+
+/**
+  * @brief Eventos posteriores
+  * @param d año a partir del cual se buscan los eventos
+  * @return Vector con los eventos correspondientes
+  */
+  void rm_event (int i);
 };
 
 #endif

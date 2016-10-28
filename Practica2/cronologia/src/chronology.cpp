@@ -25,3 +25,13 @@ void Chronology::InsertBefall(int date,string s){
     }
   }
 }
+
+
+Chronology::rm_event (int a)  {
+	int i = 0;
+	while (a != events[i].get_date()) {				//compare vale 0 si son iguales
+		i++;
+	}
+
+	events.erase(i);
+}
