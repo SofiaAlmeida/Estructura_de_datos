@@ -1,5 +1,13 @@
 #include "chronology.h"
 
+//Constructor por defecto
+
+//Ordenar por fecha
+
+//Eventos anteriores
+
+//Eventos posteriores
+
 
 void Chronology::InsertBefall(int date,string s){
   bool insert = false;

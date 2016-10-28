@@ -42,14 +42,43 @@ class Chronology {
 	vector<Chronology> event; /**< vector con los eventos historicos */
 
  public:
+/**
+  * @brief Constructor por defecto de la clase.
+  */
+  Chronology();
 
-   /** @brief Inserta un evento en su posición correspondiente
-     * @param s Nombre del evento
-     * @param date Fecha del evento
-     * @return void
-     */
+/**
+  * @brief Eventos
+  * @return Devuelve un vector de eventos
+  */
+  vector<HistoricEvent> get_events() const {return event;};
 
-   void InsertBefall(int date, string s);
+/** @brief Inserta un evento en su posición correspondiente
+  * @param s Nombre del evento
+  * @param date Fecha del evento
+  * @return void
+  */
+  void InsertBefall(int date, string s);
+
+/**
+  * @brief Ordenar por fecha
+  * @return Cronología ordenada  //NOTE ¿void?
+  */
+  Chronology& sort();
+
+/**
+  * @brief Eventos anteriores
+  * @param d año a partir del cual se buscan los eventos
+  * @return Vector con los eventos correspondientes
+  */
+  vector<HistoricEvent> prev_events(unsigned int d);
+
+/**
+  * @brief Eventos posteriores
+  * @param d año a partir del cual se buscan los eventos
+  * @return Vector con los eventos correspondientes
+  */
+  vector<HistoricEvent> post_events(unsigned int d);
 };
 
 #endif

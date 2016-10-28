@@ -31,11 +31,11 @@ void HistoricEvent::show(int i){
   cout << "Year:" << date << befalls.at(i) << endl;
 }
 
-//Buscar
+//Buscar	CHANGED
 bool HistoricEvent::search(string s){
   for(int i = 0; befalls.size() < i; ++i){
     if (befalls.at(i).find(s) < befalls.at(i).size()) {
-      mostrar(befalls.at(i));
+      mostrar(befalls.at(i));	//NOTE ¿show? pero está pasando un vector
 		return true;	// REVIEW añado esto por aquí (a ver qué opinan)
     }
   }
@@ -61,6 +61,7 @@ bool HistoricEvent::operator>(const HistoricEvent &h) {
 //Operador <
 bool HistoricEvent::operator<(const HistoricEvent &h) {
    return date < h.get_date();
+}
 
 // NOTE añado la sobrecarga del operador +, aunque no lo habláramos desde el principio,
 // ayer se llegó a la conclusión de que podía ser interesante para mezclar y ordenar cronologías
@@ -68,12 +69,8 @@ bool HistoricEvent::operator<(const HistoricEvent &h) {
 HistoricEvent& HistoricEvent::operator+(const HistoricEvent &h) {
 	if(date == h.date) {
 		for(int i = 0; i < h.befalls.size(); ++i)
-			//Doy por hecho que el evento this está bien
-			//simplemente añado los eventos de h que no estén
 			if(!this.search(h.befalls.at(i)))
 				this.add_befall(h.befalls.at(i));
 	}
 	return *this;
-}
-
 }

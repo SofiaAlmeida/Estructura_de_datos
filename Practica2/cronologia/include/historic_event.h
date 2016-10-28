@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+using namespace std;
 /**
   *  @brief T.D.A. HistoricEvent
   *
