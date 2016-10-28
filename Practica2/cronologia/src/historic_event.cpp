@@ -32,7 +32,7 @@ void HistoricEvent::show(int i){
 }
 
 //Buscar	CHANGED
-bool HistoricEvent::search(string s){
+bool HistoricEvent::search(const string &s){
   for(int i = 0; befalls.size() < i; ++i){
     if (befalls.at(i).find(s) < befalls.at(i).size()) {
       show(befalls.at(i));	//NOTE ¿show? pero está pasando un vector

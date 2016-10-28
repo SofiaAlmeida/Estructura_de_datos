@@ -72,3 +72,11 @@ bool Chronology::InsertBefall(const int &date,const string &s){
   }
   return insert;
 }
+
+
+// Función sum
+
+/** @brief Suma la cronología a la que se llama con la que es pasada como argumento
+  * @param chrono Cronología a sumar
+  * @return Cronología suma de ambas
+  */
