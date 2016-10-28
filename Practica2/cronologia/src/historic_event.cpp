@@ -32,13 +32,14 @@ void HistoricEvent::show(int i){
 }
 
 //Buscar
-void HistoricEvent::search(string s){
-	int found_pos;
-  for(int i = 0; befalls.size() < i; i++){
+bool HistoricEvent::search(string s){
+  for(int i = 0; befalls.size() < i; ++i){
     if (befalls.at(i).find(s) < befalls.at(i).size()) {
       mostrar(befalls.at(i));
+		return true;	// REVIEW añado esto por aquí (a ver qué opinan)
     }
   }
+  return false;		// REVIEW y esto aquí
 }
 
 //Operador ==
@@ -52,12 +53,27 @@ bool HistoricEvent::operator==(const HistoricEvent &h) {
    return eq;
 }
 
-//Operador =
-HistoricEvent& HistoricEvent::operator=(const HistoricEvent &h) {
-   if(this != &h) {
-      date = h.date();
-      befalls = h.get_befalls();
-   }
+//Operador >
+bool HistoricEvent::operator>(const HistoricEvent &h) {
+   return date > h.get_date();
+}
 
-   return *this;
+//Operador <
+bool HistoricEvent::operator<(const HistoricEvent &h) {
+   return date < h.get_date();
+
+// NOTE añado la sobrecarga del operador +, aunque no lo habláramos desde el principio,
+// ayer se llegó a la conclusión de que podía ser interesante para mezclar y ordenar cronologías
+// Operador +
+HistoricEvent& HistoricEvent::operator+(const HistoricEvent &h) {
+	if(date == h.date) {
+		for(int i = 0; i < h.befalls.size(); ++i)
+			//Doy por hecho que el evento this está bien
+			//simplemente añado los eventos de h que no estén
+			if(!this.search(h.befalls.at(i)))
+				this.add_befall(h.befalls.at(i));
+	}
+	return *this;
+}
+
 }

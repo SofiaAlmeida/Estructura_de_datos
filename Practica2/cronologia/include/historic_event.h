@@ -54,13 +54,6 @@ class HistoricEvent {
   HistoricEvent();
 
 /**
-  * @brief Constructor de copia de la clase
-  * @param h.date fecha del evento a construir
-  * @param h.befalls acontecimientos del evento a construir
-  */
-  HistoricEvent(const HistoricEvent& he);
-
-/**
   * @brief Constructor de la clase
   * @param d fecha
   * @param s acontecimiento ocurrido en dicha fecha
@@ -68,19 +61,20 @@ class HistoricEvent {
   */
   HistoricEvent(unsigned int d, string s);
 
-  /**
-    * @brief Constructor de la clase
-    * @param d fecha
-    * @param c vector de acontecimientos ocurrido en dicha fecha
-    * @return Crea el evento histórico con fecha d y acontecimientos v
-    */
-   HistoricEvent(unsigned int d, vector<string> v);
+/**
+  * @brief Constructor de la clase
+  * @param d fecha
+  * @param c vector de acontecimientos ocurrido en dicha fecha
+  * @return Crea el evento histórico con fecha d y acontecimientos v
+  */
+  HistoricEvent(unsigned int d, vector<string> v);
 
 /**
   * @brief Fecha
   * @return Devuelve la fecha
   */
   unsigned int get_date() const {return date;};
+
 /**
   * @brief Acontecimientos
   * @return Devuelve un vector de acontecimientos
@@ -90,7 +84,7 @@ class HistoricEvent {
 /**
   * @brief Asignar fecha
   * @param d fecha a asignar
-  * @return void
+  * @return Void
   */
   void set_date(unsigned int d) {date = d;};
 
@@ -98,6 +92,7 @@ class HistoricEvent {
   * @brief Añadir acontecimiento
   * @param s acontecimiento
   * @return s void
+  * @pre El string a añadir no se encuentra ya en el vector
   */
   void add_befall(string s) {befalls.push_back(s);};
 
@@ -116,38 +111,38 @@ class HistoricEvent {
 
 /** @brief Busca una cadena dentro de un vector de eventos y muestra las encontradas
   * @param s String a buscar
-  * @return Void
+  * @retval true si encuentra el string
   */
-  void search(string s);  // NOTE No sé si debería ser un bool o devolver un string con el acontecimiento
-                          // SOL. Ahora es void, y llama a show dentro de ella, en vez de devolver el string
-
+  bool search(string s); // Ahora es void, y llama a show dentro de ella, en vez de devolver el string
+// NOTE si devolviera el bool me sería útil para operator+
 /**
   * @brief Sobrecarga del operador ==
   * @param h HistoricEvent a comparar con el objeto implícito
-  * @return Devuelve 0 si este objeto es igual a h
+  * @retval true si este objeto es igual a h
   */
   bool operator==(const HistoricEvent &h);
-
+// NOTE en el operator == se compara que sean exactamente iguales
+// mientras que en los operadores > y < simplemente el año
 /**
   * @brief Sobrecarga del operador >
   * @param h HistoricEvent a comparar con el objeto implícito
-  * @return Devuelve 1 si es mayor que h
+  * @retval true si el año del objeto implícito es mayor que el de h
   */
   bool operator>(const HistoricEvent &h);
 
 /**
   * @brief Sobrecarga del operador >
   * @param h HistoricEvent a comparar con el objeto implícito
-  * @return Devuelve 1 si es menor que h
+  * @retval true si el año del objeto implícito es menor que el de h
   */
   bool operator<(const HistoricEvent &h);
 
 /**
-  * @brief Sobrecarga del operador =
-  * @param h elemento a asginar al objeto implícito
-  * @return el objeto implícito adquiere los datos de h
+  * @brief Sobrecarga del operador +
+  * @param h objeto a sumar con el implícito
+  * @return objeto implícito al que se ha añadido los acontecimientos que no tenía de h.befalls
   */
-  HistoricEvent& operator=(const HistoricEvent &h);
+  HistoricEvent& operator+(const HistoricEvent &h);
 };
 
 #endif
