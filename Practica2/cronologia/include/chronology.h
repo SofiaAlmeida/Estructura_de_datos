@@ -56,9 +56,9 @@ class Chronology {
 /** @brief Inserta un evento en su posición correspondiente
   * @param s Nombre del evento
   * @param date Fecha del evento
-  * @return void
+  * @return Si el evento ha sido insertado correctamente
   */
-  void InsertBefall(int date, string s);
+  bool InsertBefall(int date, const string &s);
 
 /**
   * @brief Ordenar por fecha
