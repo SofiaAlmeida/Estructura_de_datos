@@ -1,8 +1,9 @@
-// NOTE no sé donde poner lo de autores si justo aquí o en la descripción de la clase
 /**
   * @file historic_event.h
   * @brief Fichero cabecera del TDA HistoricEvent
-  *
+  * @author Sofía Almeida Bruno (@SofiaAlmeida)
+  * @author Jesús Sánchez de Lechina Tejada (@jojelupipa)
+  * @author Pedro Bonilla Nadal (@pedrobn23)
   */
 
 #ifndef __HISTORICEVENT
@@ -44,7 +45,7 @@ class HistoricEvent {
   *
   *
 */
-	unsigned int date; /**< fecha */
+  int date; /**< fecha */
 	vector<string> befalls; /**< vector con los acontecimientos */
 
  public:
@@ -60,7 +61,7 @@ class HistoricEvent {
   * @param s acontecimiento ocurrido en dicha fecha
   * @return Crea el evento histórico con fecha d y acontecimiento s
   */
-  HistoricEvent(unsigned int d, string s);
+  HistoricEvent(int d, string s);
 
 /**
   * @brief Constructor de la clase
@@ -68,13 +69,13 @@ class HistoricEvent {
   * @param c vector de acontecimientos ocurrido en dicha fecha
   * @return Crea el evento histórico con fecha d y acontecimientos v
   */
-  HistoricEvent(unsigned int d, vector<string> v);
+  HistoricEvent(int d, vector<string> v);
 
 /**
   * @brief Fecha
   * @return Devuelve la fecha
   */
-  unsigned int get_date() const {return date;};
+  int get_date() const {return date;};
 
 /**
   * @brief Acontecimientos

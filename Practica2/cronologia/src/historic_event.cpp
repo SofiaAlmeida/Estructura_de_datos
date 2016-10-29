@@ -2,28 +2,29 @@
 
 //Constructor por defecto
 HistoricEvent::HistoricEvent() {
-	*this.set_date(0);
+	set_date(0);
 }
 
 //Constructor
-HistoricEvent::HistoricEvent(unsigned int d, string s) {
-	*this.set_date(d);
-	*this.add_befalls(s);
+HistoricEvent::HistoricEvent(int d, string s) {
+	set_date(d);
+	add_befalls(s);
 }
 
 //Constructor
-HistoricEvent::HistoricEvent(unsigned int d, vector<string> v) : befalls(v) {
+HistoricEvent::HistoricEvent(int d, vector<string> v) : befalls(v) {
 	set_date(d);
 }
 
 //Borrar acontecimiento
 void HistoricEvent::rm_befalls(string s) {
-	int i = 0;
-	while (s.compare(befalls[i])) {				//compare vale 0 si son iguales
-		i++;
+	int size = befalls_size();
+	for(int i = 0; i < size; ++i){
+		if(s.compare(befalls[i]) == 0){
+			befalls.erase(i);
+			--i;
+		}
 	}
-
-	befalls.erase(i);
 }
 
 //Mostrar acontecimiento i-ésimo
