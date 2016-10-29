@@ -1,8 +1,10 @@
-// NOTE yo tampoco sé donde poner lo de autores si justo aquí o en la descripción de la clase
 /**
-  * @file historic_event.h
-  * @brief Fichero cabecera del TDA HistoricEvent
-  *
+  * @file chronology.h
+  * @brief Fichero cabecera del TDA Chronology
+  * @author Sofía Almeida Bruno (@SofiaAlmeida)
+  * @author Jesús Sánchez de Lechina Tejada (@jojelupipa)
+  * @author Pedro Bonilla Nadal (@pedrobn23)
+  * @bug
   */
 
 #ifndef __CHRONOLOGY
@@ -14,7 +16,7 @@
   *  @brief T.D.A. Chronology
   *
   * Una instancia @e h del tipo de datos abstracto @c Chronology se compone
-  * de un conjunto de eventos históricos. Se representara un vector de eventos
+  * de un conjunto de eventos históricos. Se representará un vector de eventos
   * históricos. Ver documentación de historic_event para más información.
   *
   	TODO (si sobra tiempo)
@@ -42,10 +44,11 @@ class Chronology {
 	vector<HistoricEvent> event; /**< vector con los eventos historicos */
 
  public:
-/** NOTE ¿necesario? estamos creando solo un vector que por defecto se crea vacío
-  * @brief Constructor por defecto de la clase.
-  */
-  Chronology();
+ /** @brief Crea una cronología a partir de otra
+   * @param chrono
+   * @return Cronología con las propiedades de la anterior
+   */
+   Chronology Chronology(Chronology chrono);
 
 /**
   * @brief Eventos
@@ -54,16 +57,23 @@ class Chronology {
   vector<HistoricEvent> get_events() const {return event;};
 
 /** @brief Inserta un evento en su posición correspondiente
-  * @param s Nombre del evento
   * @param date Fecha del evento
-  * @return Si el evento ha sido insertado correctamente
+  * @param s Nombre del evento
+  * @retval true si el evento ha sido insertado correctamente
   */
   bool InsertBefall(int date, const string &s);
-//NOTE sobrecargar: bool InsertBefall(HistoricEvent h);
+//TODO bool InsertEvent(HistoricEvent h);
+
+/**
+  * @brief Borra un evento
+  * @param date fecha del evento a borrar
+  * @return Void
+  */
+  void rm_event(int date);
 
 /**
   * @brief Ordenar por fecha
-  * @return Cronología ordenada  //NOTE ¿void?
+  * @return Cronología ordenada
   */
   Chronology& sort();
 
@@ -71,41 +81,33 @@ class Chronology {
   * @brief Mezclar de forma ordenada dos cronologías
   * @param c cronología a mezclar con la implícita
   * @return cronología mezclada y ordenada
-  */ //NOTE esta no puede ser void
+  */
   Chronology& merge(Chronology &c);
+
+/** @brief Suma la cronología implícita con la que es pasada como argumento
+  * @param chrono Cronología a sumar
+  * @return Cronología suma de ambas
+  */
+  Chronology sum_chrono(const Chronology &chron2);
 
 /**
   * @brief Eventos anteriores
   * @param d año a partir del cual se buscan los eventos
   * @return Vector con los eventos correspondientes
   */
-  vector<HistoricEvent> prev_events(unsigned int d);
+  vector<HistoricEvent> prev_events(int d);
 
 /**
   * @brief Eventos posteriores
   * @param d año a partir del cual se buscan los eventos
   * @return Vector con los eventos correspondientes
   */
-  vector<HistoricEvent> post_events(unsigned int d);
-
-/**   TODO descripción de esta función
-  * @brief Eventos posteriores
-  * @param d año a partir del cual se buscan los eventos
-  * @return Vector con los eventos correspondientes
-  */
-  void rm_event (int i);
-
-/** @brief Suma la cronología y la que se llama con la que es pasada como argumento
-  * @param chrono Cronología a sumar
-  * @return Cronología suma de ambas
-  */
-  Chronology sum_chrono(const Chronology &chron);
-
+  vector<HistoricEvent> post_events(int d);
 
 /** @brief  Muestra todos los eventos situados entre dos fechas
   * @param inf Extremo inferior de la búsqueda
   * @param sup Extremo superior de la búsqueda
-  * @return void
+  * @return Void
   */
   void show_range(int inf, int sup);
 };

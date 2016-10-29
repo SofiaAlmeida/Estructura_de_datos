@@ -1,6 +1,47 @@
 #include "chronology.h"
 
-//Constructor por defecto
+//Constructor copia
+Chronology Chronology::Chronology(chrono) {
+  events = chrono.get_events();
+}
+
+// TODO Constructor
+Chronology Chronology::Chronology(vector<HistoricEvent> h) {
+
+}
+
+//Insertar acontecimiento
+bool Chronology::InsertBefall(int date,const string &s) {
+  bool insert = false;
+  int var_date;
+  for(int i = 0; insert == false; ++i){
+    var_date = event[i].get_date();
+    if (var_date > date){
+      HistoricEvent e(date,string);
+      event.insert(i,e);
+      insert = true;
+    }
+    else if (var_date == date){ //FIXME añade aunque haya dos iguales
+      //if (event[i].compare(string s)!=0){
+      event[i].add_befall(s);
+      insert = true;
+      //}
+    }
+  }
+  return insert;
+}
+
+//Borrar evento
+void Chronology::rm_event(int date) {
+  size = event.size();
+  bool rm = false;
+
+  for(int i = 0; i < size && !rm; ++i)
+    if(date == event[i].get_date()) {
+      event.erase(i);
+      rm = true;
+    }
+}
 
 //Ordenar por fecha
 Chronology& Chronology::sort() {    //mergesort
@@ -10,31 +51,33 @@ Chronology& Chronology::sort() {    //mergesort
       Chronology cl, cr, res;
       int middle = event.size() / 2;
       for(int i = 0; i < middle; ++i)
-         cl.InsertBefall(event.at(i));
+         cl.InsertBefall(event[i]);
          //NOTE InserteBefall actualmente no funciona con estos parámetros
          // se puede sobrecargar o modificar esto aquí
          // REVIEW >=??
-      for(int i = event.size(); event >= middle; --i)
-         cr.InsertBefall(event.at(i));
+      int size = event.size()
+      for(int i = middle; i < size; ++i)
+         cr.InsertBefall(event[i]);
 
       cl = cl.sort();
       cr = cr.sort();
 
-      if(cl.at(cl.event.back()) < cr.at(cr.event.begin()))
-         res = cl.sum_chrono(cr);
+      if(cl[cl.event.back()] < cr[cr.event.begin()])
+         res = cl.event.insert(cl.event.end(),cr.event.begin(),cr.event.end());
+         //inserta en la posición final de cl desde el principio hasta el final de cr
       else
-         res = sort(cl, cr);
+         res = cl.merge(cr);
       return res;
    }
 }
 
 //Mezclar dos cronologías
-Chronology& Chronology::merge( Chronology &c) {
+Chronology& Chronology::merge(Chronology &c) {
    Chronology res;
    while(event.size() > 0 && c.event.size() > 0)
       if(event.begin() < c.event.begin()) {
          res.InsertBefall(event.begin());
-         rm_event(event.begin().get_date());     //NOTE se puede sobrecargar rm_event o dejar esto así
+         rm_event(event.begin().get_date());
       }
       else {
          res.InsertBefall(c.event.begin());
@@ -42,81 +85,24 @@ Chronology& Chronology::merge( Chronology &c) {
       }
 
    if(event.size() > 0)
-      res = res.sum_chrono((*this));
+      res.event.insert(res.event.end(),event.begin(),event.end());
    if(c.event.size() > 0)
-      res = res.sum_chrono(c);
+      res.event.insert(res.event.end(),c.event.begin(),c.event.end());
    return res;
 }
 
-//Eventos anteriores
-vector<HistoricEvent> Chronology::prev_events(unsigned int d) {
-   vector<HistoricEvent> result;
-   sort();
-
-   int i = 0;
-   while(event.at(i).get_date() < d)  {
-      result.add(event.at(i));
-      i++;
-   }
-
-   return result;
-}
-
-//Eventos posteriores
-vector<HistoricEvent> Chronology::post_events(unsigned int d) {
-   vector<HistoricEvent> result;
-   sort();
-
-   int i = event.size();
-   while(event.at(i).get_date() > d)  {
-      result.add(event.at(i));
-      i--;
-   }
-
-   return result;
-}
-
-bool Chronology::InsertBefall(int date,const string &s){
-  bool insert = false;
-  int var_date;
-  for(int i=0; insert == false; i++){
-    var_date = event.at(i).get_date();
-    if (var_date > date){
-      HistoricEvent event(date,string);
-      event.insert(i,event);
-      insert = true;
-    }
-    else if (var_date == date){
-      if (event.at(i).compare(string s)!=0){
-      event.at(i).add_befall(s);
-      insert = true;
-      }
-    }
-  }
-  return insert;
-}
-
-
-Chronology::rm_event (int a) {
-	int i = 0;
-	while (a != events[i].get_date()) {				//NOTE event(s)?
-		i++;
-	}
-
-	events.erase(i);
-}
-
+//Sumar dos cronologías
 Chronology Chronology::sum_chrono(const Chronology &chron2){
-  std::vector<HistoricEvent> v;
-  int size_chron1 = (*this).event.size();
+  vector<HistoricEvent> v;
+  int size_chron1 = event.size();
   int size_chron2 = chron2.event.size();
 
-  for(int i = 0; i < size_chron1; i++){
-    v.push_back(*this.event.at(i));
+  for(int i = 0; i < size_chron1; ++i){
+    v.push_back(event[i]);
   }
 
   for(int i = 0; i < size_chron2; i++){
-    v.push_back(chron2.event.at(i);
+    v.push_back(chron2.event[i]);
   }
 
   Chronology result(v);
@@ -125,17 +111,46 @@ Chronology Chronology::sum_chrono(const Chronology &chron2){
   return result;
 }
 
+//Eventos anteriores
+vector<HistoricEvent> Chronology::prev_events(int d) {
+   vector<HistoricEvent> result;
+   sort();
+
+   int i = 0;
+   while(event[i].get_date() < d)  {
+      result.add(event[i]);
+      ++i;
+   }
+
+   return result;
+}
+
+//Eventos posteriores
+vector<HistoricEvent> Chronology::post_events(int d) {
+   vector<HistoricEvent> result;
+   sort();
+
+   int i = event.size();
+   while(event[i].get_date() > d)  {
+      result.add(event[i]);
+      i--;
+   }
+
+   return result;
+}
+
+//Eventos en un rango
 void Chronology::show_range(int inf, int sup){
   if (inf > sup)
     std::swap(inf,sup);
-  int size = this->event.size();
+  int size = event.size();
   int befalls_size;
 
-  for(int i = 0; i < size; i++){                                                          // Comprueba si la fecha de cada HistoricEvent
-      if (this->event.at(i).get_date() >= inf && this->event.at(i).get_date() <= sup){    // es correcta y procede a mostrar su contenido
-        befalls_size = this->event.at(i).befalls_size();
+  for(int i = 0; i < size; ++i){                                                          // Comprueba si la fecha de cada HistoricEvent
+      if (event[i].get_date() >= inf && event[i].get_date() <= sup){    // es correcta y procede a mostrar su contenido
+        befalls_size = event[i].befalls_size();
           for(int j = 0; j < befalls_size; i++){
-            show(event.at(i).show(i));
+            event[i].show(j,true));
           }
       }
   }
