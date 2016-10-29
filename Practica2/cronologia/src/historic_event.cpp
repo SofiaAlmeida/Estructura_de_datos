@@ -21,9 +21,9 @@ void HistoricEvent::rm_befalls(string s) {
   int size = befalls_size();
   for(int i = 0; i < size; ++i){
     if(s.compare(befalls[i]) == 0){
-      befalls.erase(i);
-      —i;
-      —size;
+      befalls.erase(befalls.begin()+i);
+      --i;
+      --size;
     }
   }
 }
