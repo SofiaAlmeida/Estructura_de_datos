@@ -2,18 +2,38 @@ SRC = src
 INC = include
 OBJ = obj
 BIN = bin
+
 CXX = g++
-CPPFLAGS = -Wall -g  -I$(INC) -c
+AR = ar
+CCFLAGS = -Wall -pedantic -g
+LDFLAGS = -L./$(LIB)
+LDLIBS = -levent
+IFLAGS = -I
+LIBFLAGS = rvs
 
+SOURCESMAIN = $(SRC)/pruebacronologia.cpp
+SOURCESLIB= $(SRC)/chronology.cpp $(SRC)/historic_event.cpp
+OBJECTS = $(SOURCESMAIN:$(SRC)/%.cpp=$(OBJ)/%.o) $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)
+EXECUTABLES = $(SOURCESMAIN:$(SRC)/%.cpp=./% )
+LIBNAME = $(LIB)/libevent.a
 
-all: $(BIN)/pruebacronologia
+all:  $(OBJECTS) $(EXECUTABLES)  clean
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
-	
+
 # ************ Compilación de módulos ************
-$(BIN)/pruebacronologia:
+
+./% : $(OBJ)/%.o $(LIBNAME)
+	$(CC) $(CCFLAGS) $(IFLAGS) ./$(INC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+
+$(LIBNAME) : $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)  $(SOURCESLIB:$(SRC)/%.cpp=$(INC)/%.h)
+	$(AR) $(LIBFLAGS) $(LIBNAME) $^
+
+$(OBJ)/%.o : $(SRC)/%.cpp
+	$(CC) $(CCFLAGS) $(IFLAGS) $(INC) -c $^ -o $@
+
 
 
 
