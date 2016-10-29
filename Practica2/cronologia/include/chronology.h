@@ -11,6 +11,7 @@
 #define __CHRONOLOGY
 
 #include "historic_event.h"
+#include <iostream>
 
 /**
   *  @brief T.D.A. Chronology
@@ -62,7 +63,13 @@ class Chronology {
   * @retval true si el evento ha sido insertado correctamente
   */
   bool InsertBefall(int date, const string &s);
-//TODO bool InsertEvent(HistoricEvent h);
+
+/**
+  * @brief Añade un HistoricEvent a la cronología
+  * @param h evento a añadir
+  * @retval true si el evento ha sido insertado correctamente
+  */
+  bool InsertEvent(const HistoricEvent &h);
 
 /**
   * @brief Borra un evento
@@ -112,4 +119,21 @@ class Chronology {
   void show_range(int inf, int sup);
 };
 
+/**
+  * @brief Sobrecarga del operador <<
+  * @param os flujo de salida
+  * @param c cronología a mostrar
+  * @return muestra una cronología con el formato:
+  * Year: date eventos
+  */
+  ostream& operator<<(ostream &os, const Chronology &c);
+
+/**
+  * @brief Sobrecarga del operador >>
+  * @param is flujo de entrada
+  * @param c cronología a escribir
+  * @return TODO
+  */
+  istream& operator>>(istream &is, Chronology &c);
+  
 #endif

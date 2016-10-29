@@ -1,5 +1,6 @@
 #include "chronology.h"
 
+
 //Constructor copia
 Chronology Chronology::Chronology(chrono) {
   events = chrono.get_events();
@@ -28,6 +29,19 @@ bool Chronology::InsertBefall(int date,const string &s) {
       //}
     }
   }
+  return insert;
+}
+
+//Insertar evento
+bool Chronology::InsertEvent(const HistoricEvent &h) {
+  int date = h.get_date();
+  vector<string> v = h.get_befalls();
+  size = v.size();
+  bool insert = false;
+
+  for(int i = 0; i < size; ++i)
+    insert = InsertBefall(date,v[i]);
+
   return insert;
 }
 
