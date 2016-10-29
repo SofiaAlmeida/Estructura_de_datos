@@ -29,28 +29,29 @@ void HistoricEvent::rm_befalls(string s) {
 
 //Mostrar acontecimiento i-ésimo
 void HistoricEvent::show(int i){
-  cout << "Year:" << date << befalls.at(i) << endl;
+  cout << "Year:" << date << befalls[i] << endl;
 }
 
-//Buscar	CHANGED
-bool HistoricEvent::search(const string &s){
-  for(int i = 0; befalls.size() < i; ++i){
-    if (befalls.at(i).find(s) < befalls.at(i).size()) {
-      show(befalls.at(i));	//NOTE ¿show? pero está pasando un vector
-		return true;	// REVIEW añado esto por aquí (a ver qué opinan)
-    }
-  }
-  return false;		// REVIEW y esto aquí
-}
+//Buscar
+bool HistoricEvent::search(string s){
+	bool find = false;
+	int size = befalls_size();
 
-// FIXME dos eventos con los mismos acontecimientos pero distinto orden serían iguales
+	for(int i = 0; size < i; ++i)
+		if (befalls[i].find(s) < befalls[i].size()) {
+		 show(befalls[i]);
+		find = true;
+		}
+
+	return find;
+}
 
 //Operador ==
 bool HistoricEvent::operator==(const HistoricEvent &h) {
-   bool eq = ((date == h.date) && (befalls.size() == h.befalls.size())) ? true : false;
+   bool eq = ((date == h.date) && (befalls_size() == h.befalls_size())) ? true : false;
 
-   for(int i=0; i<befalls.size() && eq; ++i)
-      if(strcmp(befalls.at(i),h.befalls.at(i)) != 0)   //strcmp devuelve 0 si son iguales
+   for(int i = 0; i < befalls.size() && eq; ++i)
+      if(befalls[i].compare(h.befalls[i]) != 0)   //compare devuelve 0 si son iguales
          eq = false;
 
    return eq;

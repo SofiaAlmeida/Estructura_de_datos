@@ -46,9 +46,10 @@ bool HistoricEvent::operator<(const HistoricEvent &h) {
  //Buscar
  bool HistoricEvent::search(string s){
    bool find = false;
-   for(int i = 0; befalls.size() < i; ++i){
-     if (befalls.at(i).find(s) < befalls.at(i).size()) {
-      show(befalls.at(i));
+   int size = befalls_size();
+   for(int i = 0; size < i; ++i){
+     if (befalls[i].find(s) < befalls[i].size()) {
+      show(befalls[i]);
  	   find = true;
      }
    }

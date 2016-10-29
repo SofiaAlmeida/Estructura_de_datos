@@ -121,10 +121,11 @@ class HistoricEvent {
   * @param s String a buscar
   * @retval true si encuentra el string
   */
-  bool search(const string &s); // Ahora es void, y llama a show dentro de ella, en vez de devolver el string
-// NOTE si devolviera el bool me sería útil para operator+
+  bool search(const string &s);
+
 /**
-  * @brief Sobrecarga del operador ==
+  * @brief Sobrecarga del operador == |n
+  *        Dos HistoricEvent se consideran iguales si tienen la misma fecha y los mismos acontecimientos
   * @param h HistoricEvent a comparar con el objeto implícito
   * @retval true si este objeto es igual a h
   */
