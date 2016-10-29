@@ -15,13 +15,16 @@ Chronology Chronology::Chronology(vector<HistoricEvent> h) {
 bool Chronology::InsertBefall(int date,const string &s) {
   bool insert = false;
   int var_date;
+
   for(int i = 0; insert == false; ++i){
     var_date = event[i].get_date();
+
     if (var_date > date){
       HistoricEvent e(date,string);
       event.insert(i,e);
       insert = true;
     }
+
     else if (var_date == date){ //FIXME añade aunque haya dos iguales
       //if (event[i].compare(string s)!=0){
       event[i].add_befall(s);
@@ -163,6 +166,7 @@ void Chronology::show_range(int inf, int sup) {
   for(int i = 0; i < size; ++i){                                                          // Comprueba si la fecha de cada HistoricEvent
       if (event[i].get_date() >= inf && event[i].get_date() <= sup){    // es correcta y procede a mostrar su contenido
         befalls_size = event[i].befalls_size();
+
           for(int j = 0; j < befalls_size; i++){
             event[i].show(j,true));
           }
@@ -170,7 +174,23 @@ void Chronology::show_range(int inf, int sup) {
   }
 }
 
-//Operador << TODO
+// Operador <<
+ostream& operator<<(ostream &os, const Chronology &c){
+    int size = c.event.size();
+    int n_befalls;
+    vector<string> aux;
+
+    for(int i = 0; i < size; ++i){
+      aux = event[i].get_befalls();
+      n_befalls = event[i].befalls_size();
+
+      for(int j = 0; j < n_befalls; ++j)
+        aux.show(j);
+    }
+
+    return os;
+}
+
 
 //Operador >>
 istream& operator>>(istream &is, Chronology &c) {
@@ -183,6 +203,7 @@ istream& operator>>(istream &is, Chronology &c) {
       aux = is.getline();
       size = aux.size();
       j = 0;
+
       for(int i = 0; i < size; ++i) {
             v[j].push_back(aux[i])
             if(v[j] == '#') {
@@ -190,6 +211,10 @@ istream& operator>>(istream &is, Chronology &c) {
                ++j;
             }
       }
+      º
       HistoricEvent h(date,v);
       c.InsertEvent(h);
    }
+
+   return is;
+ }
