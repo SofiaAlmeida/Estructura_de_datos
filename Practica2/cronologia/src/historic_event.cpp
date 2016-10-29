@@ -34,6 +34,8 @@ void HistoricEvent::show(int i){
 }
 
 //Buscar
+/*FIXME: deberiamos establecerlo a false por defecto no? en plan:
+bool HistoricEvent::search(const string &s, bool be_shown){*/
 bool HistoricEvent::search(const string &s, bool be_shown){
 	bool find = false;
 	int size = befalls_size();

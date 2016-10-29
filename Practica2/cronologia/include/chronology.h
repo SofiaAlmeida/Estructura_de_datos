@@ -134,6 +134,15 @@ class Chronology {
   * Year: date eventos
   */
   ostream& operator<<(ostream &os, const Chronology &c);
+/**
+	*@brief devuelve un vector con los años en los que hay un evento con esa palabra. Además
+	*  puede sacar por el flujo os cada evento que contenga la palabra con el año en el cual sucedio.
+	*@param s palabra/s a buscar
+	@param be_show decide si quiere ser sacado por flujo
+
+	*/
+	//FIXME: como se hacian los parametros por defecto
+	vector<int> word_search (string s, bool be_show, ostream& os);
 
 /**
   * @brief Sobrecarga del operador >>

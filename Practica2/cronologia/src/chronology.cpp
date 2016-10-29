@@ -6,8 +6,8 @@ Chronology Chronology::Chronology(chrono) {
   events = chrono.get_events();
 }
 
-// TODO Constructor
-Chronology Chronology::Chronology(vector<HistoricEvent> h) {
+//DONE: Constructor
+Chronology Chronology::Chronology(vector<HistoricEvent> h) : event(h) {
 
 }
 
@@ -29,7 +29,7 @@ vector<string> Chronology::get_befalls(int date){
 }
 
 //Insertar acontecimiento
-bool Chronology::InsertBefall(int date,const string &s) {
+bool Chronology::InsertBefall(int date, const string &s) {
   bool insert = false;
   int var_date;
 
@@ -42,15 +42,16 @@ bool Chronology::InsertBefall(int date,const string &s) {
       insert = true;
     }
 
-    else if (var_date == date){ //FIXME añade aunque haya dos iguales
-      //if (event[i].compare(string s)!=0){
-      event[i].add_befall(s);
-      insert = true;
-      //}
+		//DONE; pero no entiendo el funcionamiento de search
+    else if (var_date == date){
+			if (!(event.search(s)))
+				event.add_befall(s);
     }
   }
   return insert;
 }
+
+
 
 //Insertar evento
 bool Chronology::InsertEvent(const HistoricEvent &h) {
@@ -190,6 +191,14 @@ void Chronology::show_range(int inf, int sup) {
       }
   }
 }
+
+//TODO: la acabo esta noche, me fui a cenar
+vector<int> Chornology::word_search (string s, bool be_show, ostream& os) {
+
+}
+
+
+
 
 // Operador <<
 ostream& operator<<(ostream &os, const Chronology &c){
