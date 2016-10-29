@@ -8,7 +8,7 @@ HistoricEvent::HistoricEvent() {
 //Constructor
 HistoricEvent::HistoricEvent(int d, string s) {
 	set_date(d);
-	add_befalls(s);
+	add_befall(s);
 }
 
 //Constructor
@@ -33,14 +33,14 @@ void HistoricEvent::show(int i){
 }
 
 //Buscar
-bool HistoricEvent::search(string s, bool show){
+bool HistoricEvent::search(const string &s, bool be_shown){
 	bool find = false;
 	int size = befalls_size();
 
 	for(int i = 0; size < i; ++i)
 		if (befalls[i].find(s) < befalls[i].size()) {
-			if(show)
-				show(befalls[i]);
+			if(be_shown)
+				show(i);
 			find = true;
 		}
 
@@ -57,7 +57,6 @@ bool HistoricEvent::operator==(const HistoricEvent &h) {
 
    return eq;
 }
-
 
 // Operador +
 HistoricEvent& HistoricEvent::operator+(const HistoricEvent &h) {
