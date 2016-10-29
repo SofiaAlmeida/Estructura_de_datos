@@ -57,6 +57,13 @@ class Chronology {
   */
   vector<HistoricEvent> get_events() const {return event;};
 
+/**
+  * @brief Obtiene vector con los befalls de un año
+  * @param a año a buscar
+  * @return vector de befalls del año a
+  */
+  vector<string> get_befalls(int date);
+
 /** @brief Inserta un evento en su posición correspondiente
   * @param date Fecha del evento
   * @param s Nombre del evento
@@ -135,5 +142,5 @@ class Chronology {
   * @return TODO
   */
   istream& operator>>(istream &is, Chronology &c);
-  
+
 #endif

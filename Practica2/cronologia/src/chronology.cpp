@@ -11,6 +11,23 @@ Chronology Chronology::Chronology(vector<HistoricEvent> h) {
 
 }
 
+// Obtener vector de befalls
+
+vector<string> Chronology::get_befalls(int date){
+  int size = event.size();
+  bool found = false;
+  vector<string> befalls_found;
+
+  for(int i = 0; i < size && !found; ++i)
+
+    if(event[i].get_date() == date){
+      befalls_found = event[i].get_befalls();
+      found = true;
+    }
+
+  return befalls_found;
+}
+
 //Insertar acontecimiento
 bool Chronology::InsertBefall(int date,const string &s) {
   bool insert = false;
