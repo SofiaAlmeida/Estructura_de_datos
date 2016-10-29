@@ -145,7 +145,7 @@ vector<HistoricEvent> Chronology::post_events(int d) {
    sort();
 
    int i = event.size();
-   while(event[i].get_date() > d)  {
+   while(event[i].get_date() > d) {
       result.add(event[i]);
       i--;
    }
@@ -154,7 +154,7 @@ vector<HistoricEvent> Chronology::post_events(int d) {
 }
 
 //Eventos en un rango
-void Chronology::show_range(int inf, int sup){
+void Chronology::show_range(int inf, int sup) {
   if (inf > sup)
     std::swap(inf,sup);
   int size = event.size();
@@ -169,3 +169,27 @@ void Chronology::show_range(int inf, int sup){
       }
   }
 }
+
+//Operador << TODO
+
+//Operador >>
+istream& operator>>(istream &is, Chronology &c) {
+   int d, size, j;
+   string aux;
+   vector<string> v;
+
+   while(is) {
+      is >> d;
+      aux = is.getline();
+      size = aux.size();
+      j = 0;
+      for(int i = 0; i < size; ++i) {
+            v[j].push_back(aux[i])
+            if(v[j] == '#') {
+               v[j].pop_back();
+               ++j;
+            }
+      }
+      HistoricEvent h(date,v);
+      c.InsertEvent(h);
+   }
