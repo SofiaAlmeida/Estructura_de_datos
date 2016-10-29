@@ -4,6 +4,7 @@
   * @author Sofía Almeida Bruno (@SofiaAlmeida)
   * @author Jesús Sánchez de Lechina Tejada (@jojelupipa)
   * @author Pedro Bonilla Nadal (@pedrobn23)
+  * @bug
   */
 
 #ifndef __HISTORICEVENT
@@ -119,9 +120,10 @@ class HistoricEvent {
 
 /** @brief Busca una cadena dentro de un vector de eventos y muestra las encontradas
   * @param s String a buscar
+  * @param show si es true muestra el string encontrado
   * @retval true si encuentra el string
   */
-  bool search(const string &s);
+  bool search(const string &s, bool show);
 
 /**
   * @brief Sobrecarga del operador == |n
@@ -130,21 +132,20 @@ class HistoricEvent {
   * @retval true si este objeto es igual a h
   */
   bool operator==(const HistoricEvent &h);
-// NOTE en el operator == se compara que sean exactamente iguales
-// mientras que en los operadores > y < simplemente el año
+
 /**
   * @brief Sobrecarga del operador >
   * @param h HistoricEvent a comparar con el objeto implícito
   * @retval true si el año del objeto implícito es mayor que el de h
   */
-  bool operator>(const HistoricEvent &h);
+  bool operator>(const HistoricEvent &h) {return date > h.get_date();};
 
 /**
   * @brief Sobrecarga del operador >
   * @param h HistoricEvent a comparar con el objeto implícito
   * @retval true si el año del objeto implícito es menor que el de h
   */
-  bool operator<(const HistoricEvent &h);
+  bool operator<(const HistoricEvent &h) {return date < h.get_date();};
 
 /**
   * @brief Sobrecarga del operador +
