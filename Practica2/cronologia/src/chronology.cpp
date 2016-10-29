@@ -49,9 +49,32 @@ Chronology& Chronology::merge( Chronology &c) {
 }
 
 //Eventos anteriores
+vector<HistoricEvent> Chronology::prev_events(unsigned int d) {
+   vector<HistoricEvent> result;
+   sort();
+
+   int i = 0;
+   while(event.at(i).get_date() < d)  {
+      result.add(event.at(i));
+      i++;
+   }
+
+   return result;
+}
 
 //Eventos posteriores
+vector<HistoricEvent> Chronology::post_events(unsigned int d) {
+   vector<HistoricEvent> result;
+   sort();
 
+   int i = event.size();
+   while(event.at(i).get_date() > d)  {
+      result.add(event.at(i));
+      i--;
+   }
+
+   return result;
+}
 
 bool Chronology::InsertBefall(int date,const string &s){
   bool insert = false;

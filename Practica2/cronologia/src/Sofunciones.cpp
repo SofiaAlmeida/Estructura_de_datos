@@ -142,13 +142,32 @@ Chronology& Chronology::sort() {    //mergesort
    }
 
 
-//Eventos anteriores
+//Eventos anteriores (los de d sin incluir)
 vector<HistoricEvent> Chronology::prev_events(unsigned int d) {
+   vector<HistoricEvent> result;
+   sort();
 
+   int i = 0;
+   while(event.at(i).get_date() < d)  {
+      result.add(event.at(i));
+      i++;
+   }
+
+   return result;
 }
+
 //Eventos posteriores
 vector<HistoricEvent> Chronology::post_events(unsigned int d) {
+   vector<HistoricEvent> result;
+   sort();
 
+   int i = event.size();
+   while(event.at(i).get_date() > d)  {
+      result.add(event.at(i));
+      i--;
+   }
+
+   return result;
 }
 /////////////////////////////////////////////////////////////////////7
 /**

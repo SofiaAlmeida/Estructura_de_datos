@@ -66,6 +66,7 @@ class Chronology {
   * @return Cronología ordenada  //NOTE ¿void?
   */
   Chronology& sort();
+
 /**
   * @brief Mezclar de forma ordenada dos cronologías
   * @param c cronología a mezclar con la implícita
@@ -87,7 +88,7 @@ class Chronology {
   */
   vector<HistoricEvent> post_events(unsigned int d);
 
-/**
+/**   TODO descripción de esta función
   * @brief Eventos posteriores
   * @param d año a partir del cual se buscan los eventos
   * @return Vector con los eventos correspondientes
@@ -98,16 +99,15 @@ class Chronology {
   * @param chrono Cronología a sumar
   * @return Cronología suma de ambas
   */
+  Chronology sum_chrono(const Chronology &chron);
 
-Chronology sum_chrono(const Chronology &chron);
 
 /** @brief  Muestra todos los eventos situados entre dos fechas
-  * @param begin Extremo inferior de la búsqueda
-  * @param end Extremo superior de la búsqueda
+  * @param inf Extremo inferior de la búsqueda
+  * @param sup Extremo superior de la búsqueda
   * @return void
   */
-
-void show_range(int inf, int sup);
+  void show_range(int inf, int sup);
 };
 
 #endif
