@@ -97,9 +97,51 @@ bool HistoricEvent::operator<(const HistoricEvent &h) {
 
 }
 //Ordenar por fecha
-Chronology& Chronology::sort() {
+Chronology& Chronology::sort() {    //mergesort
+   if (event.size() <= 1)
+      return *this;
+   else {
+      Chronology cl, cr, res;
+      int middle = event.size() / 2;
+      for(int i = 0; i < middle; ++i)
+         cl.InsertBefall(event.at(i));
+         //NOTE InserteBefall actualmente no funciona con estos parámetros
+         // se puede sobrecargar o modificar esto aquí
+         // REVIEW >=??
+      for(int i = event.size(); event >= middle; --i)
+         cr.InsertBefall(event.at(i));
 
+      cl = cl.sort();
+      cr = cr.sort();
+
+      if(cl.at(cl.event.back()) < cr.at(cr.event.begin()))
+         res = cl.sum_chrono(cr);
+      else
+         res = merge(cl, cr);
+      return res;
+   }
 }
+
+   Chronology& Chronology::merge( Chronology &c) {
+      Chronology res;
+      while(event.size() > 0 && c.event.size() > 0)
+         if(event.begin() < c.event.begin()) {
+            res.InsertBefall(event.begin());
+            rm_event(event.begin().get_date());     //NOTE se puede sobrecargar rm_event o dejar esto así
+         }
+         else {
+            res.InsertBefall(c.event.begin());
+            c.rm_event(c.event.begin().get_date());
+         }
+
+         if(event.size() > 0)
+            res = res.sum_chrono((*this));
+         if(c.event.size() > 0)
+            res = res.sum_chrono(c);
+         return res;
+   }
+
+
 //Eventos anteriores
 vector<HistoricEvent> Chronology::prev_events(unsigned int d) {
 

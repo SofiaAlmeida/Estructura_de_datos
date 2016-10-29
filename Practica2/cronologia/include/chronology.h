@@ -42,7 +42,7 @@ class Chronology {
 	vector<HistoricEvent> event; /**< vector con los eventos historicos */
 
  public:
-/**
+/** NOTE ¿necesario? estamos creando solo un vector que por defecto se crea vacío
   * @brief Constructor por defecto de la clase.
   */
   Chronology();
@@ -59,12 +59,19 @@ class Chronology {
   * @return Si el evento ha sido insertado correctamente
   */
   bool InsertBefall(int date, const string &s);
+//NOTE sobrecargar: bool InsertBefall(HistoricEvent h);
 
 /**
   * @brief Ordenar por fecha
   * @return Cronología ordenada  //NOTE ¿void?
   */
   Chronology& sort();
+/**
+  * @brief Mezclar de forma ordenada dos cronologías
+  * @param c cronología a mezclar con la implícita
+  * @return cronología mezclada y ordenada
+  */ //NOTE esta no puede ser void
+  Chronology& merge(Chronology &c);
 
 /**
   * @brief Eventos anteriores

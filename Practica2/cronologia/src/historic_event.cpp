@@ -42,6 +42,8 @@ bool HistoricEvent::search(const string &s){
   return false;		// REVIEW y esto aquí
 }
 
+// FIXME dos eventos con los mismos acontecimientos pero distinto orden serían iguales
+
 //Operador ==
 bool HistoricEvent::operator==(const HistoricEvent &h) {
    bool eq = ((date == h.date) && (befalls.size() == h.befalls.size())) ? true : false;
@@ -63,8 +65,6 @@ bool HistoricEvent::operator<(const HistoricEvent &h) {
    return date < h.get_date();
 }
 
-// NOTE añado la sobrecarga del operador +, aunque no lo habláramos desde el principio,
-// ayer se llegó a la conclusión de que podía ser interesante para mezclar y ordenar cronologías
 // Operador +
 HistoricEvent& HistoricEvent::operator+(const HistoricEvent &h) {
 	if(date == h.date) {
