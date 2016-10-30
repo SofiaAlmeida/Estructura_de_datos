@@ -49,9 +49,40 @@ int main () {
   cout << "Ahora vamos a comprobar si \"o\" lo podemos encontrar en la cadena, y si sí lo mostraremos" << endl;
 
   if (fecha_vector.search("o",true))
-    cout << "Encontrado y mostrado";
+    cout << "Encontrado y mostrado" << endl;
 
+// Prueba de operador ==
 
+  HistoricEvent igual_1(1000,"igual"), igual_2(1000,"igual"), desigual(1000,"desigual");
+
+  if(igual_1 == igual_2)
+    cout << "Probado con == que son iguales \"gual_1(1000,\"igual\"), igual_2(1000,\"igual\");\"" << endl;
+  else
+    cout << "No son iguales (== usado)" << endl;
+
+  if(!(igual_1 == desigual))
+    cout << "\"desigual(100,\"desigual\")\" e igual_1 son distintos" << endl;
+
+  // Probamos < y >
+
+  if(fecha_vector < igual_1)
+    cout << "fecha_vector sucedió antes que los acontecimientos de igual_1" << endl;
+  else if (fecha_vector > igual_1)
+    cout << "fecha_vector sucedió después que igual_1" << endl;
+
+    fecha_vector.show(0);
+    igual_1.show(0);
+
+  // Probamos el operador +
+
+  HistoricEvent suma;
+  suma = desigual + igual_1;
+
+  cout << "Probamos a sumar desigual e igual_1 y lo mostramos en un Evento suma" << endl;
+
+  vector<string> test_sum = suma.get_befalls();
+  for(int i = 0; i < test_sum.size(); ++i) // Probamos si puede mostrar todos los Eventos de suma
+    suma.show(i);
 
   return 0;
 }
