@@ -46,11 +46,11 @@ class Chronology {
 
 
  public:
- /** @brief Crea una cronología a partir de otra
-   * @param chrono
-   * @return Cronología con las propiedades de la anterior
-   */
-   Chronology Chronology(Chronology chrono);
+/** @brief Crea una cronología a partir de otra
+  * @param chrono
+  * @return Cronología con las propiedades de la anterior
+  */
+  Chronology(const Chronology& chrono);
 
 /**
   * @brief Eventos
@@ -128,28 +128,28 @@ class Chronology {
 };
 
 /**
+  * @brief Busca los años en que exista un evento con la palabra dada.
+  *        Además, puede sacar por el flujo os el año y evento que la contienen    .
+  * @param s palabra/s a buscar
+  * @param be_show decide si quiere ser sacado por flujo
+  * @return Vector con los años que tienen un evento con esa palabra.
+  */
+  vector<int> word_search (string s, bool be_show = false);
+
+/**
   * @brief Sobrecarga del operador <<
   * @param os flujo de salida
   * @param c cronología a mostrar
   * @return muestra una cronología con el formato:
-  * Year: date eventos
+  *         Year: date eventos
   */
   ostream& operator<<(ostream &os, const Chronology &c);
-/**
-	*@brief devuelve un vector con los años en los que hay un evento con esa palabra. Además
-	*  puede sacar por el flujo os cada evento que contenga la palabra con el año en el cual sucedio.
-	*@param s palabra/s a buscar
-	@param be_show decide si quiere ser sacado por flujo
-
-	*/
-	//FIXME: como se hacian los parametros por defecto??
-	vector<int> word_search (string s, bool be_show);
 
 /**
   * @brief Sobrecarga del operador >>
   * @param is flujo de entrada
   * @param c cronología a escribir
-  * @return TODO
+  * @return flujo de entrada
   */
   istream& operator>>(istream &is, Chronology &c);
 

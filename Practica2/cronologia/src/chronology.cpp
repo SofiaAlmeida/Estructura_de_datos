@@ -3,14 +3,12 @@
 
 
 //Constructor copia
-Chronology Chronology::Chronology(chrono) {
+Chronology::Chronology(chrono) {
   events = chrono.get_events();
 }
 
-//DONE: Constructor
-Chronology Chronology::Chronology(vector<HistoricEvent> h) : event(h) {
-
-}
+//Constructor
+Chronology Chronology::Chronology(vector<HistoricEvent> h) : event(h) {}
 
 // Obtener vector de befalls
 
@@ -182,18 +180,17 @@ void Chronology::show_range(int inf, int sup) {
   int size = event.size();
   int befalls_size;
 
-  for(int i = 0; i < size; ++i){                                                          // Comprueba si la fecha de cada HistoricEvent
-      if (event[i].get_date() >= inf && event[i].get_date() <= sup){    // es correcta y procede a mostrar su contenido
-        befalls_size = event[i].befalls_size();
+  for(int i = 0; i < size; ++i){                                        // Comprueba si la fecha de cada HistoricEvent
+    if (event[i].get_date() >= inf && event[i].get_date() <= sup) {    // es correcta y procede a mostrar su contenido
+      befalls_size = event[i].befalls_size();
 
-          for(int j = 0; j < befalls_size; i++){
-            event[i].show(j,true));
-          }
-      }
-  }
+      for(int j = 0; j < befalls_size; i++)
+         event[i].show(j,true));
+
+    }
+   }
 }
 
-//TODO: la acabo esta noche, me fui a cenar
 vector<int> Chornology::word_search (string s, bool be_show) {
 	vector<int> v;
 	vector<int> aux;
@@ -219,6 +216,47 @@ vector<int> Chornology::word_search (string s, bool be_show) {
 			cout << "No se encontraron coincidencias";
 		}
 	}
-	
+
 	return v;
+}
+
+// Operador <<
+ostream& operator<<(ostream &os, const Chronology &c){
+  int size = c.event.size();
+  int n_befalls;
+  vector<string> aux;
+
+  for(int i = 0; i < size; ++i){
+    aux = event[i].get_befalls();
+    n_befalls = event[i].befalls_size();
+
+    for(int j = 0; j < n_befalls; ++j)
+      aux.show(j);
+}
+
+//Operador >>
+istream& operator>>(istream &is, Chronology &c) {
+  int d, size, j;
+  string aux;
+  vector<string> v;
+
+  while(is) {
+     is >> d;
+     aux = is.getline();
+     size = aux.size();
+     j = 0;
+
+     for(int i = 0; i < size; ++i) {
+           v[j].push_back(aux[i])
+           if(v[j] == '#') {
+              v[j].pop_back();
+              ++j;
+           }
+     }
+
+     HistoricEvent h(date,v);
+     c.InsertEvent(h);
+  }
+
+  return is;
 }

@@ -106,9 +106,9 @@ Chronology& Chronology::sort() {    //mergesort
       int middle = event.size() / 2;
       for(int i = 0; i < middle; ++i)
          cl.InsertBefall(event.at(i));
-         //NOTE InserteBefall actualmente no funciona con estos parámetros
+         // InserteBefall actualmente no funciona con estos parámetros
          // se puede sobrecargar o modificar esto aquí
-         // REVIEW >=??
+         // >=??
       for(int i = event.size(); event >= middle; --i)
          cr.InsertBefall(event.at(i));
 
@@ -128,8 +128,7 @@ Chronology& Chronology::sort() {    //mergesort
       while(event.size() > 0 && c.event.size() > 0)
          if(event.begin() < c.event.begin()) {
             res.InsertBefall(event.begin());
-            rm_event(event.begin().get_date());     //NOTE se puede sobrecargar rm_event o dejar esto así
-         }
+            rm_event(event.begin().get_date());              }
          else {
             res.InsertBefall(c.event.begin());
             c.rm_event(c.event.begin().get_date());
