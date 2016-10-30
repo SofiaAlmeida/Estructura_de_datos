@@ -2,11 +2,12 @@
 
 //Constructor por defecto
 HistoricEvent::HistoricEvent() {
-	set_date(0);
+	set_date(0);											//Lo hacemos así porque al no existir
+	 																	//el año 0 esto lo marcaria como año inválido
 }
 
 //Constructor
-HistoricEvent::HistoricEvent(int d, string s) {
+HistoricEvent::HistoricEvent(int d, const string& s) {
 	set_date(d);
 	add_befall(s);
 }

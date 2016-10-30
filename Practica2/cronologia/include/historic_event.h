@@ -61,7 +61,7 @@ class HistoricEvent {
   * @param s acontecimiento ocurrido en dicha fecha
   * @return Crea el evento histórico con fecha d y acontecimiento s
   */
-  HistoricEvent(int d, string s);
+  HistoricEvent(int d, const string& s);
 
 /**
   * @brief Constructor de la clase
