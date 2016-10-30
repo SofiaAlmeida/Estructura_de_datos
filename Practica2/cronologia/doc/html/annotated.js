@@ -1,4 +1,5 @@
 var annotated =
 [
-    [ "Racional", "classRacional.html", "classRacional" ]
+    [ "Chronology", "classChronology.html", "classChronology" ],
+    [ "HistoricEvent", "classHistoricEvent.html", "classHistoricEvent" ]
 ];

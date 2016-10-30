@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Racional: Fichero Fuente include/chronology.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Racional
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.9.1 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('chronology_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">chronology.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="chronology_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef __CHRONOLOGY</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define __CHRONOLOGY</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="historic__event_8h.html">historic_event.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classChronology.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="classChronology.html">Chronology</a> {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; <span class="keyword">private</span>: <span class="comment">// REVIEW</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classChronology.html#a79a916f35f75b41794fca2076c6e090c">   47</a></span>&#160;<span class="comment"></span>        vector&lt;HistoricEvent&gt; <a class="code" href="classChronology.html#a79a916f35f75b41794fca2076c6e090c">event</a>; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="classChronology.html#a2dc4110b0a520cfe4372aea90efc6618">Chronology</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <a class="code" href="classChronology.html#a2dc4110b0a520cfe4372aea90efc6618">Chronology</a>(<span class="keyword">const</span> <a class="code" href="classChronology.html">Chronology</a>&amp; chrono);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <a class="code" href="classChronology.html#a2dc4110b0a520cfe4372aea90efc6618">Chronology</a>(vector&lt;HistoricEvent&gt; h);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classChronology.html#aa903f4c0e772715a29ab37da4e058ad6">   74</a></span>&#160;  vector&lt;HistoricEvent&gt; <a class="code" href="classChronology.html#aa903f4c0e772715a29ab37da4e058ad6">get_events</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="classChronology.html#a79a916f35f75b41794fca2076c6e090c">event</a>;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  vector&lt;string&gt; <a class="code" href="classChronology.html#ad2728f5c165970678d37456e822f5e8f">get_befalls</a>(<span class="keywordtype">int</span> date);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classChronology.html#a35d9b6807557a1c41673c63b51cf5623">InsertBefall</a>(<span class="keywordtype">int</span> date, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;s);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classChronology.html#a2d780faf105b3f3c658a3dc3c8c36d04">InsertEvent</a>(<span class="keyword">const</span> <a class="code" href="classHistoricEvent.html">HistoricEvent</a> &amp;h);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classChronology.html#ae019ea9cf7fd9981183e87739f8a71d2">rm_event</a>(<span class="keywordtype">int</span> date);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <a class="code" href="classChronology.html">Chronology</a>&amp; <a class="code" href="classChronology.html#a8629ae721de9d881616d4f280309c82d">sort</a>();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <a class="code" href="classChronology.html">Chronology</a>&amp; <a class="code" href="classChronology.html#a778ab7f976155202653a46d84cb65d5f">merge</a>(<a class="code" href="classChronology.html">Chronology</a> &amp;c);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <a class="code" href="classChronology.html">Chronology</a> <a class="code" href="classChronology.html#a70ad0d1e4055261eee7e0091c7635430">sum_chrono</a>(<span class="keyword">const</span> <a class="code" href="classChronology.html">Chronology</a> &amp;chron2);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  vector&lt;HistoricEvent&gt; <a class="code" href="classChronology.html#a8f290e9a069a3f8c1d19698a1739b40c">prev_events</a>(<span class="keywordtype">int</span> d);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  vector&lt;HistoricEvent&gt; <a class="code" href="classChronology.html#a78b511eb967898328bc6b2bc9ee61949">post_events</a>(<span class="keywordtype">int</span> d);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classChronology.html#addd3e47b45e6ebd2158a36e86fcc05e5">show_range</a>(<span class="keywordtype">int</span> inf, <span class="keywordtype">int</span> sup);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;  <a class="code" href="classChronology.html">Chronology</a> <a class="code" href="classChronology.html#a6d06c8c82a025913da6537691bb4770a">word_search</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;s, <span class="keywordtype">bool</span> be_shown);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classChronology.html#ad954b3275899cc4ba00b9017d5fd7ef2">  158</a></span>&#160;  <a class="code" href="classHistoricEvent.html">HistoricEvent</a>&amp; <a class="code" href="classChronology.html#ad954b3275899cc4ba00b9017d5fd7ef2">operator[]</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i) {<span class="keywordflow">return</span> <a class="code" href="classChronology.html#aa903f4c0e772715a29ab37da4e058ad6">get_events</a>()[i];};</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keyword">friend</span> ostream&amp; <a class="code" href="classChronology.html#a0e48086af315fbd28645ed0f52525414">operator&lt;&lt;</a>(ostream &amp;os, <span class="keyword">const</span> <a class="code" href="classChronology.html">Chronology</a> &amp;c);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <span class="keyword">friend</span> istream&amp; <a class="code" href="classChronology.html#a9fb785768776432b1eb6d92f42343817">operator&gt;&gt;</a>(istream &amp;is, <a class="code" href="classChronology.html">Chronology</a> &amp;c);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;};</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classChronology_html"><div class="ttname"><a href="classChronology.html">Chronology</a></div><div class="ttdoc">T.D.A. Chronology. </div><div class="ttdef"><b>Definition:</b> <a href="chronology_8h_source.html#l00028">chronology.h:28</a></div></div>
+<div class="ttc" id="classHistoricEvent_html"><div class="ttname"><a href="classHistoricEvent.html">HistoricEvent</a></div><div class="ttdoc">T.D.A. HistoricEvent. </div><div class="ttdef"><b>Definition:</b> <a href="historic__event_8h_source.html#l00031">historic_event.h:31</a></div></div>
+<div class="ttc" id="classChronology_html_a78b511eb967898328bc6b2bc9ee61949"><div class="ttname"><a href="classChronology.html#a78b511eb967898328bc6b2bc9ee61949">Chronology::post_events</a></div><div class="ttdeci">vector&lt; HistoricEvent &gt; post_events(int d)</div><div class="ttdoc">Eventos posteriores. </div></div>
+<div class="ttc" id="classChronology_html_a79a916f35f75b41794fca2076c6e090c"><div class="ttname"><a href="classChronology.html#a79a916f35f75b41794fca2076c6e090c">Chronology::event</a></div><div class="ttdeci">vector&lt; HistoricEvent &gt; event</div><div class="ttdef"><b>Definition:</b> <a href="chronology_8h_source.html#l00047">chronology.h:47</a></div></div>
+<div class="ttc" id="classChronology_html_a2dc4110b0a520cfe4372aea90efc6618"><div class="ttname"><a href="classChronology.html#a2dc4110b0a520cfe4372aea90efc6618">Chronology::Chronology</a></div><div class="ttdeci">Chronology()</div><div class="ttdoc">Constructor por defecto de la clase. </div></div>
+<div class="ttc" id="classChronology_html_addd3e47b45e6ebd2158a36e86fcc05e5"><div class="ttname"><a href="classChronology.html#addd3e47b45e6ebd2158a36e86fcc05e5">Chronology::show_range</a></div><div class="ttdeci">void show_range(int inf, int sup)</div><div class="ttdoc">Muestra todos los eventos situados entre dos fechas. </div></div>
+<div class="ttc" id="classChronology_html_a35d9b6807557a1c41673c63b51cf5623"><div class="ttname"><a href="classChronology.html#a35d9b6807557a1c41673c63b51cf5623">Chronology::InsertBefall</a></div><div class="ttdeci">bool InsertBefall(int date, const string &amp;s)</div><div class="ttdoc">Inserta un evento en su posición correspondiente. </div></div>
+<div class="ttc" id="classChronology_html_a778ab7f976155202653a46d84cb65d5f"><div class="ttname"><a href="classChronology.html#a778ab7f976155202653a46d84cb65d5f">Chronology::merge</a></div><div class="ttdeci">Chronology &amp; merge(Chronology &amp;c)</div><div class="ttdoc">Mezclar de forma ordenada dos cronologías. </div></div>
+<div class="ttc" id="historic__event_8h_html"><div class="ttname"><a href="historic__event_8h.html">historic_event.h</a></div><div class="ttdoc">Fichero cabecera del TDA HistoricEvent. </div></div>
+<div class="ttc" id="classChronology_html_a6d06c8c82a025913da6537691bb4770a"><div class="ttname"><a href="classChronology.html#a6d06c8c82a025913da6537691bb4770a">Chronology::word_search</a></div><div class="ttdeci">Chronology word_search(const string &amp;s, bool be_shown)</div><div class="ttdoc">Busca los eventos en que se encuentra la palabra dada. Además, puede mostrar dichos eventos ...</div></div>
+<div class="ttc" id="classChronology_html_ad954b3275899cc4ba00b9017d5fd7ef2"><div class="ttname"><a href="classChronology.html#ad954b3275899cc4ba00b9017d5fd7ef2">Chronology::operator[]</a></div><div class="ttdeci">HistoricEvent &amp; operator[](unsigned int i)</div><div class="ttdoc">Sobrecarga del operator []. </div><div class="ttdef"><b>Definition:</b> <a href="chronology_8h_source.html#l00158">chronology.h:158</a></div></div>
+<div class="ttc" id="classChronology_html_a0e48086af315fbd28645ed0f52525414"><div class="ttname"><a href="classChronology.html#a0e48086af315fbd28645ed0f52525414">Chronology::operator&lt;&lt;</a></div><div class="ttdeci">friend ostream &amp; operator&lt;&lt;(ostream &amp;os, const Chronology &amp;c)</div><div class="ttdoc">Sobrecarga del operador <<. </div></div>
+<div class="ttc" id="classChronology_html_a8f290e9a069a3f8c1d19698a1739b40c"><div class="ttname"><a href="classChronology.html#a8f290e9a069a3f8c1d19698a1739b40c">Chronology::prev_events</a></div><div class="ttdeci">vector&lt; HistoricEvent &gt; prev_events(int d)</div><div class="ttdoc">Eventos anteriores. </div></div>
+<div class="ttc" id="classChronology_html_a70ad0d1e4055261eee7e0091c7635430"><div class="ttname"><a href="classChronology.html#a70ad0d1e4055261eee7e0091c7635430">Chronology::sum_chrono</a></div><div class="ttdeci">Chronology sum_chrono(const Chronology &amp;chron2)</div><div class="ttdoc">Suma la cronología implícita con la que es pasada como argumento. </div></div>
+<div class="ttc" id="classChronology_html_a8629ae721de9d881616d4f280309c82d"><div class="ttname"><a href="classChronology.html#a8629ae721de9d881616d4f280309c82d">Chronology::sort</a></div><div class="ttdeci">Chronology &amp; sort()</div><div class="ttdoc">Ordenar por fecha. </div></div>
+<div class="ttc" id="classChronology_html_a9fb785768776432b1eb6d92f42343817"><div class="ttname"><a href="classChronology.html#a9fb785768776432b1eb6d92f42343817">Chronology::operator&gt;&gt;</a></div><div class="ttdeci">friend istream &amp; operator&gt;&gt;(istream &amp;is, Chronology &amp;c)</div><div class="ttdoc">Sobrecarga del operador >> </div></div>
+<div class="ttc" id="classChronology_html_ae019ea9cf7fd9981183e87739f8a71d2"><div class="ttname"><a href="classChronology.html#ae019ea9cf7fd9981183e87739f8a71d2">Chronology::rm_event</a></div><div class="ttdeci">void rm_event(int date)</div><div class="ttdoc">Borra un evento. </div></div>
+<div class="ttc" id="classChronology_html_aa903f4c0e772715a29ab37da4e058ad6"><div class="ttname"><a href="classChronology.html#aa903f4c0e772715a29ab37da4e058ad6">Chronology::get_events</a></div><div class="ttdeci">vector&lt; HistoricEvent &gt; get_events() const </div><div class="ttdoc">Eventos. </div><div class="ttdef"><b>Definition:</b> <a href="chronology_8h_source.html#l00074">chronology.h:74</a></div></div>
+<div class="ttc" id="classChronology_html_a2d780faf105b3f3c658a3dc3c8c36d04"><div class="ttname"><a href="classChronology.html#a2d780faf105b3f3c658a3dc3c8c36d04">Chronology::InsertEvent</a></div><div class="ttdeci">bool InsertEvent(const HistoricEvent &amp;h)</div><div class="ttdoc">Añade un HistoricEvent a la cronología. </div></div>
+<div class="ttc" id="classChronology_html_ad2728f5c165970678d37456e822f5e8f"><div class="ttname"><a href="classChronology.html#ad2728f5c165970678d37456e822f5e8f">Chronology::get_befalls</a></div><div class="ttdeci">vector&lt; string &gt; get_befalls(int date)</div><div class="ttdoc">Obtiene vector con los befalls de un año. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<hr>
+<small>Grupo de Practicas. Sofía Almeida Bruno, Jesús Sánchez de Lechina Tejada, Pedro Bonilla Nadal.
+</small>

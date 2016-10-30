@@ -3,45 +3,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Racional: Rep del TDA Racional</title>
-
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>Racional: Rep del TDA Chronology</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript">
   $(document).ready(initResizable);
+  $(window).load(resizeHeight);
 </script>
-
-
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="top"><!-- do not remove this div! -->
-
-
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  
-  
   <td style="padding-left: 0.5em;">
    <div id="projectname">Racional
-   
    </div>
-   
   </td>
-  
-  
-  
  </tr>
  </tbody>
 </table>
 </div>
-
-<!-- Generado por Doxygen 1.7.6.1 -->
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.9.1 -->
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Página&#160;principal</span></a></li>
@@ -50,10 +42,11 @@
       <li><a href="files.html"><span>Archivos</span></a></li>
     </ul>
   </div>
-</div>
+</div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
     </div>
   </div>
   <div id="splitbar" style="-moz-user-select:none;" 
@@ -61,25 +54,30 @@
   </div>
 </div>
 <script type="text/javascript">
-  initNavTree('repConjunto.html','');
+$(document).ready(function(){initNavTree('repConjunto.html','');});
 </script>
 <div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">Rep del TDA <a class="el" href="classRacional.html" title="T.D.A. Racional.">Racional</a> </div>  </div>
+<div class="title">Rep del TDA <a class="el" href="classChronology.html" title="T.D.A. Chronology. ">Chronology</a> </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="invConjunto"></a>
-Invariante de la representaci�n</h2>
-<p>El invariante es <em>rep.den!=0</em> </p>
-<h2><a class="anchor" id="faConjunto"></a>
-Funci�n de abstracci�n</h2>
-<p>Un objeto v�lido <em>rep</em> del TDA <a class="el" href="classRacional.html" title="T.D.A. Racional.">Racional</a> representa al valor</p>
-<p>(rep.num,rep.den) </p>
+<div class="textblock"><h1><a class="anchor" id="invConjunto"></a>
+Invariante de la representación</h1>
+<p>El invariante es <em>rep.event</em>[i] no válido (consultar <a class="el" href="historic__event_8h.html" title="Fichero cabecera del TDA HistoricEvent. ">historic_event.h</a>)</p>
+<h1><a class="anchor" id="faConjunto"></a>
+Función de abstracción</h1>
+<p>Un objeto válido <em>rep</em> del TDA <a class="el" href="classChronology.html" title="T.D.A. Chronology. ">Chronology</a> representa</p>
+<p>event[0] event[1] ...</p>
+<h1><a class="anchor" id="invConjunto"></a>
+Invariante de la representación</h1>
+<p>El invariante es <em>rep.date</em> != 0</p>
+<h1><a class="anchor" id="faConjunto"></a>
+Función de abstracción</h1>
+<p>Un objeto válido <em>rep</em> del TDA <a class="el" href="classHistoricEvent.html" title="T.D.A. HistoricEvent. ">HistoricEvent</a> representa</p>
+<p>rep.date::rep.befalls[0]#rep.befalls[1]... </p>
 </div></div><!-- contents -->
-</div>
-  <div id="nav-path" class="navpath">
-    <ul>
+</div><!-- doc-content -->
 <hr>
-<small>ETS Ingeniería Informática y Telecomunicaciones. Universidad de Granada.
+<small>Grupo de Practicas. Sofía Almeida Bruno, Jesús Sánchez de Lechina Tejada, Pedro Bonilla Nadal.
 </small>
