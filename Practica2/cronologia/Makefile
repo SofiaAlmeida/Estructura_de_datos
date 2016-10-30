@@ -26,13 +26,13 @@ documentacion:
 # ************ Compilación de módulos ************
 
 ./% : $(OBJ)/%.o $(LIBNAME)
-	$(CC) $(CCFLAGS) $(IFLAGS) ./$(INC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	$(CXX) $(CCFLAGS) $(IFLAGS) ./$(INC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 $(LIBNAME) : $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)  $(SOURCESLIB:$(SRC)/%.cpp=$(INC)/%.h)
 	$(AR) $(LIBFLAGS) $(LIBNAME) $^
 
 $(OBJ)/%.o : $(SRC)/%.cpp
-	$(CC) $(CCFLAGS) $(IFLAGS) $(INC) -c $^ -o $@
+	$(CXX) $(CCFLAGS) $(IFLAGS) $(INC) -c $^ -o $@
 
 
 
