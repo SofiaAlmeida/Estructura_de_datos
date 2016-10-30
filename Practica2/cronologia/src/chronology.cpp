@@ -85,7 +85,7 @@ Chronology& Chronology::sort() {    //mergesort
          cl.InsertEvent(event[i]);
 
       int size = event.size()
-      for(int i = middle; i < size; ++i)
+      for(int i = middle; i <= size; ++i)
          cr.InsertEvent(event[i]);
 
       cl = cl.sort();
@@ -186,37 +186,24 @@ void Chronology::show_range(int inf, int sup) {
    }
 }
 
-vector<int> Chornology::word_search (string s, bool be_show) {
-	vector<int> v;
-	vector<int> aux;
-	size = events.size;
-	for (int i = 0; i < size; ++i) {
-		if(event[i].search(s, 0)) {
-			v.push_back (event[i].date);
-			aux.push_back (i);
-		}
-	}
+//Buscar una palabra
+Chronology Chronology::word_search(const string &s, bool be_shown) {
+   Chronology c;
+   int size = events.size();
 
-//FIXME:No me gusta esta implementación pero no fuí capaz de hacerla mejor, la ire pensando
-	if (be_show){
-		int s = aux.size()
+   for(int = 0; i < size; ++i)
+      if(event[i].search(s,0))
+         c.push_back(event[i]);
 
-		if (s != 0) {
-			for (int i = 0; i < s; ++i) {
-				cout << "#" << event[aux[i]].date;
-				event[aux[i]].search(s, 1))
-			}
-		}
-		else {
-			cout << "No se encontraron coincidencias";
-		}
-	}
+   if(be_shown) {
+      cout << c;
+   }
 
-	return v;
+   return c;
 }
 
 // Operador <<
-ostream& operator<<(ostream &os, const Chronology &c){
+ostream& operator<<(ostream &os, const Chronology &c) {
   int size = c.event.size();
   int n_befalls;
   vector<string> aux;

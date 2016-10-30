@@ -169,6 +169,53 @@ vector<HistoricEvent> Chronology::post_events(unsigned int d) {
 
    return result;
 }
+
+// Modificación funcion word_search
+Chronology Chronology::word_search(const string &s, bool be_shown) {
+   Chronology c;
+   int size = events.size();
+
+   for(int = 0; i < size; ++i)
+      if(event[i].search(s,0))
+         c.push_back(event[i]);
+
+   if(be_shown) {
+      cout << c;
+   }
+
+   return c;
+}
+
+vector<int> Chornology::word_search(string s, bool be_shown) {
+	vector<int> v;
+	vector<int> aux;
+	intsize = events.size();
+
+	for(int i = 0; i < size; ++i) {
+		if(event[i].search(s, 0)) {
+			v.push_back(event[i].date);
+			aux.push_back(i);
+		}
+	}
+
+//FIXME:No me gusta esta implementación pero no fuí capaz de hacerla mejor, la ire pensando
+	if (be_shown) {
+		int s = aux.size()
+
+		if (s != 0) {
+			for (int i = 0; i < s; ++i) {
+				cout << "#" << event[aux[i]].date;
+				event[aux[i]].search(s, 1))
+			}
+		}
+		else {
+			cout << "No se encontraron coincidencias";
+		}
+	}
+
+	return v;
+}
+
 /////////////////////////////////////////////////////////////////////7
 /**
   * @brief Constructor de copia de la clase

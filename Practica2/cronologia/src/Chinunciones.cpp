@@ -1,7 +1,7 @@
 #include "historic_event.h"
 
 
-// Muestra el string contenido en la posición indicada NOTE no está puesto en header aún
+// Muestra el string contenido en la posición indicada note no está puesto en header aún
 
 /** @brief Muestra el nombre de un determinado evento de un año (indicando este último)
   *
