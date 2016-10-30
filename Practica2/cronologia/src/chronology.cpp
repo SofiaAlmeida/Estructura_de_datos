@@ -230,15 +230,16 @@ ostream& operator<<(ostream &os, const Chronology &c) {
 //Operador >>
 istream& operator>>(istream &is, Chronology &c) {
   int d, size, j;
-  string aux;
+	char* s = new char[1024];
   vector<string> v;
+	const string DELIM = "#";
 
   while(is) {
      is >> d;
-     is.getline(aux, 10000000); //NOTE
+     is.getline(s, 1024); //NOTE
+		 string aux (s);
      size = aux.size();
      j = 0;
-     const string DELIM = "#";
 
      for(int i = 0; i < size; ++i) {
            v[j].push_back(aux[i]);
@@ -248,9 +249,10 @@ istream& operator>>(istream &is, Chronology &c) {
            }
      }
 
-     HistoricEvent h(d,v);
+     HistoricEvent h(d, v);
      c.InsertEvent(h);
   }
 
+	delete[] s;
   return is;
 }
