@@ -30,11 +30,11 @@ void HistoricEvent::rm_befalls(string s) {
 
 //Mostrar acontecimiento i-ésimo
 void HistoricEvent::show(int i){
-  cout << "Year:" << date << befalls[i] << endl;
+  cout << "Year: " << date << " "<< befalls[i] << endl;
 }
 
 //Buscar
-bool HistoricEvent::search(const string &s, bool be_shown = false){
+bool HistoricEvent::search(const string &s, bool be_shown){
 	bool find = false;
 	int size = befalls_size();
 
