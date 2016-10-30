@@ -46,7 +46,8 @@ class Chronology {
 
 
  public:
-/** @brief Crea una cronología a partir de otra
+/**
+  * @brief Crea una cronología a partir de otra
   * @param chrono
   * @return Cronología con las propiedades de la anterior
   */
@@ -60,8 +61,8 @@ class Chronology {
 
 /**
   * @brief Obtiene vector con los befalls de un año
-  * @param a año a buscar
-  * @return vector de befalls del año a
+  * @param date Año a buscar
+  * @return Vector de befalls del año date
   */
   vector<string> get_befalls(int date);
 
@@ -134,7 +135,7 @@ class Chronology {
   * @param be_show decide si quiere ser sacado por flujo
   * @return Vector con los años que tienen un evento con esa palabra.
   */
-  vector<int> word_search (string s, bool be_show = false);
+  vector<int> word_search(string s, bool be_show = false);
 
 /**
   * @brief Sobrecarga del operador <<

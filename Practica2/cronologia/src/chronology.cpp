@@ -11,7 +11,6 @@ Chronology::Chronology(chrono) {
 Chronology Chronology::Chronology(vector<HistoricEvent> h) : event(h) {}
 
 // Obtener vector de befalls
-
 vector<string> Chronology::get_befalls(int date){
   int size = event.size();
   bool found = false;
@@ -40,17 +39,15 @@ bool Chronology::InsertBefall(int date, const string &s) {
       event.insert(i,e);
       insert = true;
     }
-
-		//DONE; pero no entiendo el funcionamiento de search
     else if (var_date == date){
-			if (!(event.search(s)))
-				event.add_befall(s);
+			if (!(event[i].search(s))) {
+				event[i].add_befall(s);
+            insert = true;
     }
   }
+
   return insert;
 }
-
-
 
 //Insertar evento
 bool Chronology::InsertEvent(const HistoricEvent &h) {
@@ -85,13 +82,11 @@ Chronology& Chronology::sort() {    //mergesort
       Chronology cl, cr, res;
       int middle = event.size() / 2;
       for(int i = 0; i < middle; ++i)
-         cl.InsertBefall(event[i]);
-         //NOTE InserteBefall actualmente no funciona con estos parámetros
-         // se puede sobrecargar o modificar esto aquí
-         // REVIEW >=??
+         cl.InsertEvent(event[i]);
+
       int size = event.size()
       for(int i = middle; i < size; ++i)
-         cr.InsertBefall(event[i]);
+         cr.InsertEvent(event[i]);
 
       cl = cl.sort();
       cr = cr.sort();
@@ -254,7 +249,7 @@ istream& operator>>(istream &is, Chronology &c) {
            }
      }
 
-     HistoricEvent h(date,v);
+     HistoricEvent h(d,v);
      c.InsertEvent(h);
   }
 
