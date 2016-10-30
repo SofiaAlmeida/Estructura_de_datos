@@ -7,7 +7,7 @@ Chronology::Chronology() {
 
 //Constructor copia
 Chronology::Chronology(const Chronology &chrono) {
-  events = chrono.get_events();
+  event = chrono.get_events();
 }
 
 //Constructor
@@ -38,12 +38,12 @@ bool Chronology::InsertBefall(int date, const string &s) {
     var_date = event[i].get_date();
 
     if (var_date > date) {
-      const HistoricEvent e(date, s); //NOTE ???
-      event.insert(i,e);
+      HistoricEvent e(date, s);
+      event.push_back(e);
       insert = true;
     }
     else if (var_date == date){
-			if (!(event[i].search(s))) {
+			if (!(event[i].search(s,false))) {
 				event[i].add_befall(s);
             insert = true;
          }
@@ -80,10 +80,8 @@ void Chronology::rm_event(int date) {
 
 //Ordenar por fecha
 Chronology& Chronology::sort() {    //mergesort
-   if (event.size() <= 1)
-      return *this;
-   else {
-      Chronology cl, cr, res;
+   if (event.size() > 1) {
+      Chronology cl, cr;
       int middle = event.size() / 2;
       for(int i = 0; i < middle; ++i)
          cl.InsertEvent(event[i]);
@@ -95,34 +93,38 @@ Chronology& Chronology::sort() {    //mergesort
       cl = cl.sort();
       cr = cr.sort();
 
-      if(cl[cl.event.back()] < cr[cr.event.begin()])
-         cl.event.insert(cl.event.end(),cr.event.begin(),cr.event.end());
+      if(cl[cl.event.size()] < cr[0]) {
+         int cr_size = cr.event.size();
          //inserta en la posición final de cl desde el principio hasta el final de cr
-         res = cl;
+         for(int i = 0; i < cr_size; ++i) {
+            cl.event.push_back(cr.event[i]);
+         }
+         *this = cl;
+      }
       else
-         res = cl.merge(cr);
-      return &res;
+         *this = cl.merge(cr);
    }
+
+   return *this;
 }
 
 //Mezclar dos cronologías
 Chronology& Chronology::merge(Chronology &c) {
-   Chronology res;
    while(event.size() > 0 && c.event.size() > 0)
       if(event.begin() < c.event.begin()) {
-         res.InsertEvent(event.begin());
-         rm_event((event.begin()).get_date());
+         (*this).InsertEvent(event[0]);
+         rm_event(event[0].get_date());
       }
       else {
-         res.InsertEvent(c.event.begin());
-         c.rm_event((c.event.begin()).get_date());
+         (*this).InsertEvent(c.event[0]);
+         c.rm_event(c.event[0].get_date());
       }
 
    if(event.size() > 0)
-      res.event.insert(res.event.end(),event.begin(),event.end());
+      (*this).event.insert((*this).event.end(),event.begin(),event.end());
    if(c.event.size() > 0)
-      res.event.insert(res.event.end(),c.event.begin(),c.event.end());
-   return res;
+      (*this).event.insert((*this).event.end(),c.event.begin(),c.event.end());
+   return *this;
 }
 
 //Sumar dos cronologías
@@ -185,7 +187,7 @@ void Chronology::show_range(int inf, int sup) {
       befalls_size = event[i].befalls_size();
 
       for(int j = 0; j < befalls_size; i++)
-         event[i].show(j,true));
+         event[i].show(j);
 
     }
    }
@@ -194,11 +196,11 @@ void Chronology::show_range(int inf, int sup) {
 //Buscar una palabra
 Chronology Chronology::word_search(const string &s, bool be_shown) {
    Chronology c;
-   int size = events.size();
+   int size = event.size();
 
-   for(int = 0; i < size; ++i)
+   for(int i = 0; i < size; ++i)
       if(event[i].search(s,0))
-         c.push_back(event[i]);
+         c.InsertEvent(event[i]);
 
    if(be_shown) {
       cout << c;
@@ -207,26 +209,22 @@ Chronology Chronology::word_search(const string &s, bool be_shown) {
    return c;
 }
 
-//Operador []
-HistoricEvent Chronology::operator[](unsigned int i) {
-   return get_events()[i];
-}
 
 // Operador <<
 ostream& operator<<(ostream &os, const Chronology &c) {
-  int size = event.size();
+  int size = c.event.size();
   int n_befalls;
 
   for(int i = 0; i < size; ++i) {
-     os << event[i].get_date();
-     n_befalls = event[i].befalls_size();
+     os << c.event[i].get_date();
+     n_befalls = c.event[i].befalls_size();
      for(int j = 0; j < n_befalls; ++j) {
-        os << '#' << event[i].get_befalls()[j];
+        os << '#' << c.event[i].get_befalls()[j];
      }
      os << endl;
   }
 
-  return os
+  return os;
 }
 
 //Operador >>
@@ -237,14 +235,15 @@ istream& operator>>(istream &is, Chronology &c) {
 
   while(is) {
      is >> d;
-     aux = is.getline();
+     is.getline(aux, 10000000); //NOTE
      size = aux.size();
      j = 0;
+     const string DELIM = "#";
 
      for(int i = 0; i < size; ++i) {
-           v[j].push_back(aux[i])
-           if(v[j] == '#') {
-              v[j].pop_back();
+           v[j].push_back(aux[i]);
+           if(v[j] == DELIM) {
+              v.pop_back();
               ++j;
            }
      }

@@ -140,7 +140,6 @@ Chronology();
   * @return Void
   */
   void show_range(int inf, int sup);
-};
 
 /**
   * @brief Busca los eventos en que se encuentra la palabra dada.
@@ -156,7 +155,7 @@ Chronology();
   * @param i Posición a devolver
   * return HistoricEvent en la posición i-ésima de event
   */
-  HistoricEvent operator[](unsigned int i);
+  HistoricEvent& operator[](unsigned int i) {return get_events()[i];};
 
 /**
   * @brief Sobrecarga del operador <<
@@ -165,7 +164,7 @@ Chronology();
   * @return muestra una cronología con el formato:
   *         Year: date eventos
   */
-  ostream& operator<<(ostream &os, const Chronology &c);
+  friend ostream& operator<<(ostream &os, const Chronology &c);
 
 /**
   * @brief Sobrecarga del operador >>
@@ -173,6 +172,7 @@ Chronology();
   * @param c cronología a escribir
   * @return flujo de entrada
   */
-  istream& operator>>(istream &is, Chronology &c);
+  friend istream& operator>>(istream &is, Chronology &c);
+};
 
 #endif
