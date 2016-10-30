@@ -27,19 +27,21 @@
 
 class Chronology {
 
- private: // TODO
+ private: // REVIEW
 /**
   * @page repConjunto Rep del TDA Chronology
   *
   * @section invConjunto Invariante de la representación
   *
-  * El invariante es \e
+  * El invariante es \e rep.event[i] no válido (consultar historic_event.h)
   *
   * @section faConjunto Función de abstracción
   *
   * Un objeto válido @e rep del TDA Chronology representa
   *
-  *
+  *  event[0]
+  *  event[1]
+  *  ...
   *
 */
 	vector<HistoricEvent> event; /**< vector con los eventos historicos */
@@ -129,13 +131,13 @@ class Chronology {
 };
 
 /**
-  * @brief Busca los años en que exista un evento con la palabra dada.
-  *        Además, puede sacar por el flujo os el año y evento que la contienen    .
+  * @brief Busca los eventos en que se encuentra la palabra dada.
+  *        Además, puede mostrar dichos eventos   .
   * @param s palabra/s a buscar
-  * @param be_show decide si quiere ser sacado por flujo
-  * @return Vector con los años que tienen un evento con esa palabra.
+  * @param be_shown si es true se mostrarán los eventos
+  * @return Chronology con los eventos que contienen a s
   */
-  vector<int> word_search(string s, bool be_show = false);
+  Chronology word_search(const string &s, bool be_shown);
 
 /**
   * @brief Sobrecarga del operador <<

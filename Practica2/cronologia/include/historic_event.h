@@ -4,7 +4,7 @@
   * @author Sofía Almeida Bruno (@SofiaAlmeida)
   * @author Jesús Sánchez de Lechina Tejada (@jojelupipa)
   * @author Pedro Bonilla Nadal (@pedrobn23)
-  * @bug 
+  * @bug
   */
 
 #ifndef __HISTORICEVENT
@@ -31,19 +31,19 @@ using namespace std;
 
 class HistoricEvent {
 
- private: // TODO
+ private: // REVIEW
 /**
   * @page repConjunto Rep del TDA HistoricEvent
   *
   * @section invConjunto Invariante de la representación
   *
-  * El invariante es \e
+  * El invariante es \e rep.date != 0
   *
   * @section faConjunto Función de abstracción
   *
   * Un objeto válido @e rep del TDA HistoricEvent representa
   *
-  *
+  * rep.date#rep.befalls[0]#rep.befalls[1]...
   *
 */
   int date; /**< fecha */
