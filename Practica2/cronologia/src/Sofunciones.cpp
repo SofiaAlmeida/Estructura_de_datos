@@ -216,6 +216,35 @@ vector<int> Chornology::word_search(string s, bool be_shown) {
 	return v;
 }
 
+//CHANGED modificación operator <<
+ostream& operator<<(ostream &os, const Chronology &c) {
+  int size = event.size();
+  int n_befalls;
+
+  for(int i = 0; i < size; ++i) {
+     os << event[i].get_date();
+     n_befalls = event[i].befalls_size();
+     for(int j = 0; j < n_befalls; ++j) {
+        os << '#' << event[i].get_befalls()[j];
+     }
+     os << endl;
+  }
+
+  return os
+}
+
+ostream& operator<<(ostream &os, const Chronology &c) {
+  int size = c.event.size();
+  int n_befalls;
+  vector<string> aux;
+
+  for(int i = 0; i < size; ++i){
+    aux = event[i].get_befalls();
+    n_befalls = event[i].befalls_size();
+
+    for(int j = 0; j < n_befalls; ++j)
+      aux.show(j);
+}
 /////////////////////////////////////////////////////////////////////7
 /**
   * @brief Constructor de copia de la clase
@@ -239,4 +268,15 @@ vector<int> Chornology::word_search(string s, bool be_shown) {
        }
 
        return *this;
+    }
+
+    /**
+      * @brief Sobrecarga del operador +
+      * @param c Cronología a asignat
+      * @return cronología con la
+    Chronology& operator=(const Chronology &c);
+
+    //Operador =
+    Chronology& Chronology::operator=(const Chronology &c) {
+       event = c.get_events();
     }

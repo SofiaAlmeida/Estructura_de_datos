@@ -49,11 +49,23 @@ class Chronology {
 
  public:
 /**
+* @brief Constructor por defecto de la clase.
+*/
+Chronology();
+
+/**
   * @brief Crea una cronología a partir de otra
   * @param chrono
   * @return Cronología con las propiedades de la anterior
   */
   Chronology(const Chronology& chrono);
+
+/**
+  * @brief Constructor
+  * @param h Vector de eventos
+  * @return cronología con vector de eventos h
+  */
+  Chronology(vector<HistoricEvent> h);
 
 /**
   * @brief Eventos
@@ -138,6 +150,13 @@ class Chronology {
   * @return Chronology con los eventos que contienen a s
   */
   Chronology word_search(const string &s, bool be_shown);
+
+/**
+  * @brief Sobrecarga del operator []
+  * @param i Posición a devolver
+  * return HistoricEvent en la posición i-ésima de event
+  */
+  HistoricEvent operator[](unsigned int i);
 
 /**
   * @brief Sobrecarga del operador <<

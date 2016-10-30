@@ -123,7 +123,7 @@ class HistoricEvent {
   * @param show si es true muestra el string encontrado
   * @retval true si encuentra el string
   */
-  bool search(const string &s, bool be_shown);
+  bool search(const string &s, bool be_shown = false);
 
 /**
   * @brief Sobrecarga del operador == |n

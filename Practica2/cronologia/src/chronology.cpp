@@ -1,14 +1,17 @@
 #include "chronology.h"
 
+//Constructor por defecto
+Chronology::Chronology() {
 
+}
 
 //Constructor copia
-Chronology::Chronology(chrono) {
+Chronology::Chronology(const Chronology &chrono) {
   events = chrono.get_events();
 }
 
 //Constructor
-Chronology Chronology::Chronology(vector<HistoricEvent> h) : event(h) {}
+Chronology::Chronology(vector<HistoricEvent> h) : event(h) {}
 
 // Obtener vector de befalls
 vector<string> Chronology::get_befalls(int date){
@@ -31,11 +34,11 @@ bool Chronology::InsertBefall(int date, const string &s) {
   bool insert = false;
   int var_date;
 
-  for(int i = 0; insert == false; ++i){
+  for(int i = 0; insert == false; ++i) {
     var_date = event[i].get_date();
 
-    if (var_date > date){
-      HistoricEvent e(date,string);
+    if (var_date > date) {
+      const HistoricEvent e(date, s); //NOTE ???
       event.insert(i,e);
       insert = true;
     }
@@ -43,6 +46,7 @@ bool Chronology::InsertBefall(int date, const string &s) {
 			if (!(event[i].search(s))) {
 				event[i].add_befall(s);
             insert = true;
+         }
     }
   }
 
@@ -53,7 +57,7 @@ bool Chronology::InsertBefall(int date, const string &s) {
 bool Chronology::InsertEvent(const HistoricEvent &h) {
   int date = h.get_date();
   vector<string> v = h.get_befalls();
-  size = v.size();
+  int size = v.size();
   bool insert = false;
 
   for(int i = 0; i < size; ++i)
@@ -64,12 +68,12 @@ bool Chronology::InsertEvent(const HistoricEvent &h) {
 
 //Borrar evento
 void Chronology::rm_event(int date) {
-  size = event.size();
+  int size = event.size();
   bool rm = false;
 
   for(int i = 0; i < size && !rm; ++i)
     if(date == event[i].get_date()) {
-      event.erase(i);
+      event.erase(event.begin()+i);
       rm = true;
     }
 }
@@ -84,7 +88,7 @@ Chronology& Chronology::sort() {    //mergesort
       for(int i = 0; i < middle; ++i)
          cl.InsertEvent(event[i]);
 
-      int size = event.size()
+      int size = event.size();
       for(int i = middle; i <= size; ++i)
          cr.InsertEvent(event[i]);
 
@@ -92,11 +96,12 @@ Chronology& Chronology::sort() {    //mergesort
       cr = cr.sort();
 
       if(cl[cl.event.back()] < cr[cr.event.begin()])
-         res = cl.event.insert(cl.event.end(),cr.event.begin(),cr.event.end());
+         cl.event.insert(cl.event.end(),cr.event.begin(),cr.event.end());
          //inserta en la posición final de cl desde el principio hasta el final de cr
+         res = cl;
       else
          res = cl.merge(cr);
-      return res;
+      return &res;
    }
 }
 
@@ -105,12 +110,12 @@ Chronology& Chronology::merge(Chronology &c) {
    Chronology res;
    while(event.size() > 0 && c.event.size() > 0)
       if(event.begin() < c.event.begin()) {
-         res.InsertBefall(event.begin());
-         rm_event(event.begin().get_date());
+         res.InsertEvent(event.begin());
+         rm_event((event.begin()).get_date());
       }
       else {
-         res.InsertBefall(c.event.begin());
-         c.rm_event(c.event.begin().get_date());
+         res.InsertEvent(c.event.begin());
+         c.rm_event((c.event.begin()).get_date());
       }
 
    if(event.size() > 0)
@@ -147,7 +152,7 @@ vector<HistoricEvent> Chronology::prev_events(int d) {
 
    int i = 0;
    while(event[i].get_date() < d)  {
-      result.add(event[i]);
+      result.push_back(event[i]);
       ++i;
    }
 
@@ -161,7 +166,7 @@ vector<HistoricEvent> Chronology::post_events(int d) {
 
    int i = event.size();
    while(event[i].get_date() > d) {
-      result.add(event[i]);
+      result.push_back(event[i]);
       i--;
    }
 
@@ -202,18 +207,26 @@ Chronology Chronology::word_search(const string &s, bool be_shown) {
    return c;
 }
 
+//Operador []
+HistoricEvent Chronology::operator[](unsigned int i) {
+   return get_events()[i];
+}
+
 // Operador <<
 ostream& operator<<(ostream &os, const Chronology &c) {
-  int size = c.event.size();
+  int size = event.size();
   int n_befalls;
-  vector<string> aux;
 
-  for(int i = 0; i < size; ++i){
-    aux = event[i].get_befalls();
-    n_befalls = event[i].befalls_size();
+  for(int i = 0; i < size; ++i) {
+     os << event[i].get_date();
+     n_befalls = event[i].befalls_size();
+     for(int j = 0; j < n_befalls; ++j) {
+        os << '#' << event[i].get_befalls()[j];
+     }
+     os << endl;
+  }
 
-    for(int j = 0; j < n_befalls; ++j)
-      aux.show(j);
+  return os
 }
 
 //Operador >>
