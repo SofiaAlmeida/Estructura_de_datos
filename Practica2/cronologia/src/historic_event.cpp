@@ -39,7 +39,7 @@ bool HistoricEvent::search(const string &s, bool be_shown){
 	bool find = false;
 	int size = befalls_size();
 
-	for(int i = 0; size < i; ++i)
+	for(int i = 0; i < size; ++i)
 		if (befalls[i].find(s) < befalls[i].size()) {
 			find = true;
 
