@@ -24,9 +24,8 @@ using namespace std;
   * en forma de número natural, y cada uno de los acontecimientos podrán
   * contener más de una palabra.
   *
-  	TODO (si sobra tiempo)
   * Un ejemplo de su uso:
-  * @include
+  * @include test_historic.cpp
   */
 
 class HistoricEvent {
