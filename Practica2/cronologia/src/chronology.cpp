@@ -1,6 +1,7 @@
 #include "chronology.h"
 
 
+
 //Constructor copia
 Chronology Chronology::Chronology(chrono) {
   events = chrono.get_events();
@@ -193,54 +194,31 @@ void Chronology::show_range(int inf, int sup) {
 }
 
 //TODO: la acabo esta noche, me fui a cenar
-vector<int> Chornology::word_search (string s, bool be_show, ostream& os) {
+vector<int> Chornology::word_search (string s, bool be_show) {
+	vector<int> v;
+	vector<int> aux;
+	size = events.size;
+	for (int i = 0; i < size; ++i) {
+		if(event[i].search(s, 0)) {
+			v.push_back (event[i].date);
+			aux.push_back (i);
+		}
+	}
 
+//FIXME:No me gusta esta implementación pero no fuí capaz de hacerla mejor, la ire pensando
+	if (be_show){
+		int s = aux.size()
+
+		if (s != 0) {
+			for (int i = 0; i < s; ++i) {
+				cout << "#" << event[aux[i]].date;
+				event[aux[i]].search(s, 1))
+			}
+		}
+		else {
+			cout << "No se encontraron coincidencias";
+		}
+	}
+	
+	return v;
 }
-
-
-
-
-// Operador <<
-ostream& operator<<(ostream &os, const Chronology &c){
-    int size = c.event.size();
-    int n_befalls;
-    vector<string> aux;
-
-    for(int i = 0; i < size; ++i){
-      aux = event[i].get_befalls();
-      n_befalls = event[i].befalls_size();
-
-      for(int j = 0; j < n_befalls; ++j)
-        aux.show(j);
-    }
-
-    return os;
-}
-
-
-//Operador >>
-istream& operator>>(istream &is, Chronology &c) {
-   int d, size, j;
-   string aux;
-   vector<string> v;
-
-   while(is) {
-      is >> d;
-      aux = is.getline();
-      size = aux.size();
-      j = 0;
-
-      for(int i = 0; i < size; ++i) {
-            v[j].push_back(aux[i])
-            if(v[j] == '#') {
-               v[j].pop_back();
-               ++j;
-            }
-      }
-      º
-      HistoricEvent h(date,v);
-      c.InsertEvent(h);
-   }
-
-   return is;
- }

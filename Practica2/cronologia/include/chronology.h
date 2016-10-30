@@ -44,6 +44,7 @@ class Chronology {
 */
 	vector<HistoricEvent> event; /**< vector con los eventos historicos */
 
+
  public:
  /** @brief Crea una cronología a partir de otra
    * @param chrono
@@ -141,8 +142,8 @@ class Chronology {
 	@param be_show decide si quiere ser sacado por flujo
 
 	*/
-	//FIXME: como se hacian los parametros por defecto
-	vector<int> word_search (string s, bool be_show, ostream& os);
+	//FIXME: como se hacian los parametros por defecto??
+	vector<int> word_search (string s, bool be_show);
 
 /**
   * @brief Sobrecarga del operador >>
