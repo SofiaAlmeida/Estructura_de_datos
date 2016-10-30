@@ -40,9 +40,10 @@ bool HistoricEvent::search(const string &s, bool be_shown){
 
 	for(int i = 0; size < i; ++i)
 		if (befalls[i].find(s) < befalls[i].size()) {
+			find = true;
+
 			if(be_shown)
 				show(i);
-			find = true;
 		}
 
 	return find;
