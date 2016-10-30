@@ -54,7 +54,7 @@ bool HistoricEvent::search(const string &s, bool be_shown){
 bool HistoricEvent::operator==(const HistoricEvent &h) {
    bool eq = ((date == h.date) && (befalls_size() == h.befalls_size())) ? true : false;
 
-   for(int i = 0; i < befalls.size() && eq; ++i)
+   for(unsigned int i = 0; i < befalls.size() && eq; ++i)
       if(befalls[i].compare(h.befalls[i]) != 0)   //compare devuelve 0 si son iguales
          eq = false;
 

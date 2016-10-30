@@ -17,18 +17,18 @@ int main(int argc, char * argv[]){
     return 0;
    }
 
-   Cronologia mi_cronologia;
+   Chronology mi_cronologia;
    f>>mi_cronologia; //Cargamos en memoria, en el traductor.
 
    int anio;
    cout<<"Dime un año a consultar:";
    cin >> anio;
 
-   vector<string> eventos = mi_cronologia.GetEventos(anio);
+   vector<string> eventos = mi_cronologia.get_befalls(anio);
 
    /* Escribimos */
    cout << anio << ":";
-   for (int i=0;i<eventos.size(); ++i)
+   for (unsigned int i=0;i<eventos.size(); ++i)
      cout<<eventos[i]<<';';
    cout<<endl;
 
