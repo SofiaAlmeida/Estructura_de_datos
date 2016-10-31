@@ -13,7 +13,7 @@ Chronology::Chronology(const Chronology &chrono) {
 //Constructor
 Chronology::Chronology(vector<HistoricEvent> h) : event(h) {}
 
-// Obtener vector de befalls
+//Obtener vector de befalls
 vector<string> Chronology::get_befalls(int date){
   int size = event.size();
   bool found = false;
@@ -33,22 +33,31 @@ vector<string> Chronology::get_befalls(int date){
 bool Chronology::InsertBefall(int date, const string &s) {
   bool insert = false;
   int var_date;
+	int size = event.size();
 
-  for(int i = 0; insert == false; ++i) {
-    var_date = event[i].get_date();
+	if (size > 0) {
+	  for(int i = 0; i < size && !insert; ++i) {
+	    var_date = event[i].get_date();
 
-    if (var_date > date) {
-      HistoricEvent e(date, s);
-      event.push_back(e);
-      insert = true;
-    }
-    else if (var_date == date){
-			if (!(event[i].search(s,false))) {
-				event[i].add_befall(s);
-            insert = true;
-         }
-    }
-  }
+			if (var_date > date) {
+	      HistoricEvent e(date, s);
+				event.push_back(e);
+			  insert = true;
+			}
+	    else if (var_date == date){
+				if (!(event[i].search(s,false))) {
+					event[i].add_befall(s);
+					insert = true;
+	    	}
+	    }
+	  }
+	}
+
+	else {
+		HistoricEvent e(date, s);
+		event.push_back(e);
+		insert = true;
+	}
 
   return insert;
 }
@@ -60,10 +69,10 @@ bool Chronology::InsertEvent(const HistoricEvent &h) {
   int size = v.size();
   bool insert = false;
 
-  for(int i = 0; i < size; ++i)
+	for(int i = 0; i < size; ++i)
     insert = InsertBefall(date,v[i]);
 
-  return insert;
+	return insert;
 }
 
 //Borrar evento
@@ -219,7 +228,7 @@ ostream& operator<<(ostream &os, const Chronology &c) {
      os << c.event[i].get_date();
      n_befalls = c.event[i].befalls_size();
      for(int j = 0; j < n_befalls; ++j) {
-        os << '#' << c.event[i].get_befalls()[j];
+        os << '#' << c.event[i].get_befalls()[j] << "catalina" << endl;
      }
      os << endl;
   }
@@ -232,21 +241,28 @@ istream& operator>>(istream &is, Chronology &c) {
   int d, size, j;
 	char* s = new char[1024];
   vector<string> v;
-	const string DELIM = "#";
+	const char DELIM = '#';
+	char ch;
+	string st;
 
   while(is) {
      is >> d;
-     is.getline(s, 1024); //NOTE
+
+     is.getline(s, 1024);
 		 string aux (s);
      size = aux.size();
      j = 0;
+		 v.push_back(st);
 
      for(int i = 0; i < size; ++i) {
-           v[j].push_back(aux[i]);
-           if(v[j] == DELIM) {
-              v.pop_back();
-              ++j;
-           }
+			 ch = aux[i];
+		   v[j].push_back(ch);
+
+			 if(v[j][v[j].size()-1] == DELIM) {
+				 v[j].pop_back();
+				 ++j;
+				 v.push_back(st);
+       }
      }
 
      HistoricEvent h(d, v);

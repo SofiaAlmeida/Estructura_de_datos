@@ -6,7 +6,7 @@ LIB = lib
 
 CXX = g++
 AR = ar
-CCFLAGS = -Wall -pedantic -g
+CCFLAGS = -Wall -pedantic -g -std=c++11
 LDFLAGS = -L./$(LIB)
 LDLIBS = -levent
 IFLAGS = -I

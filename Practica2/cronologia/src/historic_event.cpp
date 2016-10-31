@@ -13,7 +13,8 @@ HistoricEvent::HistoricEvent(int d, const string& s) {
 }
 
 //Constructor
-HistoricEvent::HistoricEvent(int d, vector<string> v) : befalls(v) {
+HistoricEvent::HistoricEvent(int d, vector<string> v) {
+	befalls = v;
 	set_date(d);
 }
 
