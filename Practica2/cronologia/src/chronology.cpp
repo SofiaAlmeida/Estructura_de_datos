@@ -228,7 +228,7 @@ ostream& operator<<(ostream &os, const Chronology &c) {
      os << c.event[i].get_date();
      n_befalls = c.event[i].befalls_size();
      for(int j = 0; j < n_befalls; ++j) {
-        os << '#' << c.event[i].get_befalls()[j] << "catalina" << endl;
+        os << '#' << c.event[i].get_befalls()[j] << endl;
      }
      os << endl;
   }
