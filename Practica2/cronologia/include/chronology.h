@@ -4,7 +4,7 @@
   * @author Sofía Almeida Bruno (@SofiaAlmeida)
   * @author Jesús Sánchez de Lechina Tejada (@jojelupipa)
   * @author Pedro Bonilla Nadal (@pedrobn23)
-  * @bug
+  * @bug operator >>
   */
 
 #ifndef __CHRONOLOGY

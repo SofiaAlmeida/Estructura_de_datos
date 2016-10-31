@@ -21,15 +21,16 @@ int main(int argc, char * argv[]){
    f>>mi_cronologia; //Cargamos en memoria, en el traductor.
 
    int anio;
-   cout<<"Dime un año a consultar:";
+	 cout << mi_cronologia;
+   /*cout<<"Dime un año a consultar:";
    cin >> anio;
 
    vector<string> eventos = mi_cronologia.get_befalls(anio);
 
-   /* Escribimos */
+    Escribimos
    cout << anio << ":";
    for (unsigned int i=0;i<eventos.size(); ++i)
      cout<<eventos[i]<<';';
-   cout<<endl;
+   cout<<endl;*/
 
 }

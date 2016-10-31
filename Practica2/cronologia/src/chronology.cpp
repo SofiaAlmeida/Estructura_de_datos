@@ -237,6 +237,7 @@ ostream& operator<<(ostream &os, const Chronology &c) {
 }
 
 //Operador >>
+//BUG: solo se lee el primer año.
 istream& operator>>(istream &is, Chronology &c) {
   int d, size, j;
 	char* s = new char[1024];
@@ -248,7 +249,7 @@ istream& operator>>(istream &is, Chronology &c) {
   while(is) {
      is >> d;
 
-     is.getline(s, 1024);
+		 is.getline(s, 1024);
 		 string aux (s);
      size = aux.size();
      j = 0;
