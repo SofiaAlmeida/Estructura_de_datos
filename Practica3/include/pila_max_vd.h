@@ -14,12 +14,13 @@ class Pila_max{
     int *v_elem;          // "TODO" Pila_max sólo guarda enteros? O debemos de ampliar esta estructura a cualquier otro tipo de dato?
     int *v_max;           // En caso afirmativo, qué criterio usamos en esos tipos para decidir quién es el máximo del conjunto?
     int n_elem;
+    int n_disp;
 
   public:
 
     // Constructores
 
-    Pila_max():n_elem(0){}
+    Pila_max():n_elem(0), n_disp(0){}
 
     Pila_max(const T &original);
 
@@ -32,5 +33,9 @@ class Pila_max{
 
     Push(const T &elem);
 
+
+    // Pop
+
+    Pop();
   };
   #endif
