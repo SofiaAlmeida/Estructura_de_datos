@@ -32,7 +32,7 @@
    * la segunda se basa en una lista, mientras que la última se basa en una cola
    */
 
-   #define CUAL_COMPILA 3
+   #define CUAL_COMPILA 2
    #if CUAL_COMPILA==1
    #include <pila_max_vd.h>
    #elif CUAL_COMPILA==2
