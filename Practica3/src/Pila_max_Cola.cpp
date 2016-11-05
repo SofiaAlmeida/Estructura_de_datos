@@ -1,15 +1,17 @@
-//Añadir elemento
-void Pila_max::push(const elemento &e) {
-   elemento e_aux = e;
+//Añadir elemento FIXME template
+void Pila_max::push(const int &dato) {
+   elemento e;
+   e.ele = dato;
+
    //Arreglamos el máximo
-   if (pila.frente().max < e_aux.ele)
-      e_aux.max = e_aux.ele;
+   if (pila.frente().max < dato)
+      e.max = dato;
    else
-      e_aux.max = pila.frente().max;
+      e.max = pila.frente().max;
 
    //Añadimos el elemento al principio
    Cola<elemento> aux;
-   aux.poner(e_aux);
+   aux.poner(e);
    while(!pila.vacia()) {
       aux.poner(pila.frente());
       aux.quitar();

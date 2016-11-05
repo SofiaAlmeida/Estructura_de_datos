@@ -54,8 +54,8 @@ public:
    * @brief Agregar un elemento al comienzo de la pila
    * @param e elemento a insertar
    * @post pila con el elemento máximo en elemento.max
-   */
-   void push(const elemento &e);
+   *///FIXME template
+   void push(const int &dato);
 
 /***
    * @brief Eliminar el último elemento añadido
@@ -77,6 +77,14 @@ public:
    */
    elemento top() const {
       return pila.frente();
+   }
+
+/***
+   * @brief Devuelve si la pila tiene elementos o no
+   * @retval 1 si está vacía
+   */
+   bool empty() {
+      return pila.vacia();
    }
 
 /***

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "pila_max.h"
+#include "Pila_max.h"
 
 using namespace std;
 
@@ -9,12 +9,12 @@ int main(){
   int i;
 
   for ( i=10; i>=0 ; i--)
-    p.poner(i);
+    p.push(i);
 
-  while (!p.vacia() ){
-    elemento x = p.tope();
+  while (!p.empty() ){
+    elemento x = p.top();
     cout << x << endl;
-    p.quitar();
+    p.pop();
   }
 
   return 0;
