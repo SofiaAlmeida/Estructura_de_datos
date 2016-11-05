@@ -15,6 +15,19 @@ class Pila_max{
     int n_elem;
     int n_disp;
 
+
+    // Máximo
+
+    /**
+    * @brief Halla el máximo de dos elementos
+    * @param max_act Es el máximo actual
+    * @param elem_nuevo Es el elemento nuevo a comparar
+    * @return Devuelve el máximo de los dos
+    */
+
+    max(const Elemento &max_act, const Elemento &elem_nuevo);
+
+
   public:
 
     // Constructores
@@ -37,26 +50,29 @@ class Pila_max{
   /**
     * @brief Destructor de Pila_max
     */
+
     ~Pila_max();
 
-    // Máximo
-
-  /**
-    * @brief Halla el máximo de dos elementos
-    * @param max_act es el máximo actual
-    * @param 
-    */
-
-    max()
 
     // Push-agregar
+
+  /**
+    * @brief Añade un elemento al final de la pila
+    * @param elem Elemento a añadir
+    */
 
     push(const elemento &elem);
 
 
     // Pop
 
+  /**
+    * @brief Elimina el último elemento de la pila
+    */
+
     pop();
+
+    
   };
 
   #include "Pila_max_VD.cpp"

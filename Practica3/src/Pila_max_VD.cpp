@@ -7,6 +7,24 @@
 
   /*_________________________________________________________________________*/
 
+
+  /*__________________PARTE_PRIVADA__________________________________________*/
+
+  // Maximo
+
+  Elemento  Pila_max::max(const Elemento &max_act, const Elemento &elem_nuevo){
+
+    if (max_act < elem_nuevo)
+    return elem_nuevo;
+
+    else
+    return max_act;
+
+  }
+
+
+  /*__________________PARTE_PÚBLICA_________________________________________*/
+
 // Constructores
 
   Pila_max::Pila_max(const Pila_max &p){
@@ -24,7 +42,7 @@
 
 // Destructor
 
-  Pila_max<T>::~Pila_max(){
+  Pila_max::~Pila_max(){
 
     delete v_elem[];
     n_elem = 0;
@@ -32,41 +50,38 @@
   }
 
 
-  // Maximo
 
-    Elemento  Pila_max::max(const Elemento &max_act, const Elemento &elem_nuevo){    // TODO Se usa T para referirse a que se devuelve un objeto de la clase T?
+// Push
 
-      if (max_act < elem_nuevo)                                 // TODO Poner esta función en el .h
-        return elem_nuevo;
+  Pila_max::Push(const Elemento &elem){
 
-      else
-        return max_act;
+    Elemento nuevo;
+    nuevo.ele = elem.ele;
 
+    if (n_elem > 0)
+      nuevo.max = max(elemento[n_elem - 1].max, nuevo.ele);      // Comparamos el máximo del último elemento insertado con el valor del actual
+
+    else
+      nuevo.max = elem.ele;
+
+    if(n_elem < n_disp){
+
+      v_elem[n_elem] = elem;
+      n_elem++;
     }
 
-  // Push
+    else{
+      resize(n_disp*2);        // TODO función resize, hacerla en el cpp y en el .h
 
-    Pila_max<T>::Push(const Elemento &elem){
-
-      if(n_elem < n_disp){
-
-        v_elem[n_elem] = elem;
-        v_max[n_elem] = max(tope(),elem);         // TODO tope aún no está implementada
-        n_elem++;
-      }
-
-      else{
-        resize(n_disp*2);        // TODO función resize, hacerla en el cpp y en el .h
-
-      }
     }
+  }
 
 
-    // Pop
+  // Pop
 
-    template <class T>
-    Pila_max<T>::Pop(){
+  template <class T>
+  Pila_max<T>::Pop(){
 
-      if (n_elem > 0)
-      num_elem--;
-    }
+    if (n_elem > 0)
+    num_elem--;
+  }
