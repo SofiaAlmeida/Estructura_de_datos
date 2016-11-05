@@ -9,29 +9,24 @@
 
 // Constructores
 
-template <class T>
-  Pila_max<T>::Pila_max<T>(const Pila_max<T> &p){
+  Pila_max::Pila_max(const Pila_max &p){
 
     n_elem = p.n_elem;
     n_disp = p.n_disp;
-    v_elem = new T [n_disp];
-    v_max = new T [n_disp];
+    v_elem = new elemento [n_disp];
 
     for (int i = 0; i < n_elem; ++i){
 
       v_elem[i] = p.v_elem[i];
-      v_max[i] = p.v_max[i];
     }
   }
 
 
 // Destructor
 
-  template <class T>
   Pila_max<T>::~Pila_max(){
 
     delete v_elem[];
-    delete v_max[];
     n_elem = 0;
     n_disp = 0;
   }
@@ -39,8 +34,7 @@ template <class T>
 
   // Maximo
 
-    template <class T>
-    T  Pila_max<T>::Max(const T &max_act, const T &elem_nuevo){    // TODO Se usa T para referirse a que se devuelve un objeto de la clase T?
+    Elemento  Pila_max::max(const Elemento &max_act, const Elemento &elem_nuevo){    // TODO Se usa T para referirse a que se devuelve un objeto de la clase T?
 
       if (max_act < elem_nuevo)                                 // TODO Poner esta función en el .h
         return elem_nuevo;
@@ -52,13 +46,12 @@ template <class T>
 
   // Push
 
-    template <class T>
-    Pila_max<T>::Push(const T elem){
+    Pila_max<T>::Push(const Elemento &elem){
 
       if(n_elem < n_disp){
 
         v_elem[n_elem] = elem;
-        v_max[n_elem] = max(tope,elem);
+        v_max[n_elem] = max(tope(),elem);         // TODO tope aún no está implementada
         n_elem++;
       }
 
