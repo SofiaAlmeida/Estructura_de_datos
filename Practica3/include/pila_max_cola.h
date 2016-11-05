@@ -12,8 +12,10 @@
 #define __PILA_MAX_COLA_H__
 
 #include <cassert>
+#include <algorithm>    // std::swap
 #include "cola.h"
 
+using namespace std;
 /***
    *  @brief T.D.A. Pila_max_Cola
    *
@@ -23,31 +25,39 @@
    *
    */
 
-template <class T>
+//template <class T>
 class Pila_max {
 private:
    Cola<elemento> pila;
+
 public:
 /***
    * @brief Constructor por defecto
    * @post pila vacía
    */
-   Pila_max() {
-      pila;
+   Pila_max();
+
+/***
+   * @brief Constructor de copia
+   * @param p Pila a copiar en el objeto implícito
+   */
+   Pila_max(const Pila_max &p) {
+      pila = p.pila;
    }
 
 /***
-   * @brief Constructor
-   * @param cola a guardar en la pila
-   * @post pila que contiene los datos de l
+   * @brief Destructor
    */
-   Pila<T>(const Cola<T> &c);
+  ~Pila_max();
 
-/*
-Destructor
+/***
+   * @brief Agregar un elemento al comienzo de la pila
+   * @param e elemento a insertar
+   * @post pila con el elemento máximo en elemento.max
+   */
+   void push(const elemento &e);
+  /*
 
-Peek
-push
 pop
 top
 
@@ -59,6 +69,6 @@ Operador
 };
 */
 };
-#include "Pila_max_Cola.cpp"
+#include "../src/Pila_max_Cola.cpp" //FIXME
 
 #endif

@@ -1,18 +1,10 @@
-template <class T>
-Pila::Pila<T>(const Cola<T> &c) {
-   Cola aux(c);
-   while (!aux.vacia()) {
-      if(num_elementos() == 0)
-         poner(aux.frente())
-      else {
-         if (frente() <= aux.frente()) {
-            poner(aux.frente());
-            aux.quitar();
-         }
-         else {
-            
-         }
-      }
-   }
 
+void Pila_max::push(const elemento &e) {
+   elemento e_aux = e;
+   if (pila.frente().max < e_aux.elemento)
+      e_aux.max = e_aux.ele;
+   else
+      e_aux.max = pila.frente().max;
+
+   
 }
