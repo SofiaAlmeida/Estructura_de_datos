@@ -10,7 +10,7 @@
 // Constructores
 
 template <class T>
-  Pila_max::Pila_max<T>(const Pila_max<T> &p){
+  Pila_max<T>::Pila_max<T>(const Pila_max<T> &p){
 
     n_elem = p.n_elem;
     n_disp = p.n_disp;
@@ -28,7 +28,7 @@ template <class T>
 // Destructor
 
   template <class T>
-  Pila_max::~Pila_max(){
+  Pila_max<T>::~Pila_max(){
 
     delete v_elem[];
     delete v_max[];
@@ -40,7 +40,7 @@ template <class T>
   // Maximo
 
     template <class T>
-    T  Pila_max::Max(const T &max_act, const T &elem_nuevo){    // TODO Se usa T para referirse a que se devuelve un objeto de la clase T?
+    T  Pila_max<T>::Max(const T &max_act, const T &elem_nuevo){    // TODO Se usa T para referirse a que se devuelve un objeto de la clase T?
 
       if (max_act < elem_nuevo)                                 // TODO Poner esta función en el .h
         return elem_nuevo;
@@ -53,7 +53,7 @@ template <class T>
   // Push
 
     template <class T>
-    Pila_max::Push(const T elem){
+    Pila_max<T>::Push(const T elem){
 
       if(n_elem < n_disp){
 
@@ -72,7 +72,7 @@ template <class T>
     // Pop
 
     template <class T>
-    Pila_max::Pop(){
+    Pila_max<T>::Pop(){
 
       if (n_elem > 0)
       num_elem--;

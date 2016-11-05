@@ -11,8 +11,8 @@ template <class T>
 class Pila_max{
   private:
 
-    int *v_elem;          // "TODO" Pila_max sólo guarda enteros? O debemos de ampliar esta estructura a cualquier otro tipo de dato?
-    int *v_max;           // En caso afirmativo, qué criterio usamos en esos tipos para decidir quién es el máximo del conjunto?
+    T *v_elem;          // "TODO" Pila_max sólo guarda enteros? O debemos de ampliar esta estructura a cualquier otro tipo de dato?
+    T *v_max;           // En caso afirmativo, qué criterio usamos en esos tipos para decidir quién es el máximo del conjunto?
     int n_elem;
     int n_disp;
 
@@ -29,7 +29,7 @@ class Pila_max{
     ~Pila_max();
 
 
-    // Push
+    // Push-agregar
 
     Push(const T &elem);
 
@@ -38,4 +38,6 @@ class Pila_max{
 
     Pop();
   };
+
+  #include "Pila_max_VD.cpp"
   #endif
