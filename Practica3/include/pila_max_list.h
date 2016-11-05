@@ -13,42 +13,38 @@
 
 #include <cassert>
 #include <iostream>
+#include
 
 /***
    *  @brief T.D.A. Pila_max_list
    *
    */
 
-template <class T>
 
-/*Vamos a hacer una lista circular doblemente enlazada, con cabecera apuntando a
-la primera celda y el anterior de la primera celda siendo el último y el siguiente del
-último apuntando a 0.
+/*Puesto que la pila es una estructura que solo se puede leer de atrás a adelante
+no vamos a implementar una lista circular, si no una lista de celdas encalazadas hacia atrás.
 */
 struct Celda {
-	T dato;
-	*Celda sig;
+	elemento dato;
 	*Celda ant;
 };
 
-class PilaMaxList {
+
+class Pila_max {
 private:
 	*Celda cabecera;
 
 Public:
-	PilaMaxList ();
-	PilaMaxList (const PilaMaxList& p);
+	Pila_max ();
+	Pila_max (const Pila_max& p);
 
+
+	elemento top const() {return (cabecera->ant.dato);};
+	bool empty() {return !(cabecera->ant)};
 	void pop();
 	void push();
-	void top const();
 
-	~PilaMaxList ();
+	Pila_max& operator= (const Pila_max& p);
 
-/*
-Operador
-==
-!=
-=
-*/
+	~Pila_max ();
 }

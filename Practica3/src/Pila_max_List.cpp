@@ -1,36 +1,40 @@
 #include "pila_max_list.h"
 
-PilaMaxList::PilaMaxList() : cabecera(0) {
-	;
-}
-
-
-void PilaMaxList::push(T t) {
+Pila_max::Pila_max() : {
 	*Celda aux = new Celda;
-	aux->sig = 0;
-	aux->ant = cabecera->ant;
-	aux->dato = y;
-
-	cabecera->ant->sig = aux;
-	cabecera->ant = aux;
-}
-
-T PilaMaxList::pop () {
-	Celda* ult = *cabecera.ant;
-	Celda* pen = *ult.ant;
-	T ret = ult.dato;
-	delete ult;
-	pen.sig = 0;
-	*cabecera.ant = pen;
-
-	return ret;
+	cabecera = aux;
+	aux->ant = 0;
 }
 
 
-T PilaMaxList::top () const {
-	return cabecera->ant->dato;
+void Pila_max::push(T y) {
+	if (cabecera->ant != 0) {
+		*Celda aux = new Celda;
+		aux->ant = cabecera->ant;
+		cabecera->ant = aux;
+
+		aux->dato.ele = y;
+		x = (aux->ant->dato.max)
+		aux->dato.max = (y>x ? y : x);
+	}
+
+	else {
+		*Celda aux = new Celda;
+		aux->ant = cabecera;
+		cabecera->ant = aux;
+		aux->dato.ele = aux.dato.max = y
+	}
 }
 
-PilaMaxList::~PilaMaxList () {
+void Pila_max::pop () {
+	if (cabecera->ant) {
+		Celda* aux = cabecera->ant
+		cabecera->ant = cabecera->ant->ant;
+		delete aux;
+	}
+}
+
+
+Pila_max::~Pila_max () {
 
 }
