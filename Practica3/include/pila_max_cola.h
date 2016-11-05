@@ -54,20 +54,45 @@ public:
    * @brief Agregar un elemento al comienzo de la pila
    * @param e elemento a insertar
    * @post pila con el elemento máximo en elemento.max
+   *///FIXME template
+   void push(const int &dato);
+
+/***
+   * @brief Eliminar el último elemento añadido
+   * @post Pila sin el tope
    */
-   void push(const elemento &e);
-  /*
+   void pop() {
+      pila.quitar();
+   }
 
-pop
-top
+/***
+   * @brief Devuelve el tope de la pila
+   */
+   elemento top() {
+      return pila.frente();
+   }
 
-Operador
-==
-!=
-=
+/***
+   * @brief Devuelve el tope de la pila constante
+   */
+   elemento top() const {
+      return pila.frente();
+   }
 
-};
-*/
+/***
+   * @brief Devuelve si la pila tiene elementos o no
+   * @retval 1 si está vacía
+   */
+   bool empty() {
+      return pila.vacia();
+   }
+
+/***
+   * @brief Sobrecarga operador de asignación
+   * @param p Pila a asignar
+   * return Objeto implícito
+   */
+   Pila_max& operator=(const Pila_max &p);
 };
 #include "../src/Pila_max_Cola.cpp" //FIXME
 

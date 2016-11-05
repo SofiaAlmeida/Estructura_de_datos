@@ -13,6 +13,9 @@
 #define __PILA_MAX_H__
 
 #include <cassert>
+#include <iostream>
+
+using namespace std;
 
 /***
    *  @brief T.D.A. Pila_max
@@ -37,6 +40,19 @@
      int ele; ///< Elemento a almacenar
      int max; ///< Elemento Máximo
    };
+
+//NOTE esta función igual habría que ponerla en un .cpp aparte
+/***
+   * @brief Sobrecarga del operador << para elemento
+   * @return salida por os de la siguiente forma:
+   * Elemento: elemento.ele  Máximo: elemento.max
+   */
+   ostream& operator<<(ostream &os, const elemento &elem) {
+      os << "Elemento: " << elem.ele
+         << "  Máximo: " << elem.max << endl;
+
+      return os;
+   }
 
    #define CUAL_COMPILA 3
    #if CUAL_COMPILA==1

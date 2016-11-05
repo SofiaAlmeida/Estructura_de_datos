@@ -11,9 +11,31 @@ template <class T>
 class Pila_max{
   private:
 
-    elemento *v_elem;
+    Elemento *v_elem;
     int n_elem;
     int n_disp;
+
+
+    // Máximo
+
+    /**
+      * @brief Halla el máximo de dos elementos
+      * @param max_act Es el máximo actual
+      * @param elem_nuevo Es el elemento nuevo a comparar
+      * @return Devuelve el máximo de los dos
+      */
+
+    Elemento max(const Elemento &max_act, const Elemento &elem_nuevo);
+
+
+    // Resize
+
+    /**
+      * @brief Cambia el tamaño del vector para poder añadir más elementos
+      * @param size
+      */
+
+      void resize(int size);
 
   public:
 
@@ -37,27 +59,32 @@ class Pila_max{
   /**
     * @brief Destructor de Pila_max
     */
+
     ~Pila_max();
 
-    // Máximo
-
-  /**
-    * @brief Halla el máximo de dos elementos
-    * @param max_act es el máximo actual
-    * @param 
-    */
-
-    max()
 
     // Push-agregar
 
-    push(const elemento &elem);
+  /**
+    * @brief Añade un elemento al final de la pila
+    * @param elem Elemento a añadir
+    */
+
+    void push(int dato);
 
 
     // Pop
 
-    pop();
+  /**
+    * @brief Elimina el último elemento de la pila
+    */
+
+    void pop();
+
+    // TODO función empty para comprobar si está vacío
+
+
   };
 
-  #include "Pila_max_VD.cpp"
+//  #include "Pila_max_VD.cpp"
   #endif

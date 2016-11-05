@@ -7,6 +7,39 @@
 
   /*_________________________________________________________________________*/
 
+
+  /*__________________PARTE_PRIVADA__________________________________________*/
+
+  // Máximo
+
+  Elemento  Pila_max::max(const Elemento &max_act, const Elemento &elem_nuevo){
+
+    if (max_act < elem_nuevo)
+    return elem_nuevo;
+
+    else
+    return max_act;
+
+  }
+
+  // Resize
+
+  void Pila_max::resize(int size){
+
+    Elemento *nuevo;
+    nuevo = new elemento[size];
+
+    for(int i = 0; i < n_elem && i < size; ++i)   // En caso de que queramos "reducir" el espacio disponible añadimos que i < size
+      nuevo[i] = v_elem[i];
+
+    delete [] v_elem;
+    v_elem = nuevo;
+
+  }
+
+
+  /*__________________PARTE_PÚBLICA_________________________________________*/
+
 // Constructores
 
   Pila_max::Pila_max(const Pila_max &p){
@@ -24,49 +57,47 @@
 
 // Destructor
 
-  Pila_max<T>::~Pila_max(){
+  Pila_max::~Pila_max(){
 
-    delete v_elem[];
+    delete [] v_elem;
     n_elem = 0;
     n_disp = 0;
   }
 
 
-  // Maximo
 
-    Elemento  Pila_max::max(const Elemento &max_act, const Elemento &elem_nuevo){    // TODO Se usa T para referirse a que se devuelve un objeto de la clase T?
+// Push
 
-      if (max_act < elem_nuevo)                                 // TODO Poner esta función en el .h
-        return elem_nuevo;
+  void Pila_max::Push(int &dato){
 
-      else
-        return max_act;
+    Elemento nuevo;
+    nuevo.ele = dato;
 
+    if (n_elem > 0)
+      nuevo.max = max(elemento[n_elem - 1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
+
+    else
+      nuevo.max = dato;
+
+    if(n_elem < n_disp){
+
+      v_elem[n_elem] = nuevo;
+      n_elem++;
     }
 
-  // Push
+    else{
 
-    Pila_max<T>::Push(const Elemento &elem){
+      resize(n_disp*2);        // TODO función resize, hacerla en el cpp y en el .h
+      v_elem[n_elem] = nuevo;
 
-      if(n_elem < n_disp){
-
-        v_elem[n_elem] = elem;
-        v_max[n_elem] = max(tope(),elem);         // TODO tope aún no está implementada
-        n_elem++;
-      }
-
-      else{
-        resize(n_disp*2);        // TODO función resize, hacerla en el cpp y en el .h
-
-      }
     }
+  }
 
 
-    // Pop
+  // Pop
 
-    template <class T>
-    Pila_max<T>::Pop(){
+  void Pila_max<T>::Pop(){
 
-      if (n_elem > 0)
-      num_elem--;
-    }
+    if (n_elem > 0)
+    num_elem--;
+  }
