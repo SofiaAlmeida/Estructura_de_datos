@@ -12,13 +12,63 @@
 #define __PILA_MAX_COLA_H__
 
 #include <cassert>
+#include <algorithm>    // std::swap
+#include "cola.h"
 
+using namespace std;
 /***
    *  @brief T.D.A. Pila_max_Cola
    *
    * La descripción de este T.D.A coincide con la del T.D.A @pila_max.h
    * Este archivo contiene el módulo realizado a partir de colas
+   *
+   *
    */
 
-template <class T>
-class Pila_max
+//template <class T>
+class Pila_max {
+private:
+   Cola<elemento> pila;
+
+public:
+/***
+   * @brief Constructor por defecto
+   * @post pila vacía
+   */
+   Pila_max();
+
+/***
+   * @brief Constructor de copia
+   * @param p Pila a copiar en el objeto implícito
+   */
+   Pila_max(const Pila_max &p) {
+      pila = p.pila;
+   }
+
+/***
+   * @brief Destructor
+   */
+  ~Pila_max();
+
+/***
+   * @brief Agregar un elemento al comienzo de la pila
+   * @param e elemento a insertar
+   * @post pila con el elemento máximo en elemento.max
+   */
+   void push(const elemento &e);
+  /*
+
+pop
+top
+
+Operador
+==
+!=
+=
+
+};
+*/
+};
+#include "../src/Pila_max_Cola.cpp" //FIXME
+
+#endif
