@@ -15,7 +15,7 @@
 #include <cassert>
 
 /***
-   *  @brief T.D.A. PIla_max
+   *  @brief T.D.A. Pila_max
    *
    *
    * Una instancia @e c del tipo de dato abstracto Pila_max sobre un dominio @e T es
@@ -32,16 +32,17 @@
    * la segunda se basa en una lista, mientras que la última se basa en una cola
    */
 
+//FIXME una vez compilados los otros .cpp pasar a template
    struct elemento{
-     int ele; ///<elemento a almacenar
-     int maximo; ///<el máximo
+     int ele; ///< Elemento a almacenar
+     int max; ///< Elemento Máximo
    };
 
    #define CUAL_COMPILA 3
    #if CUAL_COMPILA==1
-   #include <pila_max_vd.h>
+   #include "pila_max_vd.h"
    #elif CUAL_COMPILA==2
-   #include <pila_max_lista.h>
+   #include "pila_max_lista.h"
    #else
-   #include <pila_max_cola.h>
+   #include "pila_max_cola.h"
    #endif
