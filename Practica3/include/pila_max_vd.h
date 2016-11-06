@@ -6,12 +6,11 @@
   #ifndef __PILA_MAX_VD_H__
   #define __PILA_MAX_VD_H__
 
-template <class T>
 
 class Pila_max{
   private:
 
-    Elemento *v_elem;
+    elemento *v_elem;
     int n_elem;
     int n_disp;
 
@@ -25,7 +24,7 @@ class Pila_max{
       * @return Devuelve el máximo de los dos
       */
 
-    Elemento max(const Elemento &max_act, const Elemento &elem_nuevo);
+    int max(int max_act, int elem_nuevo);
 
 
     // Resize
@@ -67,7 +66,7 @@ class Pila_max{
 
   /**
     * @brief Añade un elemento al final de la pila
-    * @param elem Elemento a añadir
+    * @param elem elemento a añadir
     */
 
     void push(int dato);
@@ -81,10 +80,16 @@ class Pila_max{
 
     void pop();
 
+  /**
+    * @brief Comprueba si la pila está vacía
+    * @retval true si la pila está vacía
+    */
+
+    bool empty();
     // TODO función empty para comprobar si está vacío
 
 
   };
 
-//  #include "Pila_max_VD.cpp"
+//  #include "Pila_max_VD.cpp"          // Para cuando añadamos templates
   #endif
