@@ -35,10 +35,10 @@ using namespace std;
    * la segunda se basa en una lista, mientras que la última se basa en una cola
    */
 
-//FIXME una vez compilados los otros .cpp pasar a template
+   template <class T>
    struct elemento{
-     int ele; ///< Elemento a almacenar
-     int max; ///< Elemento Máximo
+     T ele; ///< Elemento a almacenar
+     T max; ///< Elemento Máximo
    };
 
 //NOTE esta función igual habría que ponerla en un .cpp aparte
@@ -47,12 +47,12 @@ using namespace std;
    * @return salida por os de la siguiente forma:
    * Elemento: elemento.ele  Máximo: elemento.max
    */
-   ostream& operator<<(ostream &os, const elemento &elem) {
+/*   ostream& operator<<(ostream &os, const elemento &elem) {
       os << "Elemento: " << elem.ele
          << "  Máximo: " << elem.max << endl;
 
       return os;
-   }
+   }*/
 
    #define CUAL_COMPILA 3
    #if CUAL_COMPILA==1

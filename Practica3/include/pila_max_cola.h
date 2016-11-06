@@ -25,10 +25,10 @@ using namespace std;
    *
    */
 
-//template <class T>
+template <class T>
 class Pila_max {
 private:
-   Cola<elemento> pila;
+   Cola<elemento<T> > pila;
 
 public:
 /***
@@ -55,7 +55,7 @@ public:
    * @param e elemento a insertar
    * @post pila con el elemento máximo en elemento.max
    *///FIXME template
-   void push(const int &dato);
+   void push(const T &dato);
 
 /***
    * @brief Eliminar el último elemento añadido
@@ -68,14 +68,14 @@ public:
 /***
    * @brief Devuelve el tope de la pila
    */
-   elemento top() {
+   elemento<T> top() {
       return pila.frente();
    }
 
 /***
    * @brief Devuelve el tope de la pila constante
    */
-   elemento top() const {
+   elemento<T> top() const {
       return pila.frente();
    }
 

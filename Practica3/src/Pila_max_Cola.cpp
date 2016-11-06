@@ -1,16 +1,16 @@
-//Añadir elemento FIXME template
-void Pila_max::push(const int &dato) {
-   elemento e;
+template <class T>
+void Pila_max<T>::push(const T &dato) {
+   elemento<T> e;
    e.ele = dato;
 
    //Arreglamos el máximo
-   if (pila.frente().max < dato)
-      e.max = dato;
-   else
+   if (pila.frente().max > dato)
       e.max = pila.frente().max;
+   else
+      e.max = dato;
 
    //Añadimos el elemento al principio
-   Cola<elemento> aux;
+   Cola<elemento<T> > aux;
    aux.poner(e);
    while(!pila.vacia()) {
       aux.poner(pila.frente());
@@ -19,8 +19,9 @@ void Pila_max::push(const int &dato) {
    pila = aux;
 }
 
+template <class T>
 //Sobrecarga operador =
-Pila_max& Pila_max::operator=(const Pila_max &p) {
+Pila_max<T>& Pila_max<T>::operator=(const Pila_max<T> &p) {
    pila = p.pila;
    return *this;
 }
