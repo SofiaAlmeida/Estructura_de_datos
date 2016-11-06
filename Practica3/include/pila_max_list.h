@@ -34,6 +34,9 @@ class Pila_max {
 private:
 	*Celda cabecera;
 
+	int size ();
+
+
 Public:
 	Pila_max ();
 	Pila_max (const Pila_max& p);
