@@ -124,6 +124,6 @@ class Cola{
     }
 };
 
-#include "../src/cola.cpp" //FIXME
+#include "cola.cpp" 
 
 #endif // __Cola_H__

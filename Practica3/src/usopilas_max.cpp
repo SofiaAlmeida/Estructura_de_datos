@@ -5,14 +5,14 @@ using namespace std;
 
 int main(){
 
-  Pila_max p;
+  Pila_max<int> p;
   int i;
 
   for ( i=10; i>=0 ; i--)
     p.push(i);
 
   while (!p.empty() ){
-    elemento x = p.top();
+    elemento<int> x = p.top();
     cout << x << endl;
     p.pop();
   }

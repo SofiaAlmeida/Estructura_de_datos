@@ -3,7 +3,7 @@
   * @brief Implementación del TDA pila_max haciendo uso de vectores dinámicos
   */
 
-  #include "pila_max_vd.h"
+  #include "Pila_max.h"
 
   /*_________________________________________________________________________*/
 
@@ -12,7 +12,7 @@
 
   // Máximo
 
-  Elemento  Pila_max::max(const Elemento &max_act, const Elemento &elem_nuevo){
+  int Pila_max::max(int max_act, int elem_nuevo){
 
     if (max_act < elem_nuevo)
     return elem_nuevo;
@@ -26,7 +26,7 @@
 
   void Pila_max::resize(int size){
 
-    Elemento *nuevo;
+    elemento *nuevo;
     nuevo = new elemento[size];
 
     for(int i = 0; i < n_elem && i < size; ++i)   // En caso de que queramos "reducir" el espacio disponible añadimos que i < size
@@ -68,13 +68,13 @@
 
 // Push
 
-  void Pila_max::Push(int &dato){
+  void Pila_max::push(int dato){
 
-    Elemento nuevo;
+    elemento nuevo;
     nuevo.ele = dato;
 
     if (n_elem > 0)
-      nuevo.max = max(elemento[n_elem - 1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
+      nuevo.max = max(v_elem[n_elem-1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
 
     else
       nuevo.max = dato;
@@ -87,7 +87,7 @@
 
     else{
 
-      resize(n_disp*2);        // TODO función resize, hacerla en el cpp y en el .h
+      resize(n_disp*2);
       v_elem[n_elem] = nuevo;
 
     }
@@ -96,8 +96,39 @@
 
   // Pop
 
-  void Pila_max<T>::Pop(){
+  void Pila_max::pop(){
 
-    if (n_elem > 0)
-    num_elem--;
+    if (!empty())
+    n_elem--;
+  }
+
+  bool Pila_max::empty(){
+
+    if (n_elem == 0)
+      return true;
+
+    else
+      return false;
+  }
+
+
+  elemento Pila_max::top(){
+
+    if (!empty())
+      return v_elem[n_elem-1];
+  }
+
+
+  Pila_max& Pila_max::operator= (const Pila_max &p){
+
+    n_elem = p.n_elem;
+    n_disp = p.n_disp;
+    v_elem = new elemento [n_disp];
+
+    for (int i = 0; i < n_elem; ++i){
+
+      v_elem[i] = p.v_elem[i];
+    }
+
+    return *this;
   }
