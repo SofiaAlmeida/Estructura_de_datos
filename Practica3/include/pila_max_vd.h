@@ -1,6 +1,10 @@
 /**
   * @file Pila_max_VD.h
   * @brief Implementación del TDA pila_max haciendo uso de vectores dinámicos
+  *
+  * @author Sofía Almeida Bruno (@SofiaAlmeida)
+  * @author Jesús Sánchez de Lechina Tejada (@jojelupipa)
+  * @author Pedro Bonilla Nadal (@pedrobn23)
   */
 
   #ifndef __PILA_MAX_VD_H__
@@ -86,7 +90,23 @@ class Pila_max{
     */
 
     bool empty();
-    // TODO función empty para comprobar si está vacío
+
+
+  /**
+    * @brief Devuelve el elemento del tope
+    * @return elemento
+    */
+
+    elemento top();
+
+  /**
+    * @brief Sobregarga del operador =
+    * @param p Pila a copiar
+    */
+
+    Pila_max& operator= (const Pila_max &p);
+
+      
 
 
   };

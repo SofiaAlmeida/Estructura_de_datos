@@ -74,7 +74,7 @@
     nuevo.ele = dato;
 
     if (n_elem > 0)
-      nuevo.max = max(v_elem[n_elem - 1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
+      nuevo.max = max(v_elem[n_elem-1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
 
     else
       nuevo.max = dato;
@@ -98,7 +98,7 @@
 
   void Pila_max::pop(){
 
-    if (n_elem > 0)
+    if (!empty())
     n_elem--;
   }
 
@@ -109,4 +109,26 @@
 
     else
       return false;
+  }
+
+
+  elemento Pila_max::top(){
+
+    if (!empty())
+      return v_elem[n_elem-1];
+  }
+
+
+  Pila_max& Pila_max::operator= (const Pila_max &p){
+
+    n_elem = p.n_elem;
+    n_disp = p.n_disp;
+    v_elem = new elemento [n_disp];
+
+    for (int i = 0; i < n_elem; ++i){
+
+      v_elem[i] = p.v_elem[i];
+    }
+
+    return *this;
   }
