@@ -47,12 +47,13 @@ using namespace std;
    * @return salida por os de la siguiente forma:
    * Elemento: elemento.ele  Máximo: elemento.max
    */
-/*   ostream& operator<<(ostream &os, const elemento &elem) {
+   template <class T>
+   ostream& operator<<(ostream &os, const elemento<T> &elem) {
       os << "Elemento: " << elem.ele
          << "  Máximo: " << elem.max << endl;
 
       return os;
-   }*/
+   }
 
    #define CUAL_COMPILA 3
    #if CUAL_COMPILA==1

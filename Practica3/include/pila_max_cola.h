@@ -54,7 +54,7 @@ public:
    * @brief Agregar un elemento al comienzo de la pila
    * @param e elemento a insertar
    * @post pila con el elemento máximo en elemento.max
-   *///FIXME template
+   */
    void push(const T &dato);
 
 /***
@@ -94,6 +94,6 @@ public:
    */
    Pila_max& operator=(const Pila_max &p);
 };
-#include "../src/Pila_max_Cola.cpp" //FIXME
+#include "Pila_max_Cola.cpp"
 
 #endif
