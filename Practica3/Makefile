@@ -3,7 +3,7 @@ INC = include
 OBJ = obj
 BIN = bin
 CXX = g++
-CPPFLAGS = -Wall -g  -I$(INC) -c
+CPPFLAGS = -Wall -g  -I$(INC) -c -std=c++11
 
 all: $(BIN)/usopilas_max ##$(BIN)/usocolas
 
@@ -16,8 +16,13 @@ $(OBJ)/usocolas.o: $(INC)/cola.h $(SRC)/usocolas.cpp
 $(BIN)/usopilas_max: $(OBJ)/usopilas_max.o
 	$(CXX) -o $(BIN)/usopilas_max $(OBJ)/usopilas_max.o
 $(OBJ)/usopilas_max.o: $(INC)/Pila_max.h #$(SRC)/Pila_max.cpp
-	$(CXX) $(CPPFLAGS) $(SRC)/usopilas_max.cpp -o $(OBJ)/usopilas_max.o -I$(INC)
-
+	$(CXX) $(CPPFLAGS) $(SRC)/usopilas_max.cpp -o $(OBJ)/usopilas_max.o -I$(SRC)
+		#NOTE Pongo en -Isrc porque estamos incluyendo en los .h los .cpp
+$(INC)/Pila_max.h: $(INC)/pila_max_cola.h $(INC)/pila_max_list.h $(INC)/pila_max_vd.h
+$(INC)/pila_max_cola.h: $(SRC)/Pila_max_Cola.cpp
+$(INC)/pila_max_list.h: $(SRC)/Pila_max_List.cpp
+$(INC)/pila_max_vd.h: $(SRC)/Pila_max_VD.cpp
+	
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
