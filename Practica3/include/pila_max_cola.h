@@ -35,7 +35,7 @@ public:
    * @brief Constructor por defecto
    * @post pila vacía
    */
-   Pila_max();
+   Pila_max() = default;
 
 /***
    * @brief Constructor de copia
@@ -48,7 +48,7 @@ public:
 /***
    * @brief Destructor
    */
-  ~Pila_max();
+ // ~Pila_max();
 
 /***
    * @brief Agregar un elemento al comienzo de la pila
