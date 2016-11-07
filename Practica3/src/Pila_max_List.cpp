@@ -1,9 +1,15 @@
 #include "pila_max_list.h"
 
+/*Duda de implementación
+	Utilizar dos vectores o solo uno?
+*/
+
+
 Pila_max::Pila_max() {
 	*Celda aux = new Celda;
 	cabecera = aux;
 	aux->ant = 0;
+	aux->sig = 0;
 }
 
 int Pila_max::size () {
@@ -20,40 +26,26 @@ int Pila_max::size () {
 
 /*NOTE:recordadme que ponga el algoritmo algo mas fino si sobra tiempo, este es la version simple*/
 Pila_max::Pila_max(const Pila_max& p) {
-	int s = size;
-	T [s];
-	Celda* p = cabecera->ant;
-
-	for (int i = 0; i < s; ++i){
-		t[i] = p->dato.ele;
-		p = p->ant
-	}
-
-	for (int i = (s-1); i > -1; --i){
-		push(t[s]);
+	cabecera->ant = cabecera->sig = 0; /*Esta linea de codigo se realiza para poder usar sin problemas la
+	                                    función push;*/
+	for (Celda* q = p.cabecera->sig;; q != cabecera; p = p->sig){
+		push(p->dato.ele);
 	}
 }
 
-// Esto asi va bien?
+
 Pila_max& Pila_max::operator= (const Pila_max& p){
 	if (this != &p) {
 		while (cabecera->ant) {
 			pop();
 		}
 
-		int s = size;
-		T [s];
-		Celda* p = cabecera->ant;
-
-		for (int i = 0; i < s; ++i){
-			t[i] = p->dato.ele;
-			p = p->ant
-		}
-
-		for (int i = (s-1); i > -1; --i){
-			push(t[s]);
+		for (Celda* q = p.cabecera->sig; q != cabecera; p = q->sig){
+			push(q->dato.ele);
 		}
 	}
+
+	return this;
 }
 
 
@@ -61,7 +53,9 @@ void Pila_max::push(T y) {
 	if (cabecera->ant != 0) {
 		*Celda aux = new Celda;
 		aux->ant = cabecera->ant;
+		cabecera->ant->sig = aux;
 		cabecera->ant = aux;
+		aux->sig = cabecera
 
 		aux->dato.ele = y;
 		x = (aux->ant->dato.max)
@@ -70,8 +64,8 @@ void Pila_max::push(T y) {
 
 	else {
 		*Celda aux = new Celda;
-		aux->ant = cabecera;
-		cabecera->ant = aux;
+		aux->ant = aux->sig = cabecera;
+		cabecera->ant = cabecera->sig = aux;
 		aux->dato.ele = aux.dato.max = y
 	}
 }

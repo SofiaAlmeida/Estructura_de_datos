@@ -27,6 +27,7 @@ no vamos a implementar una lista circular, si no una lista de celdas encalazadas
 struct Celda {
 	elemento dato;
 	*Celda ant;
+	*Celda sig;
 };
 
 
