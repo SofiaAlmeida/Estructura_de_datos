@@ -2,7 +2,7 @@ template <class T>
 void Pila_max<T>::push(const T &dato) {
    elemento<T> e;
    e.ele = dato;
-   //FIXME primer push
+   //FIXME no hace lo que tiene que hacer
    //Arreglamos el máximo
    if (pila.vacia())
       e.max = dato;

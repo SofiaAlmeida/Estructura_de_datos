@@ -88,6 +88,21 @@ public:
    }
 
 /***
+   * @brief Devuelve el número de elementos de la pila
+   */
+   int num_elementos() const {
+      return pila.num_elementos();
+   }
+
+/***
+   * @brief Máximo de la pila
+   * @return elemento máximo
+   */
+   T& max() const {
+      return pila.frente().max;
+   }
+
+/***
    * @brief Sobrecarga operador de asignación
    * @param p Pila a asignar
    * return Objeto implícito

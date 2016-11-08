@@ -22,7 +22,6 @@ $(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
-
 # ************ Limpieza ************
 clean :
 	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
