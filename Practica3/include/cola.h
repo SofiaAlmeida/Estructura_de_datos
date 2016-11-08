@@ -124,6 +124,6 @@ class Cola{
     }
 };
 
-#include "cola.cpp"
+#include "../src/cola.cpp"
 
 #endif // __Cola_H__

@@ -94,6 +94,6 @@ public:
    */
    Pila_max& operator=(const Pila_max &p);
 };
-#include "Pila_max_Cola.cpp"
+#include "../src/Pila_max_Cola.cpp"
 
 #endif
