@@ -3,7 +3,7 @@
   * @brief Implementación del TDA pila_max haciendo uso de vectores dinámicos
   */
 
-  #include "Pila_max.h"
+  // #include "Pila_max.h" NOTE No se incluye el .h al principio
 
   /*_________________________________________________________________________*/
 
