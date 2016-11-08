@@ -3,7 +3,7 @@
   * @brief Implementación del TDA pila_max haciendo uso de vectores dinámicos
   */
 
-  // #include "Pila_max.h" NOTE No se incluye el .h al principio
+  // NOTE No se incluye el .h al principio
 
   /*_________________________________________________________________________*/
 
@@ -27,9 +27,10 @@
 
   template <class T>
   void Pila_max<T>::resize(int size){
+    assert(size > 0);
 
     elemento<T> *nuevo;
-    nuevo = new elemento<T>[size];   // NOTE Cuando reservamos memoria para un elemento que usa templates se pone new elemento<T>[size]??
+    nuevo = new elemento<T>[size];
 
     for(int i = 0; i < n_elem && i < size; ++i)   // En caso de que queramos "reducir" el espacio disponible añadimos que i < size
       nuevo[i] = v_elem[i];
@@ -83,7 +84,7 @@
     if (n_elem > 0)
       nuevo.max = max(v_elem[n_elem-1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
 
-    else
+    else if (n_elem == 0)
       nuevo.max = dato;
 
     if(n_elem < n_disp){
@@ -107,7 +108,8 @@
   template <class T>
   void Pila_max<T>::pop(){
 
-    if (!empty())
+    assert(!empty());
+
     n_elem--;
   }
 
@@ -127,8 +129,7 @@
 
   template <class T>
   elemento<T> Pila_max<T>::top(){
-
-    if (!empty())
+    assert(!empty());
       return v_elem[n_elem-1];
   }
 
