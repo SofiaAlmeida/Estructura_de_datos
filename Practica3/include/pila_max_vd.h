@@ -11,10 +11,11 @@
   #define __PILA_MAX_VD_H__
 
 
+template <class T>
 class Pila_max{
   private:
 
-    elemento *v_elem;
+    elemento<T> *v_elem;
     int n_elem;
     int n_disp;
 
@@ -28,7 +29,7 @@ class Pila_max{
       * @return Devuelve el máximo de los dos
       */
 
-    int max(int max_act, int elem_nuevo);
+    T max(const T &max_act, const T &elem_nuevo);
 
 
     // Resize
@@ -73,7 +74,7 @@ class Pila_max{
     * @param elem elemento a añadir
     */
 
-    void push(int dato);
+    void push(const T &dato);
 
 
     // Pop
@@ -97,7 +98,7 @@ class Pila_max{
     * @return elemento
     */
 
-    elemento top();
+    elemento<T> top();
 
   /**
     * @brief Sobregarga del operador =
@@ -106,10 +107,11 @@ class Pila_max{
 
     Pila_max& operator= (const Pila_max &p);
 
-      
+
 
 
   };
 
-//  #include "Pila_max_VD.cpp"          // Para cuando añadamos templates
+  
+
   #endif

@@ -12,7 +12,8 @@
 
   // Máximo
 
-  int Pila_max::max(int max_act, int elem_nuevo){
+  template <class T>
+  T Pila_max<T>::max(const T &max_act, const T &elem_nuevo){
 
     if (max_act < elem_nuevo)
     return elem_nuevo;
@@ -24,16 +25,19 @@
 
   // Resize
 
-  void Pila_max::resize(int size){
+  template <class T>
+  void Pila_max<T>::resize(int size){
 
-    elemento *nuevo;
-    nuevo = new elemento[size];
+    elemento<T> *nuevo;
+    nuevo = new elemento<T>[size];   // NOTE Cuando reservamos memoria para un elemento que usa templates se pone new elemento<T>[size]??
 
     for(int i = 0; i < n_elem && i < size; ++i)   // En caso de que queramos "reducir" el espacio disponible añadimos que i < size
       nuevo[i] = v_elem[i];
 
     delete [] v_elem;
     v_elem = nuevo;
+
+    n_disp = size;                              // Indicamos el número de elementos reservados actual
 
   }
 
@@ -42,11 +46,12 @@
 
 // Constructores
 
-  Pila_max::Pila_max(const Pila_max &p){
+  template <class T>
+  Pila_max<T>::Pila_max(const Pila_max &p){
 
     n_elem = p.n_elem;
     n_disp = p.n_disp;
-    v_elem = new elemento [n_disp];
+    v_elem = new elemento<T> [n_disp];
 
     for (int i = 0; i < n_elem; ++i){
 
@@ -57,7 +62,8 @@
 
 // Destructor
 
-  Pila_max::~Pila_max(){
+  template <class T>
+  Pila_max<T>::~Pila_max(){
 
     delete [] v_elem;
     n_elem = 0;
@@ -68,9 +74,10 @@
 
 // Push
 
-  void Pila_max::push(int dato){
+  template <class T>
+  void Pila_max<T>::push(const T &dato){
 
-    elemento nuevo;
+    elemento<T> nuevo;
     nuevo.ele = dato;
 
     if (n_elem > 0)
@@ -89,6 +96,7 @@
 
       resize(n_disp*2);
       v_elem[n_elem] = nuevo;
+      n_elem++;
 
     }
   }
@@ -96,13 +104,17 @@
 
   // Pop
 
-  void Pila_max::pop(){
+  template <class T>
+  void Pila_max<T>::pop(){
 
     if (!empty())
     n_elem--;
   }
 
-  bool Pila_max::empty(){
+  // Empty(ness inside)
+
+  template <class T>
+  bool Pila_max<T>::empty(){
 
     if (n_elem == 0)
       return true;
@@ -111,19 +123,24 @@
       return false;
   }
 
+  // Top
 
-  elemento Pila_max::top(){
+  template <class T>
+  elemento<T> Pila_max<T>::top(){
 
     if (!empty())
       return v_elem[n_elem-1];
   }
 
 
-  Pila_max& Pila_max::operator= (const Pila_max &p){
+  // Operator =
+
+  template <class T>
+  Pila_max<T>& Pila_max<T>::operator= (const Pila_max &p){
 
     n_elem = p.n_elem;
     n_disp = p.n_disp;
-    v_elem = new elemento [n_disp];
+    v_elem = new elemento<T> [n_disp];
 
     for (int i = 0; i < n_elem; ++i){
 
