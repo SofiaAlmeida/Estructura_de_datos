@@ -4,10 +4,13 @@ void Pila_max<T>::push(const T &dato) {
    e.ele = dato;
    //FIXME primer push
    //Arreglamos el máximo
-   if (pila.frente().max > dato)
-      e.max = pila.frente().max;
-   else
+   if (pila.vacia())
       e.max = dato;
+   else
+      if (pila.frente().max > dato && !pila.vacia())
+         e.max = pila.frente().max;
+      else
+         e.max = dato;
 
    //Añadimos el elemento al principio
    Cola<elemento<T> > aux;
