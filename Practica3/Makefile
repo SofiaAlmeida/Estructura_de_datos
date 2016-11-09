@@ -5,7 +5,7 @@ BIN = bin
 CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c -std=c++11
 
-all: $(BIN)/usopilas_max ##$(BIN)/usocolas
+all: $(BIN)/usopilas_max
 
 
 $(BIN)/usocolas: $(OBJ)/usocolas.o

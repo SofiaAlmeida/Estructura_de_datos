@@ -46,11 +46,6 @@ public:
    }
 
 /***
-   * @brief Destructor
-   */
- // ~Pila_max();
-
-/***
    * @brief Agregar un elemento al comienzo de la pila
    * @param e elemento a insertar
    * @post pila con el elemento máximo en elemento.max

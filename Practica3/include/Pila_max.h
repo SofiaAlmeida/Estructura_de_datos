@@ -55,7 +55,7 @@ using namespace std;
       return os;
    }
 
-   #define CUAL_COMPILA 1
+   #define CUAL_COMPILA 3
    #if CUAL_COMPILA==1
    #include "pila_max_vd.h"
    #elif CUAL_COMPILA==2

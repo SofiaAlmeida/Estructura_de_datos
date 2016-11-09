@@ -2,12 +2,11 @@ template <class T>
 void Pila_max<T>::push(const T &dato) {
    elemento<T> e;
    e.ele = dato;
-   //FIXME no hace lo que tiene que hacer
    //Arreglamos el máximo
    if (pila.vacia())
       e.max = dato;
    else
-      if (pila.frente().max > dato && !pila.vacia())
+      if (pila.frente().max > dato)
          e.max = pila.frente().max;
       else
          e.max = dato;
@@ -17,7 +16,7 @@ void Pila_max<T>::push(const T &dato) {
    aux.poner(e);
    while(!pila.vacia()) {
       aux.poner(pila.frente());
-      aux.quitar();
+      pila.quitar();
    }
    pila = aux;
 }
