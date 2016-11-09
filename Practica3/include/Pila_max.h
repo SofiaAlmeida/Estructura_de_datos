@@ -1,5 +1,5 @@
 /***
-   * @file PIla_max.h
+   * @file Pila_max.h
    * @brief Fichero cabecera del TDA Pila_max
    *
    * Pila_max es una pila que almacena en su tope el máximo de los elementos
@@ -55,7 +55,7 @@ using namespace std;
       return os;
    }
 
-   #define CUAL_COMPILA 3
+   #define CUAL_COMPILA 1
    #if CUAL_COMPILA==1
    #include "pila_max_vd.h"
    #elif CUAL_COMPILA==2

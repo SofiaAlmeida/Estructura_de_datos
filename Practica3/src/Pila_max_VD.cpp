@@ -3,10 +3,6 @@
   * @brief Implementación del TDA pila_max haciendo uso de vectores dinámicos
   */
 
-  // NOTE No se incluye el .h al principio
-
-  /*_________________________________________________________________________*/
-
 
   /*__________________PARTE_PRIVADA__________________________________________*/
 
@@ -85,6 +81,7 @@
       nuevo.max = max(v_elem[n_elem-1].max, dato);      // Comparamos el máximo del último elemento insertado con el valor del actual
 
     else if (n_elem == 0)
+      resize(1);
       nuevo.max = dato;
 
     if(n_elem < n_disp){
