@@ -14,7 +14,7 @@ $(OBJ)/usocolas.o: $(INC)/cola.h $(SRC)/usocolas.cpp
 	$(CXX) $(CPPFLAGS)  $(SRC)/usocolas.cpp  -o $(OBJ)/usocolas.o -I$(INC)
 
 $(BIN)/usopilas_max: $(OBJ)/usopilas_max.o
-	$(CXX) -o $(BIN)/usopilas_max $(OBJ)/usopilas_max.o
+	$(CXX) -I$(INC) -o $(BIN)/usopilas_max $(OBJ)/usopilas_max.o
 $(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp
 	$(CXX) $(CPPFLAGS) $(SRC)/usopilas_max.cpp -o $(OBJ)/usopilas_max.o
 

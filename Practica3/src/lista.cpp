@@ -1,46 +1,30 @@
-#include "pila_max_list.h"
-
-/*Duda de implementación
-	Utilizar dos vectores o solo uno?
-*/
-
-
-Pila_max::Pila_max() {
-	*Celda aux = new Celda;
+template <class T>
+Lista<T>::Lista() {
+	Celda<T>* aux = new Celda<T>;
 	cabecera = aux;
 	aux->ant = 0;
 	aux->sig = 0;
 }
 
-int Pila_max::size () {
-	int i = 0;
-	Celda* p =cabecera->ant
 
-	while (p != cabecera){
-		i++;
-		p = p->ant;
-	}
-
-	return i;
-}
-
+template <class T>
 /*NOTE:recordadme que ponga el algoritmo algo mas fino si sobra tiempo, este es la version simple*/
-Pila_max::Pila_max(const Pila_max& p) {
+Lista<T>::Lista(const Lista& p) {
 	cabecera->ant = cabecera->sig = 0; /*Esta linea de codigo se realiza para poder usar sin problemas la
 	                                    función push;*/
-	for (Celda* q = p.cabecera->sig;; q != cabecera; p = p->sig){
+	for (Celda<T>* q = p.cabecera->sig; q != cabecera; p = p->sig){
 		push(p->dato.ele);
 	}
 }
 
-
-Pila_max& Pila_max::operator= (const Pila_max& p){
+template <class T>
+Lista<T>& Lista<T>::operator= (const Lista& p){
 	if (this != &p) {
 		while (cabecera->ant) {
 			pop();
 		}
 
-		for (Celda* q = p.cabecera->sig; q != cabecera; p = q->sig){
+		for (Celda<T>* q = p.cabecera->sig; q != cabecera; p = q->sig){
 			push(q->dato.ele);
 		}
 	}
@@ -48,38 +32,42 @@ Pila_max& Pila_max::operator= (const Pila_max& p){
 	return this;
 }
 
-
-void Pila_max::push(T y) {
+template <class T>
+void Lista<T>::push(const T& y) {
 	if (cabecera->ant != 0) {
-		*Celda aux = new Celda;
+		Celda<T>* aux = new Celda<T>;
 		aux->ant = cabecera->ant;
 		cabecera->ant->sig = aux;
 		cabecera->ant = aux;
-		aux->sig = cabecera
+		aux->sig = cabecera;
 
 		aux->dato.ele = y;
-		x = (aux->ant->dato.max)
+		T x = (aux->ant->dato.max);
 		aux->dato.max = (y>x ? y : x);
 	}
 
 	else {
-		*Celda aux = new Celda;
+		Celda<T>* aux = new Celda<T>;
 		aux->ant = aux->sig = cabecera;
 		cabecera->ant = cabecera->sig = aux;
-		aux->dato.ele = aux.dato.max = y
+		aux->dato.ele = aux->dato.max = y;
 	}
 }
 
-void Pila_max::pop () {
+template <class T>
+void Lista<T>::pop () {
 	if (cabecera->ant) {
-		Celda* aux = cabecera->ant
+		Celda<T>* aux = cabecera->ant;
 		cabecera->ant = cabecera->ant->ant;
 		delete aux;
 	}
+	if (cabecera->ant = cabecera) {
+		cabcera->ant = cabecera->sig = 0;
+	}
 }
 
-
-Pila_max::~Pila_max () {
+template <class T>
+Lista<T>::~Lista () {
 	while (cabecera->ant) {
 		pop();
 	}

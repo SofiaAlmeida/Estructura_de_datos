@@ -13,69 +13,35 @@
 
 #include <cassert>
 #include <iostream>
-
+#include "lista.h"
 /***
    *  @brief T.D.A. Pila_max_list
    *
    */
-
-
-/*Puesto que la pila es una estructura que solo se puede leer de atrás a adelante
-no vamos a implementar una lista circular, si no una lista de celdas encalazadas hacia atrás,
-pero también hacia adelante, para aumentar la eficiencia del constructor de entrada y salida
-*/
-struct Celda {
-	elemento dato;
-	*Celda ant;
-	*Celda sig;
-};
-
-
+template <class T>
 class Pila_max {
 private:
-	*Celda cabecera;
-	//Funcion que implemente pero no llegue a usar
-	int size ();
+	Lista<T> l;
 
-
-Public:
-/**
-  * @brief constructor por defecto de la función. Crea una pila vacia.
-  */
-	Pila_max ();
-/**
-  * @brief constructor de copia.
-  * @param Pila_max& p pila a copiar.
-  */
-	Pila_max (const Pila_max& p);
-
+public:
 /**
   * @brief Función que devuelve el valor del primer último de la pila. FIFO.
   * @return elemento de la pila.
   */
-	elemento top () const {return (cabecera->ant.dato);};
-
+	elemento<T> top () const {return l.top();};
 /**
   * @brief Evalua si la pila está vacia.
   * @return devuelve un bool con la información.
   */
-	bool empty() {return !(cabecera->ant)};
+	bool empty() {return l.empty();};
 /**
   * @brief saca el último elemento de la pila
   */
-	void pop();
+	void pop() {l.pop();};
 /**
   * @brief añade un elemento de la pila
   */
-	void push(T t);
-/**
-  * @brief operador de asignación standard.
-  * @param Pila_max& p objeto a asignar.
-  * @return el elemento asignado.
-  */
-	Pila_max& operator= (const Pila_max& p);
-/**
-  * @brief destructor de la función.
-  */
-	~Pila_max ();
-}
+	void push(const T& t) {l.push(t);};
+};
+
+#endif
