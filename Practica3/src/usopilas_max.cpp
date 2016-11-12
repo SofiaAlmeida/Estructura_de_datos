@@ -17,5 +17,8 @@ int main(){
     p.pop();
   }
 
+  if (p.empty())                                          // Comprobamos el correcto funcionamiento de pop
+    cout << "La pila ya se encuentra vacía :-)" << endl;
+
   return 0;
 }

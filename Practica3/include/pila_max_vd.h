@@ -7,19 +7,24 @@
   * @author Pedro Bonilla Nadal (@pedrobn23)
   */
 
-  #ifndef __PILA_MAX_VD_H__
-  #define __PILA_MAX_VD_H__
+#ifndef __PILA_MAX_VD_H__
+#define __PILA_MAX_VD_H__
 
+/***
+   *  @brief T.D.A. Pila_max_vd
+   *
+   * La descripción de este T.D.A coincide con la del T.D.A @pila_max.h
+   * Este archivo contiene el módulo implementado usando un vector
+   *
+   */
 
+template <class T>
 class Pila_max{
   private:
 
-    elemento *v_elem;
+    elemento<T> *v_elem;
     int n_elem;
     int n_disp;
-
-
-    // Máximo
 
     /**
       * @brief Halla el máximo de dos elementos
@@ -28,10 +33,7 @@ class Pila_max{
       * @return Devuelve el máximo de los dos
       */
 
-    int max(int max_act, int elem_nuevo);
-
-
-    // Resize
+    T max(const T &max_act, const T &elem_nuevo);
 
     /**
       * @brief Cambia el tamaño del vector para poder añadir más elementos
@@ -41,8 +43,6 @@ class Pila_max{
       void resize(int size);
 
   public:
-
-    // Constructores
 
   /**
     * @brief Constructor vacío
@@ -57,26 +57,36 @@ class Pila_max{
 
     Pila_max(const Pila_max &original);
 
-    // Destructor
-
   /**
     * @brief Destructor de Pila_max
     */
 
     ~Pila_max();
 
+  /**
+    * @brief Devuelve el valor del elemento T máximo
+    * @return Máximo actual de Pila_max
+    */
 
-    // Push-agregar
+    T& max() const{
+      return top().max;
+    }
+
+  /**
+    * @brief Consulta el número de elementos<T> en la Pila_max
+    * @return n_elem
+    */
+
+    int num_elementos() const{
+      return n_elem;
+    }
 
   /**
     * @brief Añade un elemento al final de la pila
     * @param elem elemento a añadir
     */
 
-    void push(int dato);
-
-
-    // Pop
+    void push(const T &dato);
 
   /**
     * @brief Elimina el último elemento de la pila
@@ -91,13 +101,12 @@ class Pila_max{
 
     bool empty();
 
-
   /**
     * @brief Devuelve el elemento del tope
     * @return elemento
     */
 
-    elemento top();
+    elemento<T> top();
 
   /**
     * @brief Sobregarga del operador =
@@ -106,10 +115,8 @@ class Pila_max{
 
     Pila_max& operator= (const Pila_max &p);
 
-      
-
-
   };
 
-//  #include "Pila_max_VD.cpp"          // Para cuando añadamos templates
+  #include "../src/Pila_max_VD.cpp"
+
   #endif

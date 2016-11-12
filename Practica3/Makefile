@@ -5,8 +5,7 @@ BIN = bin
 CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c -std=c++11
 
-all: $(BIN)/usopilas_max ##$(BIN)/usocolas
-
+all: $(BIN)/usopilas_max
 
 $(BIN)/usocolas: $(OBJ)/usocolas.o
 	$(CXX) -o $(BIN)/usocolas $(OBJ)/usocolas.o
@@ -21,7 +20,6 @@ $(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
-
 
 # ************ Limpieza ************
 clean :

@@ -61,8 +61,8 @@ void Lista<T>::pop () {
 		cabecera->ant = cabecera->ant->ant;
 		delete aux;
 	}
-	if (cabecera->ant = cabecera) {
-		cabcera->ant = cabecera->sig = 0;
+	if (cabecera->ant == cabecera) {
+		cabecera->ant = cabecera->sig = 0;
 	}
 }
 

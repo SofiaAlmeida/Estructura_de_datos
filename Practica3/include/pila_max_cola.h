@@ -46,11 +46,6 @@ public:
    }
 
 /***
-   * @brief Destructor
-   */
- // ~Pila_max();
-
-/***
    * @brief Agregar un elemento al comienzo de la pila
    * @param e elemento a insertar
    * @post pila con el elemento máximo en elemento.max
@@ -85,6 +80,21 @@ public:
    */
    bool empty() {
       return pila.vacia();
+   }
+
+/***
+   * @brief Devuelve el número de elementos de la pila
+   */
+   int num_elementos() const {
+      return pila.num_elementos();
+   }
+
+/***
+   * @brief Máximo de la pila
+   * @return elemento máximo
+   */
+   T& max() const {
+      return pila.frente().max;
    }
 
 /***
