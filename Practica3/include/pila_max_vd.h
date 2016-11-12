@@ -16,8 +16,8 @@
    * La descripción de este T.D.A coincide con la del T.D.A @pila_max.h
    * Este archivo contiene el módulo implementado usando un vector
    *
-   *
    */
+
 template <class T>
 class Pila_max{
   private:
@@ -25,9 +25,6 @@ class Pila_max{
     elemento<T> *v_elem;
     int n_elem;
     int n_disp;
-
-
-    // Máximo
 
     /**
       * @brief Halla el máximo de dos elementos
@@ -38,9 +35,6 @@ class Pila_max{
 
     T max(const T &max_act, const T &elem_nuevo);
 
-
-    // Resize
-
     /**
       * @brief Cambia el tamaño del vector para poder añadir más elementos
       * @param size
@@ -49,8 +43,6 @@ class Pila_max{
       void resize(int size);
 
   public:
-
-    // Constructores
 
   /**
     * @brief Constructor vacío
@@ -65,16 +57,29 @@ class Pila_max{
 
     Pila_max(const Pila_max &original);
 
-    // Destructor
-
   /**
     * @brief Destructor de Pila_max
     */
 
     ~Pila_max();
 
+  /**
+    * @brief Devuelve el valor del elemento T máximo
+    * @return Máximo actual de Pila_max
+    */
 
-    // Push-agregar
+    T& max() const{
+      return top().max;
+    }
+
+  /**
+    * @brief Consulta el número de elementos<T> en la Pila_max
+    * @return n_elem
+    */
+
+    int num_elementos() const{
+      return n_elem;
+    }
 
   /**
     * @brief Añade un elemento al final de la pila
@@ -82,9 +87,6 @@ class Pila_max{
     */
 
     void push(const T &dato);
-
-
-    // Pop
 
   /**
     * @brief Elimina el último elemento de la pila
@@ -99,7 +101,6 @@ class Pila_max{
 
     bool empty();
 
-
   /**
     * @brief Devuelve el elemento del tope
     * @return elemento
@@ -113,9 +114,6 @@ class Pila_max{
     */
 
     Pila_max& operator= (const Pila_max &p);
-
-
-
 
   };
 
