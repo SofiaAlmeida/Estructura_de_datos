@@ -7,10 +7,17 @@
   * @author Pedro Bonilla Nadal (@pedrobn23)
   */
 
-  #ifndef __PILA_MAX_VD_H__
-  #define __PILA_MAX_VD_H__
+#ifndef __PILA_MAX_VD_H__
+#define __PILA_MAX_VD_H__
 
-
+/***
+   *  @brief T.D.A. Pila_max_vd
+   *
+   * La descripción de este T.D.A coincide con la del T.D.A @pila_max.h
+   * Este archivo contiene el módulo implementado usando un vector
+   *
+   *
+   */
 template <class T>
 class Pila_max{
   private:

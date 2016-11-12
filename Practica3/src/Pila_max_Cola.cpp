@@ -1,4 +1,5 @@
 template <class T>
+//Añadir un elemento a la pila
 void Pila_max<T>::push(const T &dato) {
    elemento<T> e;
    e.ele = dato;

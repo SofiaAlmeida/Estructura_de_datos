@@ -7,7 +7,6 @@ CPPFLAGS = -Wall -g  -I$(INC) -c -std=c++11
 
 all: $(BIN)/usopilas_max
 
-
 $(BIN)/usocolas: $(OBJ)/usocolas.o
 	$(CXX) -o $(BIN)/usocolas $(OBJ)/usocolas.o
 $(OBJ)/usocolas.o: $(INC)/cola.h $(SRC)/usocolas.cpp
