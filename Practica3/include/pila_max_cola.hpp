@@ -13,7 +13,7 @@
 
 #include <cassert>
 #include <algorithm>    // std::swap
-#include "cola.h"
+#include "cola.hpp"
 
 using namespace std;
 /***
