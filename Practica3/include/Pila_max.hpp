@@ -57,11 +57,11 @@ using namespace std;
 
    #define CUAL_COMPILA 2
    #if CUAL_COMPILA==1
-   #include "pila_max_vd.h"
+   #include "pila_max_vd.hpp"
    #elif CUAL_COMPILA==2
-   #include "pila_max_list.h"
+   #include "pila_max_list.hpp"
    #else
-   #include "pila_max_cola.h"
+   #include "pila_max_cola.hpp"
    #endif
 
 #endif

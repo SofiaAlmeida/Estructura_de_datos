@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Pila_max.h"
+#include "Pila_max.hpp"
 
 using namespace std;
 

@@ -13,7 +13,7 @@
 
 #include <cassert>
 #include <iostream>
-#include "lista.h"
+#include "lista.hpp"
 /***
    *  @brief T.D.A. Pila_max_list
    *
