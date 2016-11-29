@@ -1,0 +1,13 @@
+
+“Qué ideas tenemos?”
+
+El evento histórico es un pair donde vamos a meter un int, representa el año, y un set<string> donde cada string representará un único acontecimiento.
+
+El tipo cronología será representado con el tipo map<key(int);Tipo;comp;allocator>
+
+La clave será de tipo entero, no se repiten años iguales con eventos distintos (todos los eventos de un año están en un único año). El tipo será EventoHistorico y el resto en principio no habría que ponerlo a la hora de crear el tipo map
+
+
+
+Para definir el iterador que recorre los nombres de los eventos históricos se puede usar typedef para facilitar el proceso
+typedef set<string>::iterator, iterator
