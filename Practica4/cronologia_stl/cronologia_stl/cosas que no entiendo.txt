@@ -1,29 +1,6 @@
 IMPORTANTE: Seamos coherentes con le uso de las mayúsculas en los métodos de las clases. O todos con mayúsculas o todos con minúsculas y guiones bajos
 
 
-En chronology.cpp:
-
-Función merge, línea 68:
-
-	*this se refiere al objeto con el que estamos trabajando y por lo tanto no haría falta indicar *this, sino que valdría con poner directamente el nombre del dato miembro con el que queremos trabajar (?)
-
-	Justo después pone (*this).c.InsertEvent((*it).second); lo cual quiere decir que ¿En el objeto actual, en el dato miembro c se inserta el segundo miembro de la pareja del iterador? Pero c es a su vez el objeto que se pasa como argumento.
-	Tal vez la intención era hacer events.InsertEvent((*it).second) (?)
-	Donde insertamos en events cada uno de los eventos históricos de la cronología c
-
-
-Función sum_chrono, línea 91:
-
-	Si chronology ya los inserta ordenados no sería necesario usar aquí un sort no?
-
-Función search dentro del método word_search(const string&, bool)
-
-	La función search(s,0) es perteneciente a un evento histórico? Se usa en event[i].search(s,0) y deduzco que es un método (bool) de HistoricEvent que busca una cadena en ese objeto HistoricEvent,
-	en caso de que lo encuentre inserta el HistoricEvent completamente cuando deberíamos de indicar sólo los que contengan la palabra clave, por lo que habría que en lugar de insertar todo el HistoricEvent, o bien implementar un método que devuelva un set con las coincidencias y luego construir una cronología a partir de ese set, o bien sin implementar ningún método hacer dos bucles anidados donde recorramos todos los elementos del map de chronology y dentro de cada uno de ellos recorremos todo los sets de eventos, asignándoselos a la nueva cronología en cada iteración
-
-
-
-
 En chronology.hpp:
 
    typedef map<string, HistoricEvent>::iterator iterator; quiere decir que nuestro iterator en la clase Chronology se corresponde al de map y por tanto ya está implementado sin problema?

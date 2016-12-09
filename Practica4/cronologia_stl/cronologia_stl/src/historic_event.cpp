@@ -1,61 +1,66 @@
-  HistoricEvent() {
+// Constructor
+HistoricEvent::HistoricEvent(int d, const string& s) {
+  p.first = d;
+  p.second.insert(s);
+}
 
+// Constructor
+HistoricEvent::HistoricEvent(pair <int, set<string> > p_alt){
+  p.first = p_alt.first;
+  p.second = p_alt.second;
+}
+
+// Constructor
+HistoricEvent::HistoricEvent(int d, set<string> v) {
+  p.first = d;
+  p.second = v;
+}
+
+// Añadir acontecimiento
+void HistoricEvent::add_befall(const string &s) {
+  //Insert no añade si el elemento ya está
+    p.second.insert(s);
+}
+
+// Indica si ha encontradp string 
+bool HistoricEvent::search(const string &s) {
+  if(p.second.find(s) != second.cend())
+    return true;
+  else
+    return false;
+}
+
+// Acontecimientos que contienen string
+HistoricEvent HistoricEvent::get_coincidences(const string &s) const {
+  HistoricEvent result;
+  HistoricEvent::const_iterator c_it;
+  //¿esto va bien?
+  while((c_it = p.second.find(s)) != c_it.cend()) {
+      result.add_befall(*c_it);
   }
 
-
-  HistoricEvent(int d, const string& s) {
-	p.first = d;
-	p.second.insert(s);
-  }
+  return result;
+}
 
 
-  HistoricEvent(pair <int ,set<string> > p_alt){
-	p.first = p_alt.first;
-	p.second = p_alt.second;
-  }
+// Sobrecarga +
+HistoricEvent& operator+(const HistoricEvent &h) {
+  assert(first == h.first);
+  HistoricEvent::const_iterator c_it;
 
-  HistoricEvent(int d, set<string> v) {
-	  p.first = d;
-	  p.second = v;
-  }
+  for(c_it = h.cbegin(), c_it != h.cend(), ++c_it)
+    add_befall(*c_it);
 
-/*jaja no se que hacer con esto*/
-  void HistoricEvent::show(int i) {
-  }
+  return *this;
+}
 
-/** @brief Busca una cadena dentro de un vector de eventos y muestra las encontradas
-  * @param s String a buscar
-  * @param show si es true muestra el string encontrado
-  * @retval true si encuentra el string
-  */
-  bool search(const string &s, bool be_shown);
+// Sobrecarga <<
+bool operator<<(ostream& os, const HistoricEvent &h) {
+  
+}
 
-/**
-  * @brief Sobrecarga del operador == |n
-  *        Dos HistoricEvent se consideran iguales si tienen la misma fecha y los mismos acontecimientos
-  * @param h HistoricEvent a comparar con el objeto implícito
-  * @retval true si este objeto es igual a h
-  */
-  bool operator==(const HistoricEvent &h);
-
-/**
-  * @brief Sobrecarga del operador >
-  * @param h HistoricEvent a comparar con el objeto implícito
-  * @retval true si el año del objeto implícito es mayor que el de h
-  */
-  bool operator>>(const HistoricEvent &h);
-
-/**
-  * @brief Sobrecarga del operador >
-  * @param h HistoricEvent a comparar con el objeto implícito
-  * @retval true si el año del objeto implícito es menor que el de h
-  */
-  bool operator<<(const HistoricEvent &h);
-
-/**
-  * @brief Sobrecarga del operador +
-  * @param h objeto a sumar con el implícito
-  * @return objeto implícito al que se ha añadido los acontecimientos que no tenía de h.befalls
-  */
-  HistoricEvent& operator+(const HistoricEvent &h);
+bool operator>>(istream& is, const HistoricEvent &h) {
+  
+}
+//lee fecha, almohadilla, ac, almohadilla
 };
