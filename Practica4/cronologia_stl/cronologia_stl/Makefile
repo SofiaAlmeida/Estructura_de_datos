@@ -7,6 +7,7 @@ CPPFLAGS = -Wall -g  -I$(INC) -c
 
 
 all: $(BIN)/pruebacronologia
+
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
