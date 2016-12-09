@@ -4,29 +4,27 @@ using namespace std;
 
 int main () {
 
-  cout << "Prueba de la clase evento histórico: \n" << "Prueba constructores:\n" << endl;
+  cout << "Prueba de la clase evento histórico: \n" << "Prueba constructores:" << endl;
                                       // PROBAMOS CONSTRUCTORES
   set<string> set_strines;
   set_strines.insert("hola");
   set_strines.insert("adios");
-  HistoricEvent vacio, fecha_string(1621,"Lamiamamma"),fecha_set(2048, set_strines);
+  pair p<2014, set_strines>;
+  HistoricEvent vacio, fecha_string(1621,"Lamiamamma"), fecha_set(2048, set_strines), pair(p), copia(fecha_string);
 
 // Mostramos lo mostrable
-
+  cout << "Debería mostrar: Lamiamamma\n hola adios\n 2014 2"
+    cout << "Muestra:\n";
   cout << fecha_string[0] << endl;
-  fecha_set[0];
-  fecha_set[1];
+  cout << fecha_set[0] << " ";
+  cout << fecha_set[1] << endl;
 
+  cout << pair.get_date() << " " << pair.befalls_size() << endl;
   // A PARTIR DE AQUÍ NO ESTÁ ADAPTADO
-// Probamos get_date()
-  int fecha_fechastrin = fecha_string.get_date();
+  set<string> set_string = copia.get_befalls();
+  copia.set_date(2040);
 
-  cout << "La fecha de fecha_string (\"Lamiamamma\") es: " << fecha_fechastrin << endl;
-
-
-// Probamos get_befalls();
-  vector<string> test_get_befalls = fecha_vector.get_befalls();
-  cout << "Test_get_befalls (prueba de get_befalls) devuelve un vector que contiene: " << test_get_befalls[0] << "  " << test_get_befalls[1] << endl;
+  cout << copia.get_date() << " " << set_string << endl;
 
 // Probamos befalls_size()
   cout << "El HistoricEvent vacío tiene (prueba de befalls_size): " << vacio.befalls_size() << endl;

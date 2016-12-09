@@ -1,3 +1,5 @@
+#include "historic_event.hpp"
+
 // Constructor
 HistoricEvent::HistoricEvent(int d, const string& s) {
   p.first = d;
@@ -55,12 +57,34 @@ HistoricEvent& operator+(const HistoricEvent &h) {
 }
 
 // Sobrecarga <<
-bool operator<<(ostream& os, const HistoricEvent &h) {
+ostream& operator<<(ostream& os, const HistoricEvent &h) {
+  HistoricEvent::const_iterator c_it;
   
+  os << h.get_date();
+  for(c_it = p.second.cbegin(), c_it != p.second.cend(), ++c_it)
+    os << "#" << *c_it;
+
+  os << endl;
+
+  return os;
 }
 
-bool operator>>(istream& is, const HistoricEvent &h) {
-  
+istream& operator>>(istream& is, const HistoricEvent &h) {
+  string buffer, aux;
+  int pos;
+
+  is >> buffer;
+
+  pos = find('#');
+  aux = buffer.substr(0, --pos);
+  h.set_date(atoi(aux));
+  buffer.erase(0, ++pos);
+
+  while((pos = find('#')) != string::npos) {
+    aux = buffer.substr(0, --pos);
+    buffer.erase(0, ++pos);
+    h.add_befall(aux);
+  }
+
+  return is;
 }
-//lee fecha, almohadilla, ac, almohadilla
-};

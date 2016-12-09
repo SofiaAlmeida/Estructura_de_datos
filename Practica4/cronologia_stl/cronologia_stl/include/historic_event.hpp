@@ -196,14 +196,14 @@ public:
    * @param h HistoricEvent a comparar con el objeto implícito
    * @retval true si el año del objeto implícito es menor que el de h
    */
-  friend bool operator<<(ostream& os, const HistoricEvent &h);
+  friend ostream& operator<<(ostream &os, const HistoricEvent &h);
 
   /**
    * @brief Sobrecarga del operador >
    * @param h HistoricEvent a comparar con el objeto implícito
    * @retval true si el año del objeto implícito es mayor que el de h
    */
-  friend bool operator>>(istream& is, const HistoricEvent &h);
+  friend istream& operator>>(istream &is, const HistoricEvent &h);
 };
 
 #endif
