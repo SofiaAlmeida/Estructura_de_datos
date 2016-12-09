@@ -1,11 +1,11 @@
 #include "chronology.hpp"
 
-//Constructor copia
+// Constructor copia
 Chronology::Chronology(const Chronology &chrono) {
   chrono.events = events;
 }
 
-//Constructor
+// Constructor
 Chronology::Chronology(vector<HistoricEvent> h) {
   int size = h.size();
   for(int i = 0; i < size; ++i) {
@@ -13,13 +13,13 @@ Chronology::Chronology(vector<HistoricEvent> h) {
   }
 }
 
-//Obtener vector de befalls
+// Obtener vector de befalls
 set<string> Chronology::get_befalls(int date) {
   Chronology::iterator it = find(date);
   return (*it).second.second;
 }
 
-//Insertar acontecimiento
+// Insertar acontecimiento
 void Chronology::InsertBefall(int date, const string &s) {
   Chronology::iterator it = events.find(date);
 
@@ -33,7 +33,7 @@ void Chronology::InsertBefall(int date, const string &s) {
   }
 }
 
-//Insertar evento
+// Insertar evento
 bool Chronology::InsertEvent(const HistoricEvent &h) {
   Chronology::iterator it = events.find(h.first);
 
@@ -46,7 +46,7 @@ bool Chronology::InsertEvent(const HistoricEvent &h) {
   }
 }
 
-//Borrar evento
+// Borrar evento
 void Chronology::rm_event(int date) {
   //Solo se ejecutará si hay un evento con esa fecha
   Chronology::iterator it;
@@ -55,54 +55,47 @@ void Chronology::rm_event(int date) {
   }
 }
 
-//Mezclar dos cronologías
-Chronology& Chronology::merge(const Chronology &c) {
-  Chronology::iterator it;
-  for(it = c.events.begin(); it != c.events.end(); ++it) {
-    (*this).InsertEvent((*it).second);
-  }
-  
-  return *this;
-}
-
 //Eventos anteriores
 map<int, HistoricEvent> Chronology::prev_events(int d) {
-  map<int, HistoricEvent> result;
+  Chronology result;
   Chronology::iterator tope = events.find(date);
   Chronology::iterator it;
 
   for(it = events.begin(); it != tope; ++it) {
-    result.InsertEvent((*it).second);
+    result.insert_event((*it).second);
   }
   
   return result;
 }
 
-//Eventos posteriores
+// Eventos posteriores
  map<int, HistoricEvent> Chronology::post_events(int d) {
-   map<int, HistoricEvent> result;
+   Chronology result;
    Chronology::iterator it;
    
    for(it = events.find(date); it != events.end(); ++it) {
-     result.InsertEvent(it->second);
+     result.insert_event(it->second);
    }
 
    return result;
 }
 
-//Eventos en un rango
+// Eventos en un rango
  map<int, HistoricEvent> Chronology::range(int inf, int sup) {
   if (inf > sup)
     std::swap(inf,sup);
+  Chronology result;
   Chronology::iterator tope = events.find(sup);
   Chronology::iterator it;
   
   for(it = events.find(inf); it != tope; ++it) {
-    result.InsertEvent(it->second);
+    result.insert_event(it->second);
   }
+
+  return result;
 }
 
-//Buscar una palabra
+// Buscar una palabra
  Chronology Chronology::word_search(const string &s) {
    Chronology result;
    HistoricEvent aux;
@@ -111,12 +104,21 @@ map<int, HistoricEvent> Chronology::prev_events(int d) {
    for(c_it = cbegin(), c_it != cend(); ++c_it) 
      if((*c_it).second.search(s)) {
        aux = (*c_it).second.get_coincidences(s);//IMPLEMENTAR EN HISTORICEVENT
-       result.InsertEvent(aux);
+       result.insert_event(aux);
      }
 	
    return result;
 }
-
+ //Sobrecarga operador +
+Chronology& Chronology::operator+(const Chronology &c) {
+  Chronology::iterator it;
+  
+  for(it = c.events.begin(); it != c.events.end(); ++it) {
+    (*this).insert_event((*it).second);
+  }
+  
+  return *this;
+}
 
 // Operador <<
 ostream& operator<<(ostream &os, const Chronology &c) {
@@ -132,12 +134,12 @@ ostream& operator<<(ostream &os, const Chronology &c) {
   return os;
 }
 
-//Operador >>
+// Operador >>
 istream& operator>>(istream &is, Chronology &c) {
   HistoricEvent h;
   //COMPROBAR QUE ESTÁ SOBRECARGADO >>
   while(is >> h) {
-    c.InsertEvent(h);
+    c.insert_event(h);
   }
   
   return is;

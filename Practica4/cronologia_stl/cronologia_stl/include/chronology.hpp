@@ -93,56 +93,6 @@ class Chronology {
    */
   const_iterator cend() const {return events.cend();}
 
-  
-  //AQUI FALTAN OTRAS FUNCIONES DE LOS ITERADORES
-  //++,--,*,=,!=,==
-
-  /**
-   * @brief Operador de incremento
-   * @pre El iterador NO está al final del recorrido
-   *      Es distinto de end()
-   * @return Referencia al iterador receptor
-   * 
-   * Hace que el iterador apunte a la posición siguiente en el
-   * contenedor y lo devuelve
-   */
-  const_iterator& operator++() //{???}
-
-  /**
-   * @brief Operador de decremento
-   * @pre El iterador NO está al principio del recorrido.
-   *      Es distinto de begin()
-   * @return Referencia al iterador receptor.
-   *         Hace que el iterador apunte a la posición anterior
-   *         en el contenedor y lo devuelve
-   */
-  const_iterator& operator--() //{???}
-
-  /**
-   * @brief Obtener el elemento al que apunta el iterador
-   * @pre El iterador NO está al final del recorrido.
-   *      Es distinto de end()
-   * @return Elemento del contenedor en la posición apuntado
-   *         por el iterador
-   */
-  HistoricEvent operator*() const //{???}
-
-  /**
-   * @brief Comparación de igualdad
-   * @param i Segundo iterador en la comparación.
-   * @return true, si el receptor e 'i' tienen el mismo valor.
-   *         false, en otro caso.
-   */
-    bool operator==(const const_iterator& i) //{???}
-
-  /**
-   * @brief Comparación de desigualdad
-   * @param i Segundo iterador en la comparación
-   * @return true, si el receptor e 'i' tienen un valor distinto.
-   * false, en otro caso
-   */
-    bool operator!=(const const_iterator& i); //{???}
-  
   /**
    * @brief Eventos
    * @return Devuelve un map de eventos Históricos
@@ -162,14 +112,14 @@ class Chronology {
    * @param s Nombre del evento
    * @return Void
    */
-  void InsertBefall(int date, const string &s);
+  void insert_befall(int date, const string &s);
 
   /**
    * @brief Añade un HistoricEvent a la cronología
    * @param h Evento a añadir
    * @return Void
    */
-  bool InsertEvent(const HistoricEvent &h);
+  bool insert_event(const HistoricEvent &h);
 
   /**
    * @brief Borra un evento
@@ -179,33 +129,25 @@ class Chronology {
   void rm_event(int date);
 
   /**
-   * @brief Mezclar de forma ordenada dos cronologías
-   * @param c Cronología a mezclar con la implícita
-   * @return Cronología mezclada y ordenada
+   * @brief Eventos anteriores
+   * @param d Año hasta el que guardar los eventos
+   * @return Map con los eventos correspondientes
    */
-  Chronology& merge(const Chronology &c);
-
-  /** @brief Suma la cronología implícita con la que es pasada como argumento
-   * @param chrono Cronología a sumar
-   * @return Cronología suma de ambas
-   */
-
-  map<int, HistoricEvent> prev_events(int d);
+  Chronology prev_events(int d);
 
   /**
    * @brief Eventos posteriores
    * @param d Año a partir del cual se buscan los eventos
    * @return Map con los eventos correspondientes
    */
-  map<int, HistoricEvent> post_events(int d);
+  Chronology post_events(int d);
 
   /** @brief  Eventos en un rango
    * @param inf Extremo inferior de la búsqueda (fecha)
    * @param sup Extremo superior de la búsqueda (fecha)
    * @return Map con los eventos correspondientes
    */
-  map<int, HistoricEvent> range(int inf, int sup);
-  //REVISAR NOMBRE DE ESTA FUNCION
+  Chronology range(int inf, int sup);
   
   /**
    * @brief Busca los eventos en que se encuentra la palabra dada.
@@ -215,10 +157,28 @@ class Chronology {
    * @return Chronology con los eventos que contienen a s
    */
   Chronology word_search(const string &s, bool be_shown);
-  //ESTA SERÁ LA FUNCIÓN FILTRADO PALABRA CLAVE, IR AL PDF PARA ENCONTRAR MÁS INFORMACIÓN
-  
-  //SE ELIMINA LA SOBRECARGA DEL OPERADOR [], YA VIENE SOBRECARGADO PARA EL TIPO MAP
 
+  /**
+   * @brief Unir de forma ordenada dos cronologías
+   * @param c Cronología a unir con la implícita
+   * @return Cronología mezclada y ordenada
+   */
+  Chronology& operator+(const Chronology &c);
+  
+  /**
+  * @brief Sobrecarga del operator []
+  * @param d Año de la posición a devolver
+  * @return HistoricEvent con el año d
+  */
+  HistoricEvent& operator[](unsigned int d) {return events[d];}
+
+  /**
+   * @brief Sobrecarga del operador de asignación
+   * @param c Cronología a asignar
+   * @return Referencia a cronología asignada 
+   */
+  Chronology& operator=(const Chronology &c) {events = c.events;}
+  
   /**
    * @brief Sobrecarga del operador <<
    * @param os Flujo de salida
