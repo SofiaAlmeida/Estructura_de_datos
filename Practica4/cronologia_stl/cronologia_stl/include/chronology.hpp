@@ -26,7 +26,7 @@
 
 class Chronology {
   
- private:
+private:
   /**
    * @page repConjunto Rep del TDA Chronology
    *
@@ -46,7 +46,7 @@ class Chronology {
 
   map<int, HistoricEvent> events; /**<map de HistoricEvent>**/
 
- public:
+public:
   /**
    * @brief Constructor por defecto de la clase.
    */
@@ -158,6 +158,62 @@ class Chronology {
    */
   Chronology word_search(const string &s, bool be_shown);
 
+
+
+  
+  
+  /**
+   * @brief Une dos cronologías indicadas en una tercera
+   * @param Archivo donde se encuentra la primera cronología
+   * @param Archivo donde se encuentra la segunda cronología
+   * @param Nombre del archivo en el cual se introducirá la nueva cronología
+   * @return void
+   */
+                                                                            
+
+  void concat_chron(string input_1, string input_2, string output);
+
+  
+  /**
+   * @brief Dada una palabra clave devolvemos un subconjunto de elementos de cronología cuyos eventos contengan esa palabra
+   * @param string a buscar
+   * @return Devuelve una Chronology con los eventos coincidentes
+   */
+
+  Chronology::Chronology word_filter(const string& word);
+
+  
+  /**
+   * @brief Filtrado por dos fechas, lee de un fichero y escribe en otro
+   * @param nombre del fichero de lectura
+   * @param primera fecha
+   * @param segunda fecha
+   * @parm nombre del fichero de salida
+   * @return void 
+   */
+
+  void date_filter(const string& filein, const int& lower, const int& upper, const string& fileout);
+
+  
+  /**
+   * @brief Filtrado por dos fechas, lee de un fichero y escribe en salida estándar
+   * @param nombre del fichero de lectura
+   * @param primera fecha
+   * @param segunda fecha
+   * @return Chronology con los eventos del intervalo especificado
+   */
+
+  void date_filter(const string& filein, const int& lower, const int& upper);
+
+  
+  /**
+   * @brief Datos estadísticos acerca de la cronología: Recuento de años, número de eventos ocurridos, máximo de eventos y promedio de eventos por año(salida estándar)
+   * @param Fichero con la cronología
+   * @return void
+   */
+
+  void stats(const string& filename);
+
   /**
    * @brief Unir de forma ordenada dos cronologías
    * @param c Cronología a unir con la implícita
@@ -166,10 +222,10 @@ class Chronology {
   Chronology& operator+(const Chronology &c);
   
   /**
-  * @brief Sobrecarga del operator []
-  * @param d Año de la posición a devolver
-  * @return HistoricEvent con el año d
-  */
+   * @brief Sobrecarga del operator []
+   * @param d Año de la posición a devolver
+   * @return HistoricEvent con el año d
+   */
   HistoricEvent& operator[](unsigned int d) {return events[d];}
 
   /**

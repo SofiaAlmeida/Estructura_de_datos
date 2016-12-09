@@ -1,8 +1,10 @@
 /**
   * Funcionalidades extra: Dentro de la clase cronología implementaremos los siguientes métodos extra:
   * 
-  * -Unión de cronologías: Inidicadas dos cronologías crea una tercera unión de ambas y las almacena en un nuevo fichero
-  *
+  * -Unión de cronologías
+  * -Filtro por palabras
+  * -Filtro por rango de fecha
+  * -Estadísticas
   */
 
 
@@ -13,7 +15,7 @@
   * @param Nombre del archivo en el cual se introducirá la nueva cronología
   * @return void
   */
-                                                                              // NOTE: Los métodos en mayúscula o minúscula? 
+                                                                            
 
 void concat_chron(string input_1, string input_2, string output){
 
@@ -21,8 +23,8 @@ void concat_chron(string input_1, string input_2, string output){
 
   ifstream file1, file2;
   
-  if ( file1.open(input_1)){					// Abrimos los ficheros indicados y de ellos leemos los 
-    file1 >> chron1;		// NOTE: No tengo claro si esto es así
+  if (file1.open(input_1)){				 
+    file1 >> chron1;	
     file1.close();
   }
   else
@@ -36,19 +38,7 @@ void concat_chron(string input_1, string input_2, string output){
   else
     cout << "No se pudo leer el archivo " << input_2 << endl;
 
-  // Aquí empezamos a copiar y unir ambas cronologías, que depende de los métodos de los que dispongamos en chronology así haremos:
-
-  // NOTE: COMO merge(Chronology) está implementado en cronología podemos hacer uso de ese método
-  /*
-    // Si el operador + en chronology está implementado junto al de asignación podemos usar simplemente
-    	chron3 = chron1 + chron2; (+ devolvería el objeto suma de ambos y = lo asignaría)
-
-    // Si no lo está entonces habría que apañárselas de otro modo, por ejemplo copiando chron1 en chron3 y luego recorrer chron2 insertando bien nuevos pairs si la 
-    // clave no coincide con ninguna de las existentes o si coincide añadiendo los eventos al set de esa clave
-
-
-   */
-    
+  chron3 = chron1 + chron2; 
 
   ofstream file3;
   
@@ -72,7 +62,6 @@ void concat_chron(string input_1, string input_2, string output){
   */
 
 Chronology::Chronology word_filter(const string& word){
-  //DOING
 
   Chronology chron;
   istream input;
@@ -84,8 +73,8 @@ Chronology::Chronology word_filter(const string& word){
   else
     cout << "Error en la apertura del fichero " << word << endl;
 
-  chron = word_search(word, false); 		//false evita que se muestre por la salida estándar
-
+  chron = word_search(word);
+  
   return chron;
 }
 
@@ -95,11 +84,10 @@ Chronology::Chronology word_filter(const string& word){
   * @param primera fecha
   * @param segunda fecha
   * @parm nombre del fichero de salida
-  * @return Chronology con los eventos del intervalo especificado
+  * @return void 
   */
 
 void date_filter(const string& filein, const int& lower, const int& upper, const string& fileout){
-  // TODO
 
   Chronology chron;
   istream in;
@@ -111,8 +99,7 @@ void date_filter(const string& filein, const int& lower, const int& upper, const
   else
     cout << "Error en la apertura del fichero " << filein << endl;
 
-  chron.events = range(lower, upper); 		// NOTE: Tal vez esto no funcione
-  // Alternativa: Implementar un constructor que acepte un map<int, HistoricEvent> para poder hacer Chronology(chron.range(int,int)) (que no sé si en un constructor se puede llamar a una función, tendría sentido que si) (en este caso habría que crear una nueva cronología resultante)
+  chron = range(lower, upper);
 
   ofstream out;
   
@@ -134,8 +121,7 @@ void date_filter(const string& filein, const int& lower, const int& upper, const
   */
 
 void date_filter(const string& filein, const int& lower, const int& upper){
-  // TODO
-
+ 
   Chronology chron;
   istream in;
 
@@ -146,9 +132,8 @@ void date_filter(const string& filein, const int& lower, const int& upper){
   else
     cout << "Error en la apertura del fichero " << filein << endl;
 
-  chron.events = range(lower, upper); 		// NOTE: Tal vez esto no funcione
-  // Alternativa: Implementar un constructor que acepte un map<int, HistoricEvent> para poder hacer Chronology(chron.range(int,int)) (que no sé si en un constructor se puede llamar a una función, tendría sentido que si) (en este caso habría que crear una nueva cronología resultante)
-
+  chron = range(lower, upper);
+  
   cout << chron;
 }
 
@@ -160,7 +145,6 @@ void date_filter(const string& filein, const int& lower, const int& upper){
   */
 
 void stats(const string& filename){
-  //TODO
 
   istream in;
   Chronology chron;
@@ -172,23 +156,18 @@ void stats(const string& filename){
   else
     cout << "Error en la apertura de " << filename << endl;
 
-  int total_years = 0;
-  int total_befalls = 0, mean_befalls; // Total de eventos y promedio de eventos/año
+  double total_years = 0;
+  double total_befalls = 0, mean_befalls; // Total de eventos y promedio de eventos/año
 
   Chronology::const_iterator c_it;
-  HistoricEvent::const_iterator chron_c_it;
 
-  for(c_it = begin(); c_it != end(); ++it){  // ESTO NO SE HACE A PELO
-    total_years++;
-
-    for(chron_c_it = c_it->begin(); chron_c_it != c_it->end(); ++chron_c_it){	//FIXME: Poner bien cómo se recorre todos los Befalls de cada HistoricEvent
-      total_befalls++;
-    }
-  }
-
-	  //Quiero recorrer cada Befall de cada HistoricEvent dentro de esta Chronology
-
-  mean_befalls = total_befalls / total_years;  // Con enteros igual no hace bien la media :/
+  total_years = events.size();
+  
+  for(c_it = begin(); c_it != end(); ++it) 
+    total_befalls += (*it).second.befalls_size();
+  
+  mean_befalls = total_befalls / total_years;
+  
   cout << "Hay un total de " << total_befalls << " ocurridos en " << total_years << " años\nEsto hace una media de " << mean_befalls << " eventos/año" << endl;
   
 }
