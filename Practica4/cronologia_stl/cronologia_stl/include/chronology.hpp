@@ -79,7 +79,7 @@ class Chronology {
    * @brief Primer elemento del map
    * @return Iterador constante señalando al primer elemento
    */
-  const_iterator begin() const {return events.cbegin();}
+  const_iterator cbegin() const {return events.cbegin();}
 
   /**
    * @brief Último elemento del map
@@ -91,7 +91,7 @@ class Chronology {
    * @brief Último elemento del map
    * @return Iterador constante señalando al último elemento
    */
-  const_iterator end() const {return events.cend();}
+  const_iterator cend() const {return events.cend();}
 
   
   //AQUI FALTAN OTRAS FUNCIONES DE LOS ITERADORES
@@ -179,30 +179,17 @@ class Chronology {
   void rm_event(int date);
 
   /**
-   * @brief Ordenar por fecha
-   * @return Cronología ordenada
-   */
-  Chronology& sort(); //(?)
-
-  /**
    * @brief Mezclar de forma ordenada dos cronologías
    * @param c Cronología a mezclar con la implícita
    * @return Cronología mezclada y ordenada
    */
-  Chronology& merge(Chronology &c);
+  Chronology& merge(const Chronology &c);
 
   /** @brief Suma la cronología implícita con la que es pasada como argumento
    * @param chrono Cronología a sumar
    * @return Cronología suma de ambas
    */
-  Chronology sum_chrono(const Chronology &chron2);
-  //(?) Esta función hace lo mismo que la anterior, no???
-  
-  /**
-   * @brief Eventos anteriores
-   * @param d Año a partir del cual se buscan los eventos
-   * @return Map con los eventos correspondientes
-   */
+
   map<int, HistoricEvent> prev_events(int d);
 
   /**

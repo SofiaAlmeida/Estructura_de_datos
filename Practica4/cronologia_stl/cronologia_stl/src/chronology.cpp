@@ -55,42 +55,14 @@ void Chronology::rm_event(int date) {
   }
 }
 
-//Ordenar por fecha
-Chronology& Chronology::sort() {    
-  //Al ser un map, los eventos ya se insertan de forma ordenada
-  //(creo)
-}
-
 //Mezclar dos cronologías
-Chronology& Chronology::merge(Chronology &c) {
+Chronology& Chronology::merge(const Chronology &c) {
   Chronology::iterator it;
   for(it = c.events.begin(); it != c.events.end(); ++it) {
-    (*this).c.InsertEvent((*it).second);
+    (*this).InsertEvent((*it).second);
   }
   
   return *this;
-}
-
-
-//Esta función no hace lo mismo que la anterior????
-//Sumar dos cronologías
-Chronology Chronology::sum_chrono(const Chronology &chron2){
-  vector<HistoricEvent> v;
-  int size_chron1 = event.size();
-  int size_chron2 = chron2.event.size();
-
-  for(int i = 0; i < size_chron1; ++i){
-    v.push_back(event[i]);
-  }
-
-  for(int i = 0; i < size_chron2; i++){
-    v.push_back(chron2.event[i]);
-  }
-
-  Chronology result(v);
-  result.sort();
-
-  return result;
 }
 
 //Eventos anteriores
@@ -119,7 +91,6 @@ map<int, HistoricEvent> Chronology::prev_events(int d) {
 }
 
 //Eventos en un rango
- //REVISAR NOMBRE DE ESTA FUNCION
  map<int, HistoricEvent> Chronology::range(int inf, int sup) {
   if (inf > sup)
     std::swap(inf,sup);
@@ -132,19 +103,18 @@ map<int, HistoricEvent> Chronology::prev_events(int d) {
 }
 
 //Buscar una palabra
-Chronology Chronology::word_search(const string &s, bool be_shown) {
-   Chronology c;
-   int size = event.size();
+ Chronology Chronology::word_search(const string &s) {
+   Chronology result;
+   HistoricEvent aux;
+   Chronology::const_iterator c_it;
 
-   for(int i = 0; i < size; ++i)
-      if(event[i].search(s,0))
-         c.InsertEvent(event[i]);
-
-   if(be_shown) {
-      cout << c;
-   }
-
-   return c;
+   for(c_it = cbegin(), c_it != cend(); ++c_it) 
+     if((*c_it).second.search(s)) {
+       aux = (*c_it).second.get_coincidences(s);//IMPLEMENTAR EN HISTORICEVENT
+       result.InsertEvent(aux);
+     }
+	
+   return result;
 }
 
 
