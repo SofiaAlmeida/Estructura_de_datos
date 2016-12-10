@@ -50,11 +50,43 @@ int main () {
 
   cout << prueba_get_befalls << endl;
 
-  // Probamos añadir un acontecimiento
+  // Probamos add_befalls() (añadir un acontecimiento)
 
   cout << "Añadimos un acontecimiento, \"cositaquepasó\":" << endl;
   prueba_get_befalls.add_befall("cositaquepasó");
   cout << prueba_get_befalls << endl;
+
+
+  // Probamos rm_befall(string)
+
+  cout << "Lo que la vida te da, la vida te lo quita, borramos \"cositaquepasó\":" << endl;
+
+  prueba_get_befalls.rm_befall("\"cositaquepasó\"");
+
+  cout << prueba_get_befalls << endl;
+  
+
+  // Probamos search(string)
+  cout << "Probamos si encontramos la cadena \"hola\", y \"patitos\"\n¿Hay patitos? ";
+  if (search("patitos"))
+    cout << " Sí :D" << endl;
+  else
+    cout << " NO HAY PATITOS :___" << endl;
+
+  cout << "¿Habrá al menos alguien que salude y diga \"hola\"? ";
+
+  if (search("hola"))
+    cout << " Sí, menos da una piedra :/" << endl;
+  else
+    cout << "Tampoco, matarme ya por la yuyee" << endl;
+
+
+  //Probamos get_coincidences
+  
+
+  
+	
+  
   
     
   /*// A PARTIR DE AQUÍ NO ESTÁ ADAPTADO

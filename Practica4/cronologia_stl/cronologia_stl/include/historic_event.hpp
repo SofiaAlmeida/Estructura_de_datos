@@ -11,8 +11,9 @@
 #define __HISTORICEVENT
 
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <vector> //
+#include <vector>
 #include <utility>
 #include <set>
 
@@ -148,11 +149,11 @@ public:
   void add_befall(const string &s);
 
   /**
-   * @brief Borrar acontecimientos
+   * @brief Borra el acontecimiento indicado 
    * @param s Acontecimiento a borrar
    * @return Void
    */
-  void rm_befalls(const string &s) {p.second.erase(s);};
+  void rm_befall(const string &s) {p.second.erase(s);};
 
   /**
    * @brief Busca una cadena dentro de un set de acontecimientos
@@ -164,7 +165,7 @@ public:
   /**
    * @brief Busca una cadena dentro de un set de acontecimientos
    * @param s String a buscar
-   * @return Evento Histórico con los acontecimientos que contienen dicho string
+   * @return HistoricEvent con los acontecimientos que contienen dicho string
    */
   HistoricEvent get_coincidences(const string &s) const;
 
