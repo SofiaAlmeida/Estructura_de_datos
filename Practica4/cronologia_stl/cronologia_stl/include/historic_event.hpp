@@ -160,7 +160,7 @@ public:
    * @param s String a buscar
    * @retval True si encuentra el string
    */
-  bool search(const string &s);
+  bool search(const string &s) const;
 
   /**
    * @brief Busca una cadena dentro de un set de acontecimientos
@@ -176,14 +176,6 @@ public:
    * @retval True si este objeto es igual a h
    */
   bool operator==(const HistoricEvent &h) {return p == h.p;}
-
-  /**
-   * @brief Sobrecarga del operador []
-   * @param i Posición 
-   * @return String i-ésimo del set
-   */
-  //string operator[](int i) {p.second[i];}
-  //NO FUNCIONA ASÍ, SI NO LO ESTAMOS UTILIZANDO LO PODEMOS QUITAR
  
   /**
    * @brief Sobrecarga del operador +

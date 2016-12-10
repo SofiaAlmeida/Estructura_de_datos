@@ -9,7 +9,7 @@
 #ifndef __CHRONOLOGY
 #define __CHRONOLOGY
 
-#include "historic_event.h"
+#include "historic_event.hpp"
 #include <iostream>
 #include <map>
 
@@ -57,8 +57,8 @@ public:
    * @param chrono
    * @return Cronología con las propiedades de la anterior
    */
-  Chronology(const Chronology& chrono);
-
+  Chronology(const Chronology& chrono) {events = chrono.events;}
+    
   /**
    * @brief Constructor
    * @param h Vector de eventos
@@ -66,8 +66,8 @@ public:
    */
   Chronology(vector<HistoricEvent> h);
 
-  typedef map<string, HistoricEvent>::iterator iterator;
-  typedef map<string, HistoricEvent>::const_iterator const_iterator;
+  typedef map<int, HistoricEvent>::iterator iterator;
+  typedef map<int, HistoricEvent>::const_iterator const_iterator;
 
   /**
    * @brief Primer elemento del map
@@ -151,65 +151,51 @@ public:
   
   /**
    * @brief Busca los eventos en que se encuentra la palabra dada.
-   *        Además, puede mostrar dichos eventos
    * @param s Palabra/s a buscar
-   * @param be_shown si es true se mostrarán los eventos
    * @return Chronology con los eventos que contienen a s
    */
-  Chronology word_search(const string &s, bool be_shown);
-
-
-
-  
+  Chronology word_search(const string &s);
   
   /**
    * @brief Une dos cronologías indicadas en una tercera
-   * @param Archivo donde se encuentra la primera cronología
-   * @param Archivo donde se encuentra la segunda cronología
-   * @param Nombre del archivo en el cual se introducirá la nueva cronología
-   * @return void
+   * @param input_1 Archivo donde se encuentra la primera cronología
+   * @param input_2 Archivo donde se encuentra la segunda cronología
+   * @param output Nombre del archivo en el cual se introducirá la nueva cronología
+   * @return Void
    */
-                                                                            
-
   void concat_chron(string input_1, string input_2, string output);
-
   
   /**
    * @brief Dada una palabra clave devolvemos un subconjunto de elementos de cronología cuyos eventos contengan esa palabra
-   * @param string a buscar
-   * @return Devuelve una Chronology con los eventos coincidentes
+   * @param word String a buscar
+   * @param in Fichero en el que buscar
+   * @return Chronology con los eventos coincidentes
    */
-
-  Chronology::Chronology word_filter(const string& word);
-
+  Chronology word_filter(const string& word, const string& in);
   
   /**
    * @brief Filtrado por dos fechas, lee de un fichero y escribe en otro
-   * @param nombre del fichero de lectura
-   * @param primera fecha
-   * @param segunda fecha
-   * @parm nombre del fichero de salida
-   * @return void 
+   * @param filein Nombre del fichero de lectura
+   * @param lower Primera fecha
+   * @param upper Segunda fecha
+   * @parm fileout Nombre del fichero de salida
+   * @return Void 
    */
-
   void date_filter(const string& filein, const int& lower, const int& upper, const string& fileout);
-
   
   /**
    * @brief Filtrado por dos fechas, lee de un fichero y escribe en salida estándar
-   * @param nombre del fichero de lectura
-   * @param primera fecha
-   * @param segunda fecha
+   * @param filein Nombre del fichero de lectura
+   * @param lower Primera fecha
+   * @param upper Segunda fecha
    * @return Chronology con los eventos del intervalo especificado
    */
-
   void date_filter(const string& filein, const int& lower, const int& upper);
-
   
   /**
    * @brief Datos estadísticos acerca de la cronología: Recuento de años, número de eventos ocurridos, máximo de eventos y promedio de eventos por año(salida estándar)
-   * @param Fichero con la cronología
-   * @return void
+   * @param filename Fichero con la cronología
+   * @return Void
    */
 
   void stats(const string& filename);

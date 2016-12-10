@@ -1,22 +1,17 @@
 #include "chronology.hpp"
 
-// Constructor copia
-Chronology::Chronology(const Chronology &chrono) {
-  chrono.events = events;
-}
-
 // Constructor
 Chronology::Chronology(vector<HistoricEvent> h) {
   int size = h.size();
   for(int i = 0; i < size; ++i) {
-    events.insert(pair<int, HistoricEvent> (h[i].first, h[i]);
+    events.insert(pair<int, HistoricEvent> (h[i].get_date(), h[i]));
 		  }
   }
 
   // Obtener vector de befalls
   set<string> Chronology::get_befalls(int date) {
-    Chronology::const_iterator c_it = find(date);
-    return (*c_it).second.second;
+    Chronology::const_iterator c_it = events.find(date);
+    return (*c_it).second.get_befalls();
   }
 
   // Insertar acontecimiento
@@ -29,20 +24,20 @@ Chronology::Chronology(vector<HistoricEvent> h) {
     }
     else {
       HistoricEvent h(date, s);
-      insert(pair<int, HistoricEvent> (h.get_date(), h));
+      events.insert(pair<int, HistoricEvent> (h.get_date(), h));
     }
   }
 
   // Insertar evento
   bool Chronology::insert_event(const HistoricEvent &h) {
-    Chronology::iterator it = events.find(h.first);
+    Chronology::iterator it = events.find(h.get_date());
 
     if(it == events.end()) {
-      insert(pair<int, HistoricEvent> (h.first, h));
+      events.insert(pair<int, HistoricEvent> (h.get_date(), h));
     }
     else {
       //Si la fecha ya está, unimos los dos eventos
-      it.second + h; //COMPROBAR QUE ESTÁ SOBRECARGADA + EN HISTORICEVENT
+      (*it).second + h; //COMPROBAR QUE ESTÁ SOBRECARGADA + EN HISTORICEVENT
     }
   }
 
@@ -58,7 +53,7 @@ Chronology::Chronology(vector<HistoricEvent> h) {
   //Eventos anteriores
   Chronology Chronology::prev_events(int d) {
     Chronology result;
-    Chronology::const_iterator tope = events.find(date);
+    Chronology::const_iterator tope = events.find(d);
     Chronology::const_iterator c_it;
 
     for(c_it = events.begin(); c_it != tope; ++c_it) {
@@ -73,7 +68,7 @@ Chronology::Chronology(vector<HistoricEvent> h) {
     Chronology result;
     Chronology::const_iterator c_it;
    
-    for(c_it = events.find(date); c_it != events.end(); ++c_it) {
+    for(c_it = events.find(d); c_it != events.end(); ++c_it) {
       result.insert_event(c_it->second);
     }
 
@@ -81,7 +76,7 @@ Chronology::Chronology(vector<HistoricEvent> h) {
   }
 
   // Eventos en un rango
-  map<int, HistoricEvent> Chronology::range(int inf, int sup) {
+  Chronology Chronology::range(int inf, int sup) {
     if (inf > sup)
       std::swap(inf,sup);
     Chronology result;
@@ -101,7 +96,7 @@ Chronology::Chronology(vector<HistoricEvent> h) {
     HistoricEvent aux;
     Chronology::const_iterator c_it;
 
-    for(c_it = cbegin(), c_it != cend(); ++c_it) 
+    for(c_it = cbegin(); c_it != cend(); ++c_it) 
       if((*c_it).second.search(s)) {
 	aux = (*c_it).second.get_coincidences(s);//IMPLEMENTAR EN HISTORICEVENT
 	result.insert_event(aux);
@@ -118,16 +113,19 @@ Chronology::Chronology(vector<HistoricEvent> h) {
     Chronology chron1, chron2, chron3;
 
     ifstream file1, file2;
-  
-    if (file1.open(input_1)) {				 
+
+    file1.open(input_1);
+    
+    if (file1.is_open()) {				 
       file1 >> chron1;	
       file1.close();
     }
     else
       cout << "No se pudo leer el archivo " << input_1 << endl;
-  
 
-    if (file2.open(input_2)) {
+    file2.open(input_2);
+
+    if (file2.is_open()) {
       file2 >> chron2;
       file2.close();
     }
@@ -137,31 +135,32 @@ Chronology::Chronology(vector<HistoricEvent> h) {
     chron3 = chron1 + chron2; 
 
     ofstream file3;
-  
-    if (file3.open(output)) {
+
+    file3.open(output);
+    
+    if (file3.is_open()) {
       file3 << chron3;
       file3.close();
     }
   
     else
       cout << "No se pudo abrir el archivo " << output << endl;
-  
-  
-    return 0;
   }
 
   // Filtro por palabras
-  Chronology::Chronology word_filter(const string& word) {
+Chronology Chronology::word_filter(const string& word, const string& in) {
 
     Chronology chron;
-    istream input;
+    ifstream input;
 
-    if (input.open(word)) {
+    input.open(in);
+    
+    if (input.is_open()) {
       input >> chron;
       input.close();
     }
     else
-      cout << "Error en la apertura del fichero " << word << endl;
+      cout << "Error en la apertura del fichero " << in << endl;
 
     chron = word_search(word);
   
@@ -170,23 +169,27 @@ Chronology::Chronology(vector<HistoricEvent> h) {
 
 
   // Filtro por fecha versión salida fichero
-  void date_filter(const string& filein, const int& lower, const int& upper, const string& fileout) {
+void Chronology::date_filter(const string& filein, const int& lower, const int& upper, const string& fileout) {
 
     Chronology chron;
-    istream in;
+    ifstream in;
 
-    if (in.open(word)) {
+    in.open(filein);
+    
+    if (in.is_open()) {
       in >> chron;
       in.close();
     }
     else
       cout << "Error en la apertura del fichero " << filein << endl;
 
-    chron = range(lower, upper);
+    chron = chron.range(lower, upper);
 
     ofstream out;
-  
-    if (out.open(fileout)) {
+
+    out.open(fileout);
+    
+    if (out.is_open()) {
       out << chron;
       out.close();
     }
@@ -196,88 +199,89 @@ Chronology::Chronology(vector<HistoricEvent> h) {
 
 
   // Filtro por fecha versión salida estándar
-  void date_filter(const string& filein, const int& lower, const int& upper) { 
+void Chronology::date_filter(const string& filein, const int& lower, const int& upper) { 
  
     Chronology chron;
-    istream in;
+    ifstream in;
 
-    if (in.open(word)) {
+    in.open(filein);
+    
+    if (in.is_open()) {
       in >> chron;
       in.close();
     }
     else
       cout << "Error en la apertura del fichero " << filein << endl;
-
-    chron = range(lower, upper);
-  
-    cout << chron;
-  }
-
-  // Estadísticas 
-  void stats(const string& filename){
-
-    istream in;
-    Chronology chron;
-
-    if (in.open(filename)){
-      in >> chron;
-      in.close();
-    }
-    else
-      cout << "Error en la apertura de " << filename << endl;
-
-    double total_years = 0;
-    double total_befalls = 0, mean_befalls; // Total de eventos y promedio de eventos/año
-
-    Chronology::const_iterator c_it;
-
-    total_years = events.size();
-  
-    for(c_it = begin(); c_it != end(); ++it) 
-      total_befalls += (*it).second.befalls_size();
-  
-    mean_befalls = total_befalls / total_years;
-  
-    cout << "Hay un total de " << total_befalls << " ocurridos en " << total_years << " años\nEsto hace una media de " << mean_befalls << " eventos/año" << endl;
-  
-  }
-
-
-
- 
-  //Sobrecarga operador +
-  Chronology& Chronology::operator+(const Chronology &c) {
-    Chronology::const_iterator c_it;
-  
-    for(c_it = c.events.begin(); c_it != c.events.end(); ++c_it) {
-      (*this).insert_event((*c_it).second);
-    }
-  
-    return *this;
-  }
-
-  // Operador <<
-  ostream& operator<<(ostream &os, const Chronology &c) {
-    Chronology::const_iterator c_it;
     
-    for(c_it = c.events.begin(); c_it != c.events.end(); ++c_it) {
-      os << (*c_it).second; 		// Este operador deberá escribir la fecha seguido de todos los acontecimientos separados por #
-      os << "\n"; 
-    }
+    chron = chron.range(lower, upper);
+    
+    cout << chron;
+}
 
-    os << endl;
+// Estadísticas 
+void Chronology::stats(const string& filename) {
 
-    return os;
-  }
+  ifstream in;
+  Chronology chron;
 
-  // Operador >>
-  istream& operator>>(istream &is, Chronology &c) {
-    HistoricEvent h;
-   
-    while(is >> h) {
-      c.insert_event(h);
-    }
+  in.open(filename);
   
-    return is;
+  if (in.is_open()) {
+    in >> chron;
+    in.close();
   }
+  else
+    cout << "Error en la apertura de " << filename << endl;
+
+  double total_years = 0;
+  double total_befalls = 0, mean_befalls; // Total de eventos y promedio de eventos/año
+
+  Chronology::const_iterator c_it;
+
+  total_years = chron.events.size();
+  
+  for(c_it = chron.cbegin(); c_it != chron.cend(); ++c_it) 
+    total_befalls += (*c_it).second.befalls_size();
+  
+  mean_befalls = total_befalls / total_years;
+  
+  cout << "Hay un total de " << total_befalls << " ocurridos en " << total_years << " años\nEsto hace una media de " << mean_befalls << " eventos/año" << endl;
+  
+}
+
+//Sobrecarga operador +
+Chronology& Chronology::operator+(const Chronology &c) {
+  Chronology::const_iterator c_it;
+  
+  for(c_it = c.events.begin(); c_it != c.events.end(); ++c_it) {
+    (*this).insert_event((*c_it).second);
+  }
+  
+  return *this;
+}
+
+// Operador <<
+ostream& operator<<(ostream &os, const Chronology &c) {
+  Chronology::const_iterator c_it;
+    
+  for(c_it = c.events.begin(); c_it != c.events.end(); ++c_it) {
+    os << (*c_it).second; 		// Este operador deberá escribir la fecha seguido de todos los acontecimientos separados por #
+    os << "\n"; 
+  }
+
+  os << endl;
+
+  return os;
+}
+
+// Operador >>
+istream& operator>>(istream &is, Chronology &c) {
+  HistoricEvent h;
+   
+  while(is >> h) {
+    c.insert_event(h);
+  }
+  
+  return is;
+}
 

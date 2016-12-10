@@ -29,7 +29,7 @@ documentacion:
 $(BIN)/% : $(OBJ)/%.o $(LIBNAME)
 	$(CXX) $(CCFLAGS) $(IFLAGS) ./$(INC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
-$(LIBNAME) : $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)  $(SOURCESLIB:$(SRC)/%.cpp=$(INC)/%.h)
+$(LIBNAME) : $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)  $(SOURCESLIB:$(SRC)/%.cpp=$(INC)/%.hpp)
 	$(AR) $(LIBFLAGS) $(LIBNAME) $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)
 
 $(OBJ)/%.o : $(SRC)/%.cpp
