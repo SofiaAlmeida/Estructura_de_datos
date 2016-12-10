@@ -81,76 +81,58 @@ int main () {
     cout << "Tampoco, matarme ya por la yuyee" << endl;
 
 
-  //Probamos get_coincidences
+  //Probamos get_coincidences			
+  HistoricEvent prueba_coincidences(prueba_get_befalls.get_coincidences("hola"));
+
+  cout << "Si get_coincidences(string) funciona, esta Chronology debería mostrar \"hola\"" << endl;
+
+  cout << prueba_coincidences << endl;
+
+  // Probamos el operador ==
+
+  cout << "Los HistoricEvents (deberían decir que no son iguales pues tienen distinta fecha) tienen: " << endl;
+
+  cout << "fecha_set: " << fecha_set << endl;
+  cout << "prueba_get_befalls: " << prueba_get_befalls << endl;
   
-
   
-	
-  
-  
-    
-  /*// A PARTIR DE AQUÍ NO ESTÁ ADAPTADO
-  
-  copia.set_date(2040);
-
-  cout << copia.get_date() << " " << set_string << endl;
-
-// Probamos befalls_size()
-  cout << "El HistoricEvent vacío tiene (prueba de befalls_size): " << vacio.befalls_size() << endl;
-
-// Probamos set_date(int)
-  fecha_string.set_date(9667);
-  cout << "La fecha de fecha_string es ahora: " << fecha_string.get_date() << " (Prueba de  setdate)" << endl;
-
-  // Probamos add_befall y rm_befalls
-
-  fecha_vector.rm_befalls("hola");
-  cout << "Eliminamos \"hola\" del HistoricEvent con hola y adios y mostramos cual es el nuevo elemento primero (prueba rm_befalls): " << endl;
-  fecha_vector.show(0);
-
-  fecha_vector.add_befall("yanosaludo");
-  cout << "Ahora para probar add_befall mostramos el segundo elemento de fecha_vector: " << endl;
-  fecha_vector.show(1);
-
-  // Prueba search(string, bool)
-
-  cout << "Ahora vamos a comprobar si \"o\" lo podemos encontrar en la cadena, y si sí lo mostraremos" << endl;
-
-  if (fecha_vector.search("o",true))
-    cout << "Encontrado y mostrado" << endl;
-
-// Prueba de operador ==
-
-  HistoricEvent igual_1(1000,"igual"), igual_2(1000,"igual"), desigual(1000,"desigual");
-
-  if(igual_1 == igual_2)
-    cout << "Probado con == que son iguales \"gual_1(1000,\"igual\"), igual_2(1000,\"igual\");\"" << endl;
+  if (prueba_get_befalls == fecha_set)
+    cout << "Los vectores fecha_set y prueba_get_befalls son iguales" << endl;
   else
-    cout << "No son iguales (== usado)" << endl;
+    cout << "Los vectores fecha_set y prueba_get_befalls no son iguales" << endl;
 
-  if(!(igual_1 == desigual))
-    cout << "\"desigual(100,\"desigual\")\" e igual_1 son distintos" << endl;
+  
+  if (fecha_set == fecha_set)
+    cout << "Los vectores fecha_set y fecha_set son iguales" << endl;
+  else
+    cout << "Los vectores fecha_set y fecha_set son distintos (ESTO ES MALO)" << endl;
 
-  // Probamos < y >
+  // Probamos el operador + (y de paso el = que no lo hemos sobrecargado)
 
-  if(fecha_vector < igual_1)
-    cout << "fecha_vector sucedió antes que los acontecimientos de igual_1" << endl;
-  else if (fecha_vector > igual_1)
-    cout << "fecha_vector sucedió después que igual_1" << endl;
+  HistoricEvent suma, sumando1(2048,"string") ;
+  
 
-    fecha_vector.show(0);
-    igual_1.show(0);
+  suma = fecha_set + sumando1;
 
-  // Probamos el operador +
+  cout << "El operador suma debería devolver un HistoricEvent con el año 2048 y con los acontecimientos: hola, adios y string" << endl;
 
-  HistoricEvent suma;
-  suma = desigual + igual_1;
+  cout << suma << endl;
 
-  cout << "Probamos a sumar desigual e igual_1 y lo mostramos en un Evento suma" << endl;
 
-  vector<string> test_sum = suma.get_befalls();
-  for(int i = 0; i < test_sum.size(); ++i) // Probamos si puede mostrar todos los Eventos de suma
-  suma.show(i);*/
+  // Probamos operador de lectura
+  HistoricEvent evento_leido;
 
+  ifstream input;
+
+  input.open("evento_prueba.txt");
+
+  if(input.isopen())
+    input >> evento_leido;
+  else
+    cout << "Error en la apertura de evento_prueba.txt. TIENE QUE EXISTIR ESE FICHERO" << endl;
+
+  cout << evento_leido << endl;
+  
+  
   return 0;
 }

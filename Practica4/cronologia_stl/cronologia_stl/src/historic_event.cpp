@@ -25,7 +25,7 @@ void HistoricEvent::add_befall(const string &s) {
     p.second.insert(s);
 }
 
-// Indica si ha encontradp string 
+// Indica si ha encontrado string 
 bool HistoricEvent::search(const string &s) {
   if(p.second.find(s) != p.second.cend())
     return true;
@@ -78,13 +78,15 @@ istream& operator>>(istream& is, HistoricEvent &h) {
   pos = buffer.find('#');
   aux = buffer.substr(0, --pos);
   h.set_date(stoi(aux));
-  buffer.erase(0, ++pos);
+  buffer.erase(0, pos);
 
   while((pos = buffer.find('#')) != string::npos) {
     aux = buffer.substr(0, --pos);
-    buffer.erase(0, ++pos);
+    buffer.erase(0, pos);
     h.add_befall(aux);
   }
 
+  h.add_befall(buffer);
+  
   return is;
 }
