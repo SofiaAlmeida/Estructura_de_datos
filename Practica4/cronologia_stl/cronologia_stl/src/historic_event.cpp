@@ -20,7 +20,7 @@ HistoricEvent::HistoricEvent(int d, const set<string> &v) {
 }
 
 // Añadir acontecimiento
-void HistoricEvent::add_befall(const string &s) {
+void HistoricEvent::add_befall(const string &s) const {
   //Insert no añade si el elemento ya está
     p.second.insert(s);
 }
