@@ -37,11 +37,12 @@ bool HistoricEvent::search(const string &s) const {
 HistoricEvent HistoricEvent::get_coincidences(const string &s) const {
   HistoricEvent result;
   HistoricEvent::const_iterator c_it;
-  //¿esto va bien?
-  while((c_it = p.second.find(s)) != p.second.cend()) {
+  
+  for(c_it = cbegin(); c_it != cend(); ++c_it){
+    if((*c_it).find(s) != string::npos)
       result.add_befall(*c_it);
   }
-
+ 
   return result;
 }
 

@@ -15,7 +15,7 @@ int main () {
   HistoricEvent vacio, fecha_string(1621,"Lamiamamma"), fecha_set(2048, set_strines), pair(p), copia(fecha_string);
 
 // Mostramos lo mostrable
-  cout << "Debería mostrar: Lamiamamma\n hola adios\n 2014 2";
+  cout << "Debería mostrar: 1621#Lamiamamma\nDebería mostrar: 2048#hola#adios\n";
   cout << "Muestra:\n";
 
   cout << fecha_string << endl;
@@ -24,6 +24,10 @@ int main () {
   cout << "Comprobamos el funcionamiento del constructor copia:\n";
 
   cout << copia << endl;
+
+  cout << "Comprobamos el funcionamiento de constructor(pair)" << endl;
+
+  cout << pair << endl;
 
   /*¿¿¿¿¿ CÓMO PROBAMOS LOS ITERADORES DIRECTAMENTE????? */
 
@@ -35,7 +39,7 @@ int main () {
   HistoricEvent prueba_get_befalls(2222,fecha_set.get_befalls()); 
 
   cout << "Probamos get_befalls():" << endl;
-  cout << prueba_get_befalls() << endl;
+  cout << prueba_get_befalls << endl;
 
   //Probamos befalls_size()
 
@@ -46,7 +50,7 @@ int main () {
 
   cout << "Vamos a cambiarle la fecha a 1111: " << endl;
 
-  prueba_get_befalls.setdate(1111);
+  prueba_get_befalls.set_date(1111);
 
   cout << prueba_get_befalls << endl;
 
@@ -61,21 +65,21 @@ int main () {
 
   cout << "Lo que la vida te da, la vida te lo quita, borramos \"cositaquepasó\":" << endl;
 
-  prueba_get_befalls.rm_befall("\"cositaquepasó\"");
+  prueba_get_befalls.rm_befall("cositaquepasó");
 
   cout << prueba_get_befalls << endl;
   
 
   // Probamos search(string)
-  cout << "Probamos si encontramos la cadena \"hola\", y \"patitos\"\n¿Hay patitos? ";
-  if (search("patitos"))
+  cout << "Probamos si encontramos la cadena \"hola\", y \"patitos\" en este prueba_get_befalls\n¿Hay patitos? ";
+  if (prueba_get_befalls.search("patitos"))
     cout << " Sí :D" << endl;
   else
     cout << " NO HAY PATITOS :___" << endl;
 
   cout << "¿Habrá al menos alguien que salude y diga \"hola\"? ";
 
-  if (search("hola"))
+  if (prueba_get_befalls.search("hola"))
     cout << " Sí, menos da una piedra :/" << endl;
   else
     cout << "Tampoco, matarme ya por la yuyee" << endl;
@@ -124,9 +128,9 @@ int main () {
 
   ifstream input;
 
-  input.open("evento_prueba.txt");
+  input.open("evento_prueba.txt", std::ifstream::in);
 
-  if(input.isopen())
+  if(input.is_open())
     input >> evento_leido;
   else
     cout << "Error en la apertura de evento_prueba.txt. TIENE QUE EXISTIR ESE FICHERO" << endl;
