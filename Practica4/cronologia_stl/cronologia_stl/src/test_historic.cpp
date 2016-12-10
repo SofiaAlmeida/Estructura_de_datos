@@ -11,19 +11,54 @@ int main () {
   set_strines.insert("hola");
   set_strines.insert("adios");
   pair<int, set<string> > p(2014, set_strines);
+  
   HistoricEvent vacio, fecha_string(1621,"Lamiamamma"), fecha_set(2048, set_strines), pair(p), copia(fecha_string);
 
 // Mostramos lo mostrable
   cout << "Debería mostrar: Lamiamamma\n hola adios\n 2014 2";
-    cout << "Muestra:\n";
+  cout << "Muestra:\n";
 
-    cout << fecha_string.get_befalls() << endl;
+  cout << fecha_string << endl;
+  cout << fecha_set << endl;
+  
+  cout << "Comprobamos el funcionamiento del constructor copia:\n";
+
+  cout << copia << endl;
+
+  /*¿¿¿¿¿ CÓMO PROBAMOS LOS ITERADORES DIRECTAMENTE????? */
+
+  // Probamos get_date
+  cout << "Probamos get_date()  (En fecha_set) :" << endl;
+  cout << fecha_set.get_date() << endl;
+
+  // Probamos get_befalls (creamos un nuevo objeto a partir del set de strings de fecha_set, pero con otro año) 
+  HistoricEvent prueba_get_befalls(2222,fecha_set.get_befalls()); 
+
+  cout << "Probamos get_befalls():" << endl;
+  cout << prueba_get_befalls() << endl;
+
+  //Probamos befalls_size()
+
+  cout << "Que tiene un tamaño de: " << endl;
+  cout << prueba_get_befalls.befalls_size() << endl;
+
+  // Probamos setdate()
+
+  cout << "Vamos a cambiarle la fecha a 1111: " << endl;
+
+  prueba_get_befalls.setdate(1111);
+
+  cout << prueba_get_befalls << endl;
+
+  // Probamos añadir un acontecimiento
+
+  cout << "Añadimos un acontecimiento, \"cositaquepasó\":" << endl;
+  prueba_get_befalls.add_befall("cositaquepasó");
+  cout << prueba_get_befalls << endl;
+  
+    
   /*// A PARTIR DE AQUÍ NO ESTÁ ADAPTADO
-    cout << fecha_set.get_befalls() << endl;
-
-  cout << pair.get_date() << " " << pair.befalls_size() << endl;
-
-  set<string> set_string = copia.get_befalls();
+  
   copia.set_date(2040);
 
   cout << copia.get_date() << " " << set_string << endl;
