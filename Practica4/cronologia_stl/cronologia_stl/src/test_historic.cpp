@@ -1,5 +1,6 @@
 #include <iostream>
-#include "historic_event.h"
+#include "historic_event.hpp"
+
 using namespace std;
 
 int main () {
@@ -9,18 +10,19 @@ int main () {
   set<string> set_strines;
   set_strines.insert("hola");
   set_strines.insert("adios");
-  pair p<2014, set_strines>;
+  pair<int, set<string> > p(2014, set_strines);
   HistoricEvent vacio, fecha_string(1621,"Lamiamamma"), fecha_set(2048, set_strines), pair(p), copia(fecha_string);
 
 // Mostramos lo mostrable
-  cout << "Debería mostrar: Lamiamamma\n hola adios\n 2014 2"
+  cout << "Debería mostrar: Lamiamamma\n hola adios\n 2014 2";
     cout << "Muestra:\n";
-  cout << fecha_string[0] << endl;
-  cout << fecha_set[0] << " ";
-  cout << fecha_set[1] << endl;
+
+    cout << fecha_string.get_befalls() << endl;
+  /*// A PARTIR DE AQUÍ NO ESTÁ ADAPTADO
+    cout << fecha_set.get_befalls() << endl;
 
   cout << pair.get_date() << " " << pair.befalls_size() << endl;
-  // A PARTIR DE AQUÍ NO ESTÁ ADAPTADO
+
   set<string> set_string = copia.get_befalls();
   copia.set_date(2040);
 
@@ -81,7 +83,7 @@ int main () {
 
   vector<string> test_sum = suma.get_befalls();
   for(int i = 0; i < test_sum.size(); ++i) // Probamos si puede mostrar todos los Eventos de suma
-    suma.show(i);
+  suma.show(i);*/
 
   return 0;
 }

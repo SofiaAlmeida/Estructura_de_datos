@@ -12,11 +12,12 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <pair>
+#include <vector> //
+#include <utility>
 #include <set>
 
 using namespace std;
+
 /**
  *  @brief T.D.A. HistoricEvent
  *
@@ -84,7 +85,7 @@ public:
    * @param c Cronología a copiar
    * @return Crea el evento histórico a partir de la cronología pasada
    */
-  HistoricEvent(const HistoricEvent &h) {p = h.p}
+  HistoricEvent(const HistoricEvent &h) {p = h.p;}
 
   typedef typename set<string>::iterator iterator;
   typedef typename set<string>::const_iterator const_iterator;
@@ -93,25 +94,25 @@ public:
    * @brief Primer elemento del set
    * @return Iterador señalando al primer elemento
    */
-  iterator begin() {return second.begin();}
+  iterator begin() {return p.second.begin();}
 
   /**
    * @brief Primer elemento del set
    * @return Iterador constante señalando al primer elemento
    */
-  const_iterator cbegin() const {return second.cbegin();}
+  const_iterator cbegin() const {return p.second.cbegin();}
 
   /**
    * @brief Último elemento del set
    * @return Iterador señalando al último elemento
    */
-  iterator end() {return second.end();}
+  iterator end() {return p.second.end();}
 
   /**
    * @brief Último elemento del set
    * @return Iterador constante señalando al último elemento
    */
-  const_iterator cend() const {return second.cend();}
+  const_iterator cend() const {return p.second.cend();}
 
   /**
    * @brief Fecha
@@ -180,8 +181,8 @@ public:
    * @param i Posición 
    * @return String i-ésimo del set
    */
-  string operator[](int i) {p.second[i];}
-
+  //string operator[](int i) {p.second[i];}
+  //NO FUNCIONA ASÍ, SI NO LO ESTAMOS UTILIZANDO LO PODEMOS QUITAR
  
   /**
    * @brief Sobrecarga del operador +
@@ -203,7 +204,7 @@ public:
    * @param h HistoricEvent a comparar con el objeto implícito
    * @retval true si el año del objeto implícito es mayor que el de h
    */
-  friend istream& operator>>(istream &is, const HistoricEvent &h);
+  friend istream& operator>>(istream &is, HistoricEvent &h);
 };
 
 #endif
