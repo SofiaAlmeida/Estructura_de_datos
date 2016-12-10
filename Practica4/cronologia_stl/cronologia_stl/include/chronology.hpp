@@ -100,6 +100,13 @@ public:
   map<int, HistoricEvent> get_events() const {return events;};
 
   /**
+   * @brief Eventos de un año
+   * @param date Fecha a consultar
+   * @return Evento Histórico del año indicado
+   */
+  HistoricEvent get_date_events(const int date);
+  
+  /**
    * @brief Obtiene un set con los acontecimientos de un año
    * @param date Año a buscar
    * @return set de acontecimientos del año date
