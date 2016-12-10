@@ -226,7 +226,7 @@ public:
    * @param c Cronología a asignar
    * @return Referencia a cronología asignada 
    */
-  Chronology& operator=(const Chronology &c) {events = c.events;}
+  Chronology& operator=(const Chronology &c) {return events = c.events;}
   
   /**
    * @brief Sobrecarga del operador <<
