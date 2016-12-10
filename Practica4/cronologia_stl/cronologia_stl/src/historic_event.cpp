@@ -20,13 +20,13 @@ HistoricEvent::HistoricEvent(int d, const set<string> &v) {
 }
 
 // Añadir acontecimiento
-void HistoricEvent::add_befall(const string &s) const {
+void HistoricEvent::add_befall(const string &s) {
   //Insert no añade si el elemento ya está
     p.second.insert(s);
 }
 
 // Indica si ha encontrado string 
-bool HistoricEvent::search(const string &s) {
+bool HistoricEvent::search(const string &s) const {
   if(p.second.find(s) != p.second.cend())
     return true;
   else
