@@ -8,31 +8,38 @@ Chronology::Chronology(vector<HistoricEvent> h) {
 		  }
   }
 
-  // Obtener vector de befalls
-  set<string> Chronology::get_befalls(int date) {
-    Chronology::const_iterator c_it = events.find(date);
-    return (*c_it).second.get_befalls();
+HistoricEvent Chronology::get_date_events(const int date) {
+  HistoricEvent h;
+
+  Chronology::const_iterator c_it = events.find(date);
+  return (*c_it).second;  
+}
+
+// Obtener vector de befalls
+set<string> Chronology::get_befalls(int date) {
+  Chronology::const_iterator c_it = events.find(date);
+  return (*c_it).second.get_befalls();
+}
+
+// Insertar acontecimiento
+void Chronology::insert_befall(int date, const string &s) {
+  Chronology::iterator it = events.find(date);
+
+  //Si la fecha ya está, añadimos el string 
+  if (it != end()) {
+    (*it).second.add_befall(s);
   }
-
-  // Insertar acontecimiento
-  void Chronology::insert_befall(int date, const string &s) {
-    Chronology::iterator it = events.find(date);
-
-    //Si la fecha ya está, añadimos el string 
-    if (it != end()) {
-      (*it).second.add_befall(s);
-    }
-    else {
-      HistoricEvent h(date, s);
-      events.insert(pair<int, HistoricEvent> (h.get_date(), h));
-    }
+  else {
+    HistoricEvent h(date, s);
+    events.insert(pair<int, HistoricEvent> (h.get_date(), h));
   }
+}
 
-  // Insertar evento
-  bool Chronology::insert_event(const HistoricEvent &h) {
-    Chronology::iterator it = events.find(h.get_date());
+// Insertar evento
+bool Chronology::insert_event(const HistoricEvent &h) {
+  Chronology::iterator it = events.find(h.get_date());
 
-    if(it == events.end()) {
+  if(it == events.end()) {
       events.insert(pair<int, HistoricEvent> (h.get_date(), h));
     }
     else {
