@@ -20,3 +20,6 @@ int main(int argc, char * argv[]) {
   Chronology c;
 
   c.stats(argv[1]);
+
+  return 0;
+}
