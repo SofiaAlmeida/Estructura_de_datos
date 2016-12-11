@@ -187,7 +187,7 @@ public:
    * @param lower Primera fecha
    * @param upper Segunda fecha
    * @parm fileout Nombre del fichero de salida
-   * @return Void 
+   * @return Void
    */
   void date_filter(const string& filein, const int& lower, const int& upper, const string& fileout);
   

@@ -94,6 +94,8 @@ void Chronology::insert_event(const HistoricEvent &h) {
       result.insert_event(c_it->second);
     }
 
+    
+    
     return result;
   }
 
@@ -203,7 +205,7 @@ void Chronology::date_filter(const string& filein, const int& lower, const int& 
     }
     else
       cout << "Error en la apertura del fichero " << fileout << endl;
-  }
+}
 
 
   // Filtro por fecha versión salida estándar
