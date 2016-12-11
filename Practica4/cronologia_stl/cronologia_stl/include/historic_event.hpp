@@ -197,6 +197,19 @@ public:
    * @retval true si el año del objeto implícito es mayor que el de h
    */
   friend istream& operator>>(istream &is, HistoricEvent &h);
+
+
+  /**
+   *
+   * @brief Toma los datos de un HistoricEvent de un string
+   * @param line String desde el cual lee los datos
+   * @return void
+   */
+
+  /*
+    void line_reader(string& line);
+    
+   */
 };
 
 #endif

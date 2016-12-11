@@ -291,6 +291,19 @@ istream& operator>>(istream &is, Chronology &c) {
   HistoricEvent h;
   string buffer;
 
+
+  
+  /*			POSIBLE SOLUCIÓN / ALTERNATIVA
+    string aux
+
+    while ( getline (is,line) ) {
+      line >> h;		ESTE OPERADOR DEBE CAMBIAR PARA EVENTO HISTORICO
+      c.insert_event(h);
+    }
+  }
+   */
+  
+
   while(!is.eof()) {
     is >> h;
     c.insert_event(h);
