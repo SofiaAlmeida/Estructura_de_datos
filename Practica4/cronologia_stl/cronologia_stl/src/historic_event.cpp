@@ -38,7 +38,7 @@ HistoricEvent HistoricEvent::get_coincidences(const string &s) const {
   HistoricEvent result;
   HistoricEvent::const_iterator c_it;
   
-  for(c_it = cbegin(); c_it != cend(); ++c_it){
+  for(c_it = cbegin(); c_it != cend(); ++c_it) {
     if((*c_it).find(s) != string::npos)
       result.add_befall(*c_it);
   }
@@ -72,26 +72,6 @@ ostream& operator<<(ostream& os, const HistoricEvent &h) {
 
 istream& operator>>(istream& is, HistoricEvent &h) {
   string buffer, aux;
-  size_t pos;
-
-  getline(is, buffer, '\n');
-
-  if(buffer.size() != 0) {
-    //Para evitar errores en el último evento
-    pos = buffer.find('#');
-    //Substr toma la posición inicial y el número de caracteres a incluir
-    aux = buffer.substr(0, pos);
-    h.set_date(stoi(aux));
-    buffer.erase(0, ++pos);
-  
-    while((pos = buffer.find('#')) != string::npos) {
-      aux = buffer.substr(0, pos);
-      buffer.erase(0, ++pos);
-      h.add_befall(aux);
-    }
-
-    h.add_befall(buffer);
-  }
   
   return is;
 

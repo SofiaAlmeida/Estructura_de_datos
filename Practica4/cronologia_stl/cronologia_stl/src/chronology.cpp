@@ -157,22 +157,23 @@ void Chronology::insert_event(const HistoricEvent &h) {
   // Filtro por palabras
 Chronology Chronology::word_filter(const string& word, const string& in) {
 
-    Chronology chron;
-    ifstream input;
+  Chronology chron, result;
+  ifstream input;
 
-    input.open(in);
+  input.open(in);
     
-    if (input.is_open()) {
-      input >> chron;
-      input.close();
-    }
-    else
-      cout << "Error en la apertura del fichero " << in << endl;
-
-    chron = word_search(word);
-  
-    return chron;
+  if (input.is_open()) {
+    input >> chron;
+    input.close();
   }
+  else{
+    cout << "Error en la apertura del fichero " << in << endl;
+    exit(0);
+  }
+  
+  result = chron.word_search(word);
+  return result;
+}
 
 
   // Filtro por fecha versión salida fichero
