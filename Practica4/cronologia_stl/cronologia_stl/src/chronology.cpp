@@ -240,9 +240,11 @@ void Chronology::stats(const string& filename) {
     in >> chron;
     in.close();
   }
-  else
+  else{
     cout << "Error en la apertura de " << filename << endl;
-
+    exit(0);
+  }
+  
   double total_years = 0;
   double total_befalls = 0, mean_befalls; // Total de eventos y promedio de eventos/año
 
