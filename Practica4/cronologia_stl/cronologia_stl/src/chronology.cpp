@@ -279,7 +279,6 @@ ostream& operator<<(ostream &os, const Chronology &c) {
     
   for(c_it = c.events.begin(); c_it != c.events.end(); ++c_it) {
     os << (*c_it).second; 		// Este operador deberá escribir la fecha seguido de todos los acontecimientos separados por #
-    os << "\n"; 
   }
 
   os << endl;
@@ -290,9 +289,10 @@ ostream& operator<<(ostream &os, const Chronology &c) {
 // Operador >>
 istream& operator>>(istream &is, Chronology &c) {
   HistoricEvent h;
-  cout << "Operator>> " << endl; 
-  while(is >> h) {
-    cout << "aqui" << endl;
+  string buffer;
+
+  while(!is.eof()) {
+    is >> h;
     c.insert_event(h);
   }
   
