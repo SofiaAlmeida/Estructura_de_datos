@@ -5,8 +5,8 @@ Chronology::Chronology(vector<HistoricEvent> h) {
   int size = h.size();
   for(int i = 0; i < size; ++i) {
     events.insert(pair<int, HistoricEvent> (h[i].get_date(), h[i]));
-		  }
   }
+}
 
 HistoricEvent Chronology::get_date_events(const int date) {
   HistoricEvent h;
@@ -40,136 +40,136 @@ void Chronology::insert_event(const HistoricEvent &h) {
   Chronology::iterator it = events.find(h.get_date());
 
   if(it == events.end()) {
-      events.insert(pair<int, HistoricEvent> (h.get_date(), h));
-    }
-    else {
-      //Si la fecha ya está, unimos los dos eventos
-      (*it).second + h; //COMPROBAR QUE ESTÁ SOBRECARGADA + EN HISTORICEVENT
-    }
+    events.insert(pair<int, HistoricEvent> (h.get_date(), h));
   }
-
-  // Borrar evento
-  void Chronology::rm_event(int date) {
-    //Solo se ejecutará si hay un evento con esa fecha
-    Chronology::iterator it;
-    if ((it = events.find(date)) != end()) {
-      events.erase(it);
-    }
+  else {
+    //Si la fecha ya está, unimos los dos eventos
+    (*it).second + h;
   }
+}
 
-  //Eventos anteriores
-  Chronology Chronology::prev_events(int d) {
-    Chronology result;
-    Chronology::const_iterator tope = events.find(d);
-    Chronology::const_iterator c_it;
+// Borrar evento
+void Chronology::rm_event(int date) {
+  //Solo se ejecutará si hay un evento con esa fecha
+  Chronology::iterator it;
+  if ((it = events.find(date)) != end()) {
+    events.erase(it);
+  }
+}
 
-    for(c_it = events.begin(); c_it != tope; ++c_it) {
-      result.insert_event((*c_it).second);
-    }
+//Eventos anteriores
+Chronology Chronology::prev_events(int d) {
+  Chronology result;
+  Chronology::const_iterator tope = events.find(d);
+  Chronology::const_iterator c_it;
+
+  for(c_it = events.begin(); c_it != tope; ++c_it) {
+    result.insert_event((*c_it).second);
+  }
   
-    return result;
-  }
+  return result;
+}
 
-  // Eventos posteriores
-  Chronology Chronology::post_events(int d) {
-    Chronology result;
-    Chronology::const_iterator c_it;
+// Eventos posteriores
+Chronology Chronology::post_events(int d) {
+  Chronology result;
+  Chronology::const_iterator c_it;
    
-    for(c_it = events.find(d); c_it != events.end(); ++c_it) {
-      result.insert_event(c_it->second);
-    }
-
-    return result;
+  for(c_it = events.find(d); c_it != events.end(); ++c_it) {
+    result.insert_event(c_it->second);
   }
 
-  // Eventos en un rango
-  Chronology Chronology::range(int inf, int sup) {
-    if (inf > sup)
-      std::swap(inf,sup);
-    Chronology result;
-    Chronology::const_iterator bot = events.find(inf);
-    Chronology::const_iterator top = events.find(sup);
-    Chronology::const_iterator c_it;
+  return result;
+}
 
-    if (bot->first != inf) {
-      for (c_it = events.cbegin(); c_it != events.cend() && c_it->first - inf < 0 && c_it->first < sup; ++c_it);
-      bot = c_it;
-    }
+// Eventos en un rango
+Chronology Chronology::range(int inf, int sup) {
+  if (inf > sup)
+    std::swap(inf,sup);
+  Chronology result;
+  Chronology::const_iterator bot = events.find(inf);
+  Chronology::const_iterator top = events.find(sup);
+  Chronology::const_iterator c_it;
 
-    if (top->first != sup) {
-      for (c_it = --(events.cend()); c_it != events.cbegin() && c_it->first - sup > 0 && c_it->first > inf; --c_it);
-      top = c_it;
-    }
-    
-    if (bot->first <= sup && top->first >= inf) {
-      if (bot != top) {
-	for (c_it = bot; c_it != top; ++c_it)
-	  result.insert_event(c_it->second);
-      }
-      result.insert_event(top->second);
-    }
-    
-    return result;
+  if (bot->first != inf) {
+    for (c_it = events.cbegin(); c_it != events.cend() && c_it->first - inf < 0 && c_it->first < sup; ++c_it);
+    bot = c_it;
   }
 
-  // Buscar una palabra
-  Chronology Chronology::word_search(const string &s) {
-    Chronology result;
-    HistoricEvent aux;
-    Chronology::const_iterator c_it;
+  if (top->first != sup) {
+    for (c_it = --(events.cend()); c_it != events.cbegin() && c_it->first - sup > 0 && c_it->first > inf; --c_it);
+    top = c_it;
+  }
+    
+  if (bot->first <= sup && top->first >= inf) {
+    if (bot != top) {
+      for (c_it = bot; c_it != top; ++c_it)
+	result.insert_event(c_it->second);
+    }
+    result.insert_event(top->second);
+  }
+    
+  return result;
+}
 
-    for(c_it = cbegin(); c_it != cend(); ++c_it) 
-      if((*c_it).second.search(s)) {
-	aux = (*c_it).second.get_coincidences(s);//IMPLEMENTAR EN HISTORICEVENT
-	result.insert_event(aux);
-      }
+// Buscar una palabra
+Chronology Chronology::word_search(const string &s) {
+  Chronology result;
+  HistoricEvent aux;
+  Chronology::const_iterator c_it;
+
+  for(c_it = cbegin(); c_it != cend(); ++c_it) 
+    if((*c_it).second.search(s)) {
+      aux = (*c_it).second.get_coincidences(s);//IMPLEMENTAR EN HISTORICEVENT
+      result.insert_event(aux);
+    }
 	
-    return result;
+  return result;
+}
+
+// FUNCIONALIDADES EXTRA
+
+// Unión cronologías
+void concat_chron(string input_1, string input_2, string output) {
+
+  Chronology chron1, chron2, chron3;
+
+  ifstream file1, file2;
+
+  file1.open(input_1);
+    
+  if (file1.is_open()) {				 
+    file1 >> chron1;	
+    file1.close();
   }
+  else
+    cout << "No se pudo leer el archivo " << input_1 << endl;
 
-  // FUNCIONALIDADES EXTRA
+  file2.open(input_2);
 
-  // Unión cronologías
-  void concat_chron(string input_1, string input_2, string output) {
+  if (file2.is_open()) {
+    file2 >> chron2;
+    file2.close();
+  }
+  else
+    cout << "No se pudo leer el archivo " << input_2 << endl;
 
-    Chronology chron1, chron2, chron3;
+  chron3 = chron1 + chron2; 
 
-    ifstream file1, file2;
+  ofstream file3;
 
-    file1.open(input_1);
+  file3.open(output);
     
-    if (file1.is_open()) {				 
-      file1 >> chron1;	
-      file1.close();
-    }
-    else
-      cout << "No se pudo leer el archivo " << input_1 << endl;
-
-    file2.open(input_2);
-
-    if (file2.is_open()) {
-      file2 >> chron2;
-      file2.close();
-    }
-    else
-      cout << "No se pudo leer el archivo " << input_2 << endl;
-
-    chron3 = chron1 + chron2; 
-
-    ofstream file3;
-
-    file3.open(output);
-    
-    if (file3.is_open()) {
-      file3 << chron3;
-      file3.close();
-    }
+  if (file3.is_open()) {
+    file3 << chron3;
+    file3.close();
+  }
   
-    else
-      cout << "No se pudo abrir el archivo " << output << endl;
-  }
+  else
+    cout << "No se pudo abrir el archivo " << output << endl;
+}
 
-  // Filtro por palabras
+// Filtro por palabras
 Chronology Chronology::word_filter(const string& word, const string& in) {
 
   Chronology chron, result;
@@ -191,54 +191,54 @@ Chronology Chronology::word_filter(const string& word, const string& in) {
 }
 
 
-  // Filtro por fecha versión salida fichero
+// Filtro por fecha versión salida fichero
 void Chronology::date_filter(const string& filein, const int& lower, const int& upper, const string& fileout) {
 
-    Chronology chron;
-    ifstream in;
+  Chronology chron;
+  ifstream in;
 
-    in.open(filein);
+  in.open(filein);
     
-    if (in.is_open()) {
-      in >> chron;
-      in.close();
-    }
-    else
-      cout << "Error en la apertura del fichero " << filein << endl;
+  if (in.is_open()) {
+    in >> chron;
+    in.close();
+  }
+  else
+    cout << "Error en la apertura del fichero " << filein << endl;
 
-    chron = chron.range(lower, upper);
+  chron = chron.range(lower, upper);
 
-    ofstream out;
+  ofstream out;
 
-    out.open(fileout);
+  out.open(fileout);
     
-    if (out.is_open()) {
-      out << chron;
-      out.close();
-    }
-    else
-      cout << "Error en la apertura del fichero " << fileout << endl;
+  if (out.is_open()) {
+    out << chron;
+    out.close();
+  }
+  else
+    cout << "Error en la apertura del fichero " << fileout << endl;
 }
 
 
-  // Filtro por fecha versión salida estándar
+// Filtro por fecha versión salida estándar
 void Chronology::date_filter(const string& filein, const int& lower, const int& upper) { 
  
-    Chronology chron;
-    ifstream in;
+  Chronology chron;
+  ifstream in;
 
-    in.open(filein);
+  in.open(filein);
     
-    if (in.is_open()) {
-      in >> chron;
-      in.close();
-    }
-    else
-      cout << "Error en la apertura del fichero " << filein << endl;
+  if (in.is_open()) {
+    in >> chron;
+    in.close();
+  }
+  else
+    cout << "Error en la apertura del fichero " << filein << endl;
     
-    chron = chron.range(lower, upper);
+  chron = chron.range(lower, upper);
     
-    cout << chron;
+  cout << chron;
 }
 
 // Estadísticas 
@@ -306,20 +306,7 @@ ostream& operator<<(ostream &os, const Chronology &c) {
 
 // Operador >>
 istream& operator>>(istream &is, Chronology &c) {
-  string buffer;
-
-
-  
-  /*			POSIBLE SOLUCIÓN / ALTERNATIVA
-    string aux
-
-    while ( getline (is,line) ) {
-      line >> h;		ESTE OPERADOR DEBE CAMBIAR PARA EVENTO HISTORICO
-      c.insert_event(h);
-    }
-  }
-   */
-  
+  string buffer;  
 
   while(!is.eof()) {
     HistoricEvent h;

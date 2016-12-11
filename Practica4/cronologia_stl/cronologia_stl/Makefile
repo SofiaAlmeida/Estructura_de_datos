@@ -12,7 +12,7 @@ LDLIBS = -levent
 IFLAGS = -I
 LIBFLAGS = rvs
 
-SOURCESMAIN = $(SRC)/filtrado_palabra.cpp
+SOURCESMAIN = $(SRC)/pruebacronologia.cpp
 SOURCESLIB= $(SRC)/chronology.cpp $(SRC)/historic_event.cpp
 OBJECTS = $(SOURCESMAIN:$(SRC)/%.cpp=$(OBJ)/%.o) $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)
 EXECUTABLES = $(SOURCESMAIN:$(SRC)/%.cpp=$(BIN)/% )
@@ -40,7 +40,7 @@ $(OBJ)/%.o : $(SRC)/%.cpp
 
 # ************ Limpieza ************
 clean :
-	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
+	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~ $(LIB)/*
 
 mrproper : clean
 	-rm $(BIN)/* doc/html/*

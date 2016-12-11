@@ -29,8 +29,6 @@ int main () {
 
   cout << pair << endl;
 
-  /*¿¿¿¿¿ CÓMO PROBAMOS LOS ITERADORES DIRECTAMENTE????? */
-
   // Probamos get_date
   cout << "Probamos get_date()  (En fecha_set) :" << endl;
   cout << fecha_set.get_date() << endl;

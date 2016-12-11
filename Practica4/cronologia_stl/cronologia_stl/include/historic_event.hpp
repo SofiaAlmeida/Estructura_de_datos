@@ -28,7 +28,7 @@ using namespace std;
  * contener más de una palabra.
  *
  * Un ejemplo de su uso:
- * @include 
+ * @include test_historic.cpp
  */
 
 class HistoricEvent {
@@ -198,18 +198,6 @@ public:
    */
   friend istream& operator>>(istream &is, HistoricEvent &h);
 
-
-  /**
-   *
-   * @brief Toma los datos de un HistoricEvent de un string
-   * @param line String desde el cual lee los datos
-   * @return void
-   */
-
-  /*
-    void line_reader(string& line);
-    
-   */
 };
 
 #endif

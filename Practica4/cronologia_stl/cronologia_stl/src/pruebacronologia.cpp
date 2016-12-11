@@ -20,24 +20,5 @@ int main(int argc, char * argv[]) {
    Chronology mi_cronologia;
    f >> mi_cronologia; //Cargamos en memoria, en el traductor.
    
-   // int anio;
-   //cout << "Dime un año a consultar:";
-   //cin >> anio;
-
    cout << mi_cronologia;
-   /*
-   HistoricEvent eventos;
-   eventos = mi_cronologia.get_date_events(anio);  
-
-   cout << eventos;*/
-   /*
-   // Recorremos con iterador los acontecimientos para mostrarlos por pantalla 
-   // Este proceso requiere la definición de un tipo iterator // const_iterator en EventoHistorico
-   // Y la definición de los métodos begin() y end() en EventoHistorico
-  HistoricEvent::const_iterator it;
-   cout << anio << ":";              //Imprimimos el anio
-   for (it = eventos.cbegin(); it != eventos.cend(); ++it) {
-     cout << (*it) << '#';
-   cout << endl;
-   }*/
 }

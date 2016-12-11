@@ -90,30 +90,9 @@ istream& operator>>(istream& is, HistoricEvent &h) {
       buffer.erase(0, ++pos);
       h.add_befall(aux);
     }
- 
+    
     h.add_befall(buffer);
   }
-
- 
+  
   return is;
-
-  /*   PRUEBA DE LEER E INTRODUCIR TODO LO OCURRIDO EN UN AÑO DE UN STRING
-
-       void HistoricEvent::line_reader(string& line){
-       
-       string aux;
-
-       pos = line.find('#');
-       aux = line.substr(0, pos);
-       h.set_date(stoi(aux));
-
-       while((pos = line.find('#')) != string::npos) {
-       aux = line.substr(0, pos);
-       buffer.erase(0, ++pos);
-       h.add_befall(aux);
-  }
-
-  h.add_befall(line);
-
-   */
 }
