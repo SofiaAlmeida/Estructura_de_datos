@@ -72,7 +72,7 @@ ostream& operator<<(ostream& os, const HistoricEvent &h) {
 
 istream& operator>>(istream& is, HistoricEvent &h) {
   string buffer, aux;
-  int pos;
+  unsigned int pos;
   //cout << "EN operator >>" << endl;//
   getline(is, buffer, '\n');
   // cout << "Después de leer la línea \n";
