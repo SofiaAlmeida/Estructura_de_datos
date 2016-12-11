@@ -16,7 +16,7 @@ HistoricEvent::HistoricEvent(const pair<int, set<string> > &p_alt){
 // Constructor
 HistoricEvent::HistoricEvent(int d, const set<string> &v) {
   p.first = d;
-  p.second = v;
+  p.second = s;
 }
 
 // Añadir acontecimiento
@@ -73,17 +73,23 @@ ostream& operator<<(ostream& os, const HistoricEvent &h) {
 istream& operator>>(istream& is, HistoricEvent &h) {
   string buffer, aux;
   int pos;
-
-  is >> buffer;
-
+  //cout << "EN operator >>" << endl;//
+  getline(is, buffer, '\n');
+  // cout << "Después de leer la línea \n";
+  //cout << "Línea: " << buffer << endl;
   pos = buffer.find('#');
-  aux = buffer.substr(0, --pos);
+  //cout << "pos: " << pos << endl;
+  //Substr toma la posición inicial y el número de caracteres a incluir
+  aux = buffer.substr(0, pos);
+  //cout << "aux: " << aux <<endl;
   h.set_date(stoi(aux));
-  buffer.erase(0, pos);
-
+  //cout << "h " << h << endl;
+  buffer.erase(0, ++pos);
+  //cout << "Buffer tras borrar: " << buffer << endl;
+  
   while((pos = buffer.find('#')) != string::npos) {
-    aux = buffer.substr(0, --pos);
-    buffer.erase(0, pos);
+    aux = buffer.substr(0, pos);
+    buffer.erase(0, ++pos);
     h.add_befall(aux);
   }
 

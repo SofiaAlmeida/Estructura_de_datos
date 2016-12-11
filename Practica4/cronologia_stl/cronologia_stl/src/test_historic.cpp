@@ -126,13 +126,15 @@ int main () {
   // Probamos operador de lectura
   HistoricEvent evento_leido;
 
-  ifstream input;
-
-  input.open("evento_prueba.txt", std::ifstream::in);
+  ifstream input("evento_prueba.txt");
+  cout << "is_open: " <<input.is_open()<< endl;
+  //input.open("./evento_prueba.txt", std::ifstream::in);
 
   if(input.is_open())
     input >> evento_leido;
-  else
+  //cout << "Insertar evento: año#string#...#string" << endl;
+  //cin >> evento_leido;
+   else
     cout << "Error en la apertura de evento_prueba.txt. TIENE QUE EXISTIR ESE FICHERO" << endl;
 
   cout << evento_leido << endl;

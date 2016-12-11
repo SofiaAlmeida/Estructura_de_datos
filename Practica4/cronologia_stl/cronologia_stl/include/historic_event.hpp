@@ -13,7 +13,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 #include <utility>
 #include <set>
 
@@ -76,10 +75,10 @@ public:
   /**
    * @brief Constructor de la clase
    * @param d Fecha
-   * @param c Vector de acontecimientos ocurrido en dicha fecha
+   * @param v Set con string que almacenan acontecimientos ocurridos en dicha fecha
    * @return Crea el evento histórico con fecha d y acontecimientos v
    */
-  HistoricEvent(int d, const set<string> &v);
+  HistoricEvent(int d, const set<string> &s);
 
   /**
    * @brief Constructor copia de la clase
@@ -193,7 +192,7 @@ public:
   friend ostream& operator<<(ostream &os, const HistoricEvent &h);
 
   /**
-   * @brief Sobrecarga del operador >
+   * @brief Sobrecarga del operador >>
    * @param h HistoricEvent a comparar con el objeto implícito
    * @retval true si el año del objeto implícito es mayor que el de h
    */
