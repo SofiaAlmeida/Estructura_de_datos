@@ -87,14 +87,27 @@ void Chronology::insert_event(const HistoricEvent &h) {
     if (inf > sup)
       std::swap(inf,sup);
     Chronology result;
-    Chronology::const_iterator tope = events.find(sup);
+    Chronology::const_iterator bot = events.find(inf);
+    Chronology::const_iterator top = events.find(sup);
     Chronology::const_iterator c_it;
-  
-    for(c_it = events.find(inf); c_it != tope; ++c_it) {
-      result.insert_event(c_it->second);
+
+    if (bot->first != inf) {
+      for (c_it = events.cbegin(); c_it != events.cend() && c_it->first - inf < 0 && c_it->first < sup; ++c_it);
+      bot = c_it;
     }
 
+    if (top->first != sup) {
+      for (c_it = --(events.cend()); c_it != events.cbegin() && c_it->first - sup > 0 && c_it->first > inf; --c_it);
+      top = c_it;
+    }
     
+    if (bot->first <= sup && top->first >= inf) {
+      if (bot != top) {
+	for (c_it = bot; c_it != top; ++c_it)
+	  result.insert_event(c_it->second);
+      }
+      result.insert_event(top->second);
+    }
     
     return result;
   }
