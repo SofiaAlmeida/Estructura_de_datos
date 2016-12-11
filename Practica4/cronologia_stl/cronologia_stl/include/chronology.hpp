@@ -12,6 +12,7 @@
 #include "historic_event.hpp"
 #include <iostream>
 #include <map>
+#include <vector>
 
 /**
  * @brief T.D.A. Chronology
@@ -126,7 +127,7 @@ public:
    * @param h Evento a añadir
    * @return Void
    */
-  bool insert_event(const HistoricEvent &h);
+  void insert_event(const HistoricEvent &h);
 
   /**
    * @brief Borra un evento
@@ -226,7 +227,7 @@ public:
    * @param c Cronología a asignar
    * @return Referencia a cronología asignada 
    */
-  Chronology& operator=(const Chronology &c) {return events = c.events;}
+  Chronology& operator=(const Chronology &c);
   
   /**
    * @brief Sobrecarga del operador <<

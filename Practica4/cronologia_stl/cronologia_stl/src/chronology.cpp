@@ -36,7 +36,7 @@ void Chronology::insert_befall(int date, const string &s) {
 }
 
 // Insertar evento
-bool Chronology::insert_event(const HistoricEvent &h) {
+void Chronology::insert_event(const HistoricEvent &h) {
   Chronology::iterator it = events.find(h.get_date());
 
   if(it == events.end()) {
@@ -267,6 +267,12 @@ Chronology& Chronology::operator+(const Chronology &c) {
   return *this;
 }
 
+// Operador =
+Chronology& Chronology::operator=(const Chronology &c) {
+  events = c.events;
+  return *this;
+}
+
 // Operador <<
 ostream& operator<<(ostream &os, const Chronology &c) {
   Chronology::const_iterator c_it;
@@ -284,8 +290,9 @@ ostream& operator<<(ostream &os, const Chronology &c) {
 // Operador >>
 istream& operator>>(istream &is, Chronology &c) {
   HistoricEvent h;
-   
+  cout << "Operator>> " << endl; 
   while(is >> h) {
+    cout << "aqui" << endl;
     c.insert_event(h);
   }
   

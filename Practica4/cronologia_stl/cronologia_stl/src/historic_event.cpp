@@ -14,7 +14,7 @@ HistoricEvent::HistoricEvent(const pair<int, set<string> > &p_alt){
 }
 
 // Constructor
-HistoricEvent::HistoricEvent(int d, const set<string> &v) {
+HistoricEvent::HistoricEvent(int d, const set<string> &s) {
   p.first = d;
   p.second = s;
 }
