@@ -72,28 +72,26 @@ ostream& operator<<(ostream& os, const HistoricEvent &h) {
 
 istream& operator>>(istream& is, HistoricEvent &h) {
   string buffer, aux;
-  unsigned int pos;
-  //cout << "EN operator >>" << endl;//
-  getline(is, buffer, '\n');
-  // cout << "Después de leer la línea \n";
-  //cout << "Línea: " << buffer << endl;
-  pos = buffer.find('#');
-  //cout << "pos: " << pos << endl;
-  //Substr toma la posición inicial y el número de caracteres a incluir
-  aux = buffer.substr(0, pos);
-  //cout << "aux: " << aux <<endl;
-  h.set_date(stoi(aux));
-  //cout << "h " << h << endl;
-  buffer.erase(0, ++pos);
-  //cout << "Buffer tras borrar: " << buffer << endl;
-  
-  while((pos = buffer.find('#')) != string::npos) {
-    aux = buffer.substr(0, pos);
-    buffer.erase(0, ++pos);
-    h.add_befall(aux);
-  }
+  size_t pos;
 
-  h.add_befall(buffer);
+  getline(is, buffer, '\n');
+
+  if(buffer.size() != 0) {
+    //Para evitar errores en el último evento
+    pos = buffer.find('#');
+    //Substr toma la posición inicial y el número de caracteres a incluir
+    aux = buffer.substr(0, pos);
+    h.set_date(stoi(aux));
+    buffer.erase(0, ++pos);
+  
+    while((pos = buffer.find('#')) != string::npos) {
+      aux = buffer.substr(0, pos);
+      buffer.erase(0, ++pos);
+      h.add_befall(aux);
+    }
+
+    h.add_befall(buffer);
+  }
   
   return is;
 

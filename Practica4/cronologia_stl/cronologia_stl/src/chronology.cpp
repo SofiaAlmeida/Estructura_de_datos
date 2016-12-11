@@ -288,7 +288,6 @@ ostream& operator<<(ostream &os, const Chronology &c) {
 
 // Operador >>
 istream& operator>>(istream &is, Chronology &c) {
-  HistoricEvent h;
   string buffer;
 
 
@@ -305,6 +304,7 @@ istream& operator>>(istream &is, Chronology &c) {
   
 
   while(!is.eof()) {
+    HistoricEvent h;
     is >> h;
     c.insert_event(h);
   }

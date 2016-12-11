@@ -12,7 +12,7 @@ LDLIBS = -levent
 IFLAGS = -I
 LIBFLAGS = rvs
 
-SOURCESMAIN = $(SRC)/test_historic.cpp
+SOURCESMAIN = $(SRC)/pruebacronologia.cpp
 SOURCESLIB= $(SRC)/chronology.cpp $(SRC)/historic_event.cpp
 OBJECTS = $(SOURCESMAIN:$(SRC)/%.cpp=$(OBJ)/%.o) $(SOURCESLIB:$(SRC)/%.cpp=$(OBJ)/%.o)
 EXECUTABLES = $(SOURCESMAIN:$(SRC)/%.cpp=$(BIN)/% )

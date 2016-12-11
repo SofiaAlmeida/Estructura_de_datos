@@ -16,7 +16,7 @@ int main(int argc, char * argv[]) {
     cout << "No puedo abrir el fichero " << argv[1] << endl;
     return 0;
    }
-   
+
    Chronology mi_cronologia;
    f >> mi_cronologia; //Cargamos en memoria, en el traductor.
    
