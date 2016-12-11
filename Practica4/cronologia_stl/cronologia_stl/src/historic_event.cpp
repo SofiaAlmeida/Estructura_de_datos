@@ -72,7 +72,29 @@ ostream& operator<<(ostream& os, const HistoricEvent &h) {
 
 istream& operator>>(istream& is, HistoricEvent &h) {
   string buffer, aux;
-  
+
+  size_t pos;
+ 
+  getline(is, buffer, '\n');
+ 
+  if(buffer.size() != 0) {
+    //Para evitar errores en el último evento
+    pos = buffer.find('#');
+    //Substr toma la posición inicial y el número de caracteres a incluir
+    aux = buffer.substr(0, pos);
+    h.set_date(stoi(aux));
+    buffer.erase(0, ++pos);
+   
+    while((pos = buffer.find('#')) != string::npos) {
+      aux = buffer.substr(0, pos);
+      buffer.erase(0, ++pos);
+      h.add_befall(aux);
+    }
+ 
+    h.add_befall(buffer);
+  }
+
+ 
   return is;
 
   /*   PRUEBA DE LEER E INTRODUCIR TODO LO OCURRIDO EN UN AÑO DE UN STRING
